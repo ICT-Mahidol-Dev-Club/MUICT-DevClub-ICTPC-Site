@@ -1,0 +1,5 @@
+rank,teamName,solved,totalTime,A,B,C,D,E
+1,Binary Bandits,4,120,AC,AC,AC,AC,-
+2,Null Pointers,3,180,AC,AC,-,AC,-
+3,Stack Overflow,2,240,AC,-,AC,-,-
+4,Hello World,1,60,AC,-,-,-,-
