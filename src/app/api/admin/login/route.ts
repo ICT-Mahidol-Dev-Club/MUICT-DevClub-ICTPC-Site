@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { adminLoginSchema } from "@/lib/validation";
+import { ADMIN_COOKIE } from "@/lib/auth/constants";
 
 // Mock credentials — replace with Supabase auth when backend is wired
 const MOCK_ADMIN_EMAIL = "admin@ictpc.local";
 const MOCK_ADMIN_PASSWORD = "admin1234";
-
-/** Cookie name used by the mock session guard */
-export const ADMIN_COOKIE = "ictpc_admin_session";
 
 export async function POST(req: NextRequest) {
   let body: unknown;

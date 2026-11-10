@@ -1,9 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { AdminSession } from "@/types";
-
-/** Cookie name must match src/app/api/admin/login/route.ts */
-const ADMIN_COOKIE = "ictpc_admin_session";
+import { ADMIN_COOKIE } from "./constants";
 
 /**
  * Server-side admin guard. Reads the HTTP-only session cookie set by

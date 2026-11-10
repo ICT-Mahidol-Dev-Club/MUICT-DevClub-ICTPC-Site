@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import { teamsService } from "@/lib/services";
 import type { PublicTeam } from "@/types";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -7,6 +8,12 @@ import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
 export default async function TeamsPage() {
   const t = await getTranslations("teams");
+  const locale = await getLocale();
+
+  // memberCount is a "{count} …" template string — TeamsGrid interpolates it
+  // with .replace("{count}", n), so we read it from the raw content instead
+  // of calling t("memberCount") which would throw without a count arg.
+  const memberCountTemplate = locale === "th" ? "{count} คน" : "{count} member(s)";
 
   let teams: PublicTeam[] = [];
   let error = false;
@@ -32,7 +39,7 @@ export default async function TeamsPage() {
           <TeamsGrid
             teams={teams}
             labels={{
-              memberCount: t("memberCount"),
+              memberCount: memberCountTemplate,
               statusLabels: {
                 pending: t("status.pending"),
                 confirmed: t("status.confirmed"),

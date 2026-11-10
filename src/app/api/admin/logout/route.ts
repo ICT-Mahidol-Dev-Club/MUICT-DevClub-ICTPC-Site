@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ADMIN_COOKIE } from "../login/route";
+import { ADMIN_COOKIE } from "@/lib/auth/constants";
 
 export async function POST() {
   const res = NextResponse.json({ ok: true });
@@ -13,3 +13,4 @@ export async function POST() {
   });
   return res;
 }
+
