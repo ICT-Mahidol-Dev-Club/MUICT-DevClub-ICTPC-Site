@@ -8,9 +8,10 @@ export interface RulesSection {
 
 export interface RulesSectionListProps {
   sections: RulesSection[];
+  titleAs?: "h2" | "h3";
 }
 
-export function RulesSectionList({ sections }: RulesSectionListProps) {
+export function RulesSectionList({ sections, titleAs = "h2" }: RulesSectionListProps) {
   const getIconForSection = (index: number) => {
     switch (index) {
       case 0:
@@ -62,7 +63,7 @@ export function RulesSectionList({ sections }: RulesSectionListProps) {
           <CardHeader className="border-b border-slate-100 bg-slate-50/70">
             <div className="flex items-center gap-3">
               {getIconForSection(idx)}
-              <CardTitle as="h2" className="text-lg sm:text-xl">
+              <CardTitle as={titleAs} className="text-lg sm:text-xl">
                 {section.title}
               </CardTitle>
             </div>

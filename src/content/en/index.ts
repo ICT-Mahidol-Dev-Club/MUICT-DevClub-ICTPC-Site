@@ -34,6 +34,45 @@ const en = {
       minutes: "Minutes",
       seconds: "Seconds",
     },
+    whatWhy: {
+      badge: "Overview",
+      whatHeading: "What is ICTPC?",
+      whatBody:
+        "ICTPC is the annual competitive programming contest of the Faculty of ICT, Mahidol University. Open exclusively to currently enrolled ICT and DST students, teams solve challenging algorithmic problems on an automated online judge within a strict time limit. Practice sessions and problem archives are provided beforehand to help all participants prepare.",
+      ctaRegister: "Register your team",
+      whyHeading: "Why you should join",
+      whySubtitle: "Four great reasons to challenge yourself in this year's contest:",
+      benefits: [
+        {
+          title: "Sharpen Problem-Solving Skills",
+          description:
+            "Tackle real algorithmic challenges and refine your analytical thinking, data structures, and debugging under timed pressure.",
+        },
+        {
+          title: "Compete as a Team",
+          description:
+            "Collaborate in teams of 1 to 3 members to divide problems, strategize under pressure, and achieve victory together.",
+        },
+        {
+          title: "Practice Before the Contest",
+          description:
+            "Get comfortable with the contest platform and problem formats through pre-contest warm-up sessions.",
+        },
+        {
+          title: "Meet the ICT Community",
+          description:
+            "Connect with fellow peers, senior programmers, and developer leaders across the Faculty of ICT.",
+        },
+      ],
+    },
+    whenWhere: {
+      badge: "Timetable & Venue",
+      heading: "When and Where",
+      description: "Contest itinerary and on-campus location details for contest day.",
+      venueTitle: "Contest Venue",
+      dateTitle: "Contest Date",
+      mapHint: "Faculty of ICT Building, Mahidol University Salaya Campus",
+    },
   },
   about: {
     heading: "About ICTPC",

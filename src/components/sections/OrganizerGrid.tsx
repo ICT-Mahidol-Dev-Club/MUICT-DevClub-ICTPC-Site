@@ -5,13 +5,15 @@ import { OrganizerCard } from "./OrganizerCard";
 export interface OrganizerGridProps {
   team: OrganizerProfile[];
   heading: string;
+  titleAs?: "h2" | "h3";
 }
 
-export function OrganizerGrid({ team, heading }: OrganizerGridProps) {
+export function OrganizerGrid({ team, heading, titleAs = "h2" }: OrganizerGridProps) {
+  const TitleTag = titleAs;
   return (
     <div className="mx-auto max-w-5xl space-y-6 pt-6">
       <div className="text-center sm:text-left">
-        <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">{heading}</h2>
+        <TitleTag className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">{heading}</TitleTag>
         <p className="mt-1 text-xs text-slate-500 sm:text-sm">
           The students and committee members leading the contest operations.
         </p>

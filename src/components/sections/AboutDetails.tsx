@@ -9,6 +9,7 @@ export interface AboutDetailsProps {
   format: string;
   eventDate: string;
   venue: string;
+  summary?: boolean;
 }
 
 export function AboutDetails({
@@ -18,6 +19,7 @@ export function AboutDetails({
   format,
   eventDate,
   venue,
+  summary = false,
 }: AboutDetailsProps) {
   const formattedDate = new Date(eventDate).toLocaleDateString(undefined, {
     weekday: "long",
@@ -25,6 +27,95 @@ export function AboutDetails({
     month: "long",
     day: "numeric",
   });
+
+  if (summary) {
+    return (
+      <div className="mx-auto max-w-5xl space-y-8">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Eligibility */}
+          <Card className="flex flex-col justify-between border-slate-200/90 bg-white p-6 shadow-xs">
+            <div>
+              <div className="mb-3 flex items-center gap-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-100 text-primary-700">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </span>
+                <CardTitle as="h3" className="text-xl">
+                  Who Can Participate
+                </CardTitle>
+              </div>
+              <p className="text-sm leading-relaxed text-slate-600">{eligibility}</p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2 border-t border-slate-100 pt-4">
+              <Badge variant="primary" size="sm">
+                ICT Students
+              </Badge>
+              <Badge variant="primary" size="sm">
+                DST Students
+              </Badge>
+              <Badge variant="slate" size="sm">
+                Undergraduate Years 1–4
+              </Badge>
+            </div>
+          </Card>
+
+          {/* Contest Format */}
+          <Card className="flex flex-col justify-between border-slate-200/90 bg-white p-6 shadow-xs">
+            <div>
+              <div className="mb-3 flex items-center gap-2">
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-lime-100 text-lime-900">
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </span>
+                <CardTitle as="h3" className="text-xl">
+                  Contest Format &amp; Teams
+                </CardTitle>
+              </div>
+              <p className="text-sm leading-relaxed text-slate-600">{format}</p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2 border-t border-slate-100 pt-4">
+              <Badge variant="lime" size="sm">
+                1–3 Members Per Team
+              </Badge>
+              <Badge variant="slate" size="sm">
+                3-Hour Contest Window
+              </Badge>
+              <Badge variant="slate" size="sm">
+                ICPC-Style Scoring
+              </Badge>
+            </div>
+          </Card>
+        </div>
+
+        {/* Mission Banner */}
+        <Card className="border-primary-100 bg-gradient-to-br from-primary-50/50 via-white to-white p-6 sm:p-7 shadow-xs">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-1">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-primary-700">
+                Our Mission
+              </span>
+              <p className="text-base font-medium text-slate-800 sm:text-lg">{mission}</p>
+            </div>
+            <div className="shrink-0 font-mono text-xs font-semibold text-slate-500">
+              {coOrganizers}
+            </div>
+          </div>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto max-w-5xl space-y-8">

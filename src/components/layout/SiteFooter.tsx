@@ -41,17 +41,17 @@ export function SiteFooter({ siteName, year }: SiteFooterProps) {
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               <li>
-                <Link href="/about" className="transition-colors hover:text-primary-600">
+                <Link href="/#about" className="transition-colors hover:text-primary-600">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/rules" className="transition-colors hover:text-primary-600">
+                <Link href="/#rules" className="transition-colors hover:text-primary-600">
                   Rules &amp; Eligibility
                 </Link>
               </li>
               <li>
-                <Link href="/schedule" className="transition-colors hover:text-primary-600">
+                <Link href="/#when-where" className="transition-colors hover:text-primary-600">
                   Event Schedule
                 </Link>
               </li>
@@ -93,7 +93,7 @@ export function SiteFooter({ siteName, year }: SiteFooterProps) {
                 </Link>
               </li>
               <li>
-                <Link href="/organizers" className="transition-colors hover:text-primary-600">
+                <Link href="/#organizers" className="transition-colors hover:text-primary-600">
                   Organizers
                 </Link>
               </li>

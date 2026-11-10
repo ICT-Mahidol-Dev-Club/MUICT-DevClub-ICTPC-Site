@@ -10,9 +10,11 @@ export interface OrgInfo {
 export interface OrgBannerProps {
   smo: OrgInfo;
   devclub: OrgInfo;
+  titleAs?: "h2" | "h3";
 }
 
-export function OrgBanner({ smo, devclub }: OrgBannerProps) {
+export function OrgBanner({ smo, devclub, titleAs = "h2" }: OrgBannerProps) {
+  const TitleTag = titleAs;
   return (
     <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
       {/* SMO MUICT */}
@@ -26,7 +28,7 @@ export function OrgBanner({ smo, devclub }: OrgBannerProps) {
               Student Organization
             </Badge>
           </div>
-          <h2 className="text-xl font-bold text-slate-900">{smo.name}</h2>
+          <TitleTag className="text-xl font-bold text-slate-900">{smo.name}</TitleTag>
           <p className="text-sm leading-relaxed text-slate-600">{smo.description}</p>
         </div>
         <div className="mt-4 border-t border-slate-100 pt-4 font-mono text-xs text-slate-400">
@@ -45,7 +47,7 @@ export function OrgBanner({ smo, devclub }: OrgBannerProps) {
               Developer Community
             </Badge>
           </div>
-          <h2 className="text-xl font-bold text-slate-900">{devclub.name}</h2>
+          <TitleTag className="text-xl font-bold text-slate-900">{devclub.name}</TitleTag>
           <p className="text-sm leading-relaxed text-slate-600">{devclub.description}</p>
         </div>
         <div className="mt-4 border-t border-slate-100 pt-4 font-mono text-xs text-slate-400">

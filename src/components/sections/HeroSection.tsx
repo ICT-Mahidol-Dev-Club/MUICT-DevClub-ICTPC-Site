@@ -133,7 +133,7 @@ export function HeroSection({
             )}
 
             <Link
-              href="/about"
+              href="#what"
               className="inline-flex w-full items-center justify-center rounded-xl border border-slate-200 bg-white px-6 py-3 text-base font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 sm:w-auto"
             >
               {ctaLearnMore}
