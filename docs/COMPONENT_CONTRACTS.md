@@ -53,12 +53,12 @@ interface SiteFooterProps {
 ```typescript
 interface AdminLayoutProps {
   children: React.ReactNode;
-  session?: AdminSession;  // optional — guard redirects if missing
+  session: AdminSession;
 }
 ```
 
-**States:** default, collapsed-sidebar
-**Content:** sidebar with dashboard/registrations/inquiries links, logout button (calls `adminService.logout()`).
+**States:** default, collapsed-sidebar  
+**Content:** sidebar with dashboard/registrations/inquiries links, logout button.
 
 ---
 
@@ -69,13 +69,10 @@ interface AdminLayoutProps {
 interface PageHeaderProps {
   heading: string;
   description?: string;
-  badge?: string;       // mono-spaced label chip above heading (e.g. "PARTICIPANTS")
-  actions?: React.ReactNode; // optional slot for buttons in top-right
-  className?: string;
 }
 ```
 
-**States:** with-description, without-description, with-badge, with-actions
+**States:** with-description, without-description
 
 ---
 
@@ -86,13 +83,10 @@ interface PageHeaderProps {
 interface EmptyStateProps {
   message: string;
   icon?: React.ReactNode;
-  title?: string;        // optional bolded heading above message
-  action?: React.ReactNode; // optional CTA button slot
-  className?: string;
 }
 ```
 
-**States:** default, with-title, with-action
+**States:** default
 
 ---
 
