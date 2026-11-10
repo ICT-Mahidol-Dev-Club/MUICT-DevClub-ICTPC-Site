@@ -5,13 +5,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { adminLoginSchema, type AdminLoginFormValues } from "@/lib/validation";
-import { adminService } from "@/lib/services";
-import { useRouter } from "@/i18n/navigation";
 import { AdminLoginForm } from "@/components/sections/AdminLoginForm";
 
 export default function AdminLoginPage() {
   const t = useTranslations("admin.login");
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -29,8 +26,19 @@ export default function AdminLoginPage() {
     setLoading(true);
     setError(null);
     try {
-      await adminService.login(data);
-      router.push("/admin");
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        setError(t("error"));
+        return;
+      }
+
+      // Hard navigation so the server re-renders /admin with the new cookie
+      window.location.href = "/en/admin";
     } catch {
       setError(t("error"));
     } finally {

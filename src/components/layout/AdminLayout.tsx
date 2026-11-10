@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import type { AdminSession } from "@/types";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
-import { adminService } from "@/lib/services";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 
 export interface AdminLayoutProps {
@@ -13,15 +12,14 @@ export interface AdminLayoutProps {
 
 export function AdminLayout({ children, session }: AdminLayoutProps) {
   const pathname = usePathname();
-  const router = useRouter();
   const [loggingOut, setLoggingOut] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = async () => {
     setLoggingOut(true);
     try {
-      await adminService.logout();
-      router.push("/admin/login");
+      await fetch("/api/admin/logout", { method: "POST" });
+      window.location.href = "/en/admin/login";
     } finally {
       setLoggingOut(false);
     }

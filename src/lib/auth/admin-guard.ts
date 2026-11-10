@@ -1,21 +1,40 @@
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { adminService } from "@/lib/services";
 import type { AdminSession } from "@/types";
 
+/** Cookie name must match src/app/api/admin/login/route.ts */
+const ADMIN_COOKIE = "ictpc_admin_session";
+
 /**
- * Mock admin guard for server components.
- * Call at the top of any admin page.
- * When real auth is wired: replace adminService.getSession()
- * with the Supabase server-side session helper.
+ * Server-side admin guard. Reads the HTTP-only session cookie set by
+ * POST /api/admin/login. Redirects to /admin/login if absent or expired.
+ *
+ * When real auth is wired: replace this with the Supabase server-side
+ * session helper (e.g. createServerClient + getSession()).
  *
  * @returns AdminSession if authenticated
  * @throws redirect to /admin/login if not authenticated
  */
 export async function requireAdminSession(): Promise<AdminSession> {
-  const session = await adminService.getSession();
-  if (!session) {
+  const cookieStore = await cookies();
+  const raw = cookieStore.get(ADMIN_COOKIE)?.value;
+
+  if (!raw) {
     redirect("/admin/login");
   }
+
+  let session: AdminSession;
+  try {
+    session = JSON.parse(raw) as AdminSession;
+  } catch {
+    redirect("/admin/login");
+  }
+
+  // Treat expired sessions as unauthenticated
+  if (new Date(session.expiresAt) < new Date()) {
+    redirect("/admin/login");
+  }
+
   return session;
 }
 
