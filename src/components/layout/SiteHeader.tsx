@@ -42,15 +42,11 @@ export function SiteHeader({ currentLocale, currentPath }: SiteHeaderProps) {
   };
 
   const navLinks = [
-    { href: "/#about", label: t("about") },
-    { href: "/#rules", label: t("rules") },
-    { href: "/#when-where", label: t("schedule") },
     { href: "/register", label: t("register"), highlight: true },
     { href: "/teams", label: t("teams") },
     { href: "/scores", label: t("scores") },
     { href: "/problems", label: t("problems") },
     { href: "/practice", label: t("practice") },
-    { href: "/#organizers", label: t("organizers") },
     { href: "/developers", label: t("developers") },
     { href: "/contact", label: t("contact") },
   ];
@@ -116,9 +112,6 @@ export function SiteHeader({ currentLocale, currentPath }: SiteHeaderProps) {
             className="hidden items-center gap-1 md:flex xl:hidden"
           >
             {[
-              { href: "/#about", label: t("about") },
-              { href: "/#rules", label: t("rules") },
-              { href: "/#when-where", label: t("schedule") },
               { href: "/register", label: t("register"), highlight: true },
               { href: "/teams", label: t("teams") },
               { href: "/scores", label: t("scores") },
