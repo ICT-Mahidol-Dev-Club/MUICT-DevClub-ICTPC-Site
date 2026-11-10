@@ -51,6 +51,7 @@ export function AdminLoginForm({ form, loading, error, onSubmit, labels }: Admin
               id="admin-email"
               type="email"
               placeholder="admin@ictpc.local"
+              autoComplete="email"
               required
               error={errors.email?.message}
               {...register("email")}
@@ -61,6 +62,7 @@ export function AdminLoginForm({ form, loading, error, onSubmit, labels }: Admin
               id="admin-password"
               type="password"
               placeholder="••••••••"
+              autoComplete="current-password"
               required
               error={errors.password?.message}
               {...register("password")}

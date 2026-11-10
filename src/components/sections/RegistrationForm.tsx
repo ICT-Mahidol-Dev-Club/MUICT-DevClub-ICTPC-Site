@@ -156,6 +156,7 @@ export function RegistrationForm({
                     <Input
                       label={labels.email}
                       type="email"
+                      autoComplete="off"
                       placeholder="e.g. student@student.mahidol.edu"
                       required
                       error={memberErrors?.email?.message}

@@ -51,6 +51,7 @@ export function ContactForm({ form, submitState, onSubmit, labels }: ContactForm
         <Input
           label={labels.name}
           id="contact-name"
+          autoComplete="name"
           placeholder="e.g. Somchai Srisuk"
           required
           error={errors.name?.message}
@@ -61,6 +62,7 @@ export function ContactForm({ form, submitState, onSubmit, labels }: ContactForm
           label={labels.email}
           id="contact-email"
           type="email"
+          autoComplete="email"
           placeholder="e.g. somchai@student.mahidol.edu"
           required
           error={errors.email?.message}
