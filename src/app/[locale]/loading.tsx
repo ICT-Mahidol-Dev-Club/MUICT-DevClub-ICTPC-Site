@@ -9,7 +9,7 @@ export default function LoadingPage() {
     <div
       aria-busy="true"
       aria-label={t("loading")}
-      className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-8"
+      className="mx-auto w-full max-w-7xl flex-1 space-y-8 px-4 py-12 sm:px-6 lg:px-8"
     >
       <div className="space-y-3">
         <Skeleton variant="rectangular" className="h-6 w-32" />
@@ -17,7 +17,7 @@ export default function LoadingPage() {
         <Skeleton variant="text" className="w-1/2 max-w-sm" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+      <div className="grid grid-cols-1 gap-6 pt-6 md:grid-cols-3">
         <Skeleton variant="rectangular" className="h-44 w-full" />
         <Skeleton variant="rectangular" className="h-44 w-full" />
         <Skeleton variant="rectangular" className="h-44 w-full" />

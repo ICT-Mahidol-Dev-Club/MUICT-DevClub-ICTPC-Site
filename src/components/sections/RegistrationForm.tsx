@@ -53,21 +53,15 @@ export function RegistrationForm({
   const isLoading = submitState === "loading";
 
   return (
-    <form
-      onSubmit={onSubmit}
-      noValidate
-      className="max-w-3xl mx-auto space-y-8"
-    >
+    <form onSubmit={onSubmit} noValidate className="mx-auto max-w-3xl space-y-8">
       {/* Team Details Section */}
-      <Card className="p-6 sm:p-8 bg-white border-slate-200">
-        <div className="border-b border-slate-100 pb-4 mb-6">
-          <span className="text-xs font-mono font-bold text-primary-600 uppercase tracking-wider bg-primary-50 px-2 py-0.5 rounded border border-primary-200">
+      <Card className="border-slate-200 bg-white p-6 sm:p-8">
+        <div className="mb-6 border-b border-slate-100 pb-4">
+          <span className="rounded border border-primary-200 bg-primary-50 px-2 py-0.5 font-mono text-xs font-bold uppercase tracking-wider text-primary-600">
             Step 1
           </span>
-          <h2 className="text-xl font-bold text-slate-900 mt-2">
-            Team Information
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <h2 className="mt-2 text-xl font-bold text-slate-900">Team Information</h2>
+          <p className="mt-1 text-xs text-slate-500 sm:text-sm">
             Choose a unique and creative name for your team.
           </p>
         </div>
@@ -86,13 +80,13 @@ export function RegistrationForm({
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <span className="text-xs font-mono font-bold text-primary-600 uppercase tracking-wider bg-primary-50 px-2 py-0.5 rounded border border-primary-200">
+            <span className="rounded border border-primary-200 bg-primary-50 px-2 py-0.5 font-mono text-xs font-bold uppercase tracking-wider text-primary-600">
               Step 2
             </span>
-            <h2 className="text-xl font-bold text-slate-900 mt-2">
+            <h2 className="mt-2 text-xl font-bold text-slate-900">
               Team Members ({fields.length}/3)
             </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+            <p className="mt-0.5 text-xs text-slate-500 sm:text-sm">
               Each team must have 1 to 3 members from ICT or DST programs.
             </p>
           </div>
@@ -104,16 +98,13 @@ export function RegistrationForm({
             const isLeader = index === 0;
 
             return (
-              <Card
-                key={field.id}
-                className="overflow-hidden border-slate-200 bg-white"
-              >
-                <div className="bg-slate-50/80 px-6 py-3.5 border-b border-slate-200/80 flex items-center justify-between">
+              <Card key={field.id} className="overflow-hidden border-slate-200 bg-white">
+                <div className="flex items-center justify-between border-b border-slate-200/80 bg-slate-50/80 px-6 py-3.5">
                   <div className="flex items-center gap-2.5">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-600 text-white font-mono text-xs font-bold">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-600 font-mono text-xs font-bold text-white">
                       {index + 1}
                     </span>
-                    <span className="font-semibold text-sm text-slate-900">
+                    <span className="text-sm font-semibold text-slate-900">
                       {labels.member} {index + 1}
                     </span>
                     {isLeader && (
@@ -127,15 +118,15 @@ export function RegistrationForm({
                     <button
                       type="button"
                       onClick={() => onRemoveMember(index)}
-                      className="text-xs font-medium text-rose-600 hover:text-rose-700 hover:bg-rose-50 px-2.5 py-1 rounded-md transition-colors"
+                      className="rounded-md px-2.5 py-1 text-xs font-medium text-rose-600 transition-colors hover:bg-rose-50 hover:text-rose-700"
                     >
                       {labels.removeMember}
                     </button>
                   )}
                 </div>
 
-                <div className="p-6 space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-4 p-6">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <Input
                       label={labels.fullName}
                       placeholder="e.g. Somsak Jaidee"
@@ -153,7 +144,7 @@ export function RegistrationForm({
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <Input
                       label={labels.studentId}
                       placeholder="e.g. 6688001"
@@ -172,12 +163,12 @@ export function RegistrationForm({
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {/* Faculty Select */}
                     <div>
                       <label
                         htmlFor={`faculty-${index}`}
-                        className="block text-sm font-medium text-slate-700 mb-1.5"
+                        className="mb-1.5 block text-sm font-medium text-slate-700"
                       >
                         {labels.faculty} <span className="text-rose-500">*</span>
                       </label>
@@ -190,7 +181,7 @@ export function RegistrationForm({
                         <option value="DST">Digital Science &amp; Tech (DST)</option>
                       </select>
                       {memberErrors?.faculty && (
-                        <p className="mt-1.5 text-xs text-rose-600 font-medium">
+                        <p className="mt-1.5 text-xs font-medium text-rose-600">
                           {memberErrors.faculty.message}
                         </p>
                       )}
@@ -200,7 +191,7 @@ export function RegistrationForm({
                     <div>
                       <label
                         htmlFor={`year-${index}`}
-                        className="block text-sm font-medium text-slate-700 mb-1.5"
+                        className="mb-1.5 block text-sm font-medium text-slate-700"
                       >
                         {labels.year} <span className="text-rose-500">*</span>
                       </label>
@@ -215,7 +206,7 @@ export function RegistrationForm({
                         <option value={4}>Year 4</option>
                       </select>
                       {memberErrors?.year && (
-                        <p className="mt-1.5 text-xs text-rose-600 font-medium">
+                        <p className="mt-1.5 text-xs font-medium text-rose-600">
                           {memberErrors.year.message}
                         </p>
                       )}
@@ -233,10 +224,15 @@ export function RegistrationForm({
             variant="outline"
             fullWidth
             onClick={onAddMember}
-            className="border-dashed border-2 py-3 border-slate-300 hover:border-primary-500 hover:bg-primary-50/50"
+            className="border-2 border-dashed border-slate-300 py-3 hover:border-primary-500 hover:bg-primary-50/50"
             leftIcon={
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M12 4v16m8-8H4"
+                />
               </svg>
             }
           >
@@ -246,7 +242,7 @@ export function RegistrationForm({
       </div>
 
       {/* Terms & Consent */}
-      <Card className="p-6 bg-slate-50 border-slate-200">
+      <Card className="border-slate-200 bg-slate-50 p-6">
         <div className="space-y-4">
           <Checkbox
             id="consentGiven"
@@ -265,14 +261,14 @@ export function RegistrationForm({
       )}
 
       {/* Submit Action */}
-      <div className="flex flex-col sm:flex-row items-center justify-end gap-4 pt-2">
+      <div className="flex flex-col items-center justify-end gap-4 pt-2 sm:flex-row">
         <Button
           type="submit"
           size="lg"
           variant="primary"
           loading={isLoading}
           disabled={isLoading}
-          className="w-full sm:w-auto px-8"
+          className="w-full px-8 sm:w-auto"
         >
           {labels.submit}
         </Button>

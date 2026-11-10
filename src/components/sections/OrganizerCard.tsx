@@ -9,16 +9,16 @@ export interface OrganizerCardProps {
 
 export function OrganizerCard({ name, role, imageUrl }: OrganizerCardProps) {
   return (
-    <Card className="p-5 text-center flex flex-col items-center justify-center bg-white border-slate-200 hover:border-slate-300 transition-all shadow-card">
+    <Card className="flex flex-col items-center justify-center border-slate-200 bg-white p-5 text-center shadow-card transition-all hover:border-slate-300">
       {imageUrl ? (
         <img
           src={imageUrl}
           alt={name}
-          className="h-20 w-20 rounded-full object-cover border-2 border-slate-100 shadow-sm mb-3.5"
+          className="mb-3.5 h-20 w-20 rounded-full border-2 border-slate-100 object-cover shadow-sm"
         />
       ) : (
         <div
-          className="h-20 w-20 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 border-2 border-white text-primary-700 flex items-center justify-center font-bold text-lg shadow-sm mb-3.5"
+          className="mb-3.5 flex h-20 w-20 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br from-primary-100 to-primary-200 text-lg font-bold text-primary-700 shadow-sm"
           aria-hidden="true"
         >
           {name
@@ -28,12 +28,8 @@ export function OrganizerCard({ name, role, imageUrl }: OrganizerCardProps) {
             .join("")}
         </div>
       )}
-      <h3 className="font-semibold text-slate-900 text-sm sm:text-base">
-        {name}
-      </h3>
-      <p className="text-xs font-mono font-medium text-primary-600 mt-1">
-        {role}
-      </p>
+      <h3 className="text-sm font-semibold text-slate-900 sm:text-base">{name}</h3>
+      <p className="mt-1 font-mono text-xs font-medium text-primary-600">{role}</p>
     </Card>
   );
 }

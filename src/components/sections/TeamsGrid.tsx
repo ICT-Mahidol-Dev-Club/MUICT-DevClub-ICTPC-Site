@@ -25,8 +25,7 @@ export function TeamsGrid({ teams, labels }: TeamsGridProps) {
         team.teamName.toLowerCase().includes(query) ||
         team.members.some(
           (m) =>
-            m.nickname.toLowerCase().includes(query) ||
-            m.faculty.toLowerCase().includes(query),
+            m.nickname.toLowerCase().includes(query) || m.faculty.toLowerCase().includes(query),
         ),
     );
   }, [teams, searchQuery]);
@@ -34,14 +33,19 @@ export function TeamsGrid({ teams, labels }: TeamsGridProps) {
   return (
     <div className="space-y-6">
       {/* Search Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 max-w-xl">
+      <div className="flex max-w-xl flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-center">
         <Input
           placeholder="Search by team name or member nickname…"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           leftIcon={
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
             </svg>
           }
           rightIcon={
@@ -53,13 +57,18 @@ export function TeamsGrid({ teams, labels }: TeamsGridProps) {
                 aria-label="Clear search"
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             ) : undefined
           }
         />
-        <div className="shrink-0 text-xs font-mono text-slate-500 self-center sm:self-auto">
+        <div className="shrink-0 self-center font-mono text-xs text-slate-500 sm:self-auto">
           {filteredTeams.length} of {teams.length} teams
         </div>
       </div>
@@ -75,15 +84,12 @@ export function TeamsGrid({ teams, labels }: TeamsGridProps) {
           }
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredTeams.map((team) => (
             <TeamCard
               key={team.id}
               team={team}
-              memberCountLabel={labels.memberCount.replace(
-                "{count}",
-                String(team.memberCount),
-              )}
+              memberCountLabel={labels.memberCount.replace("{count}", String(team.memberCount))}
               statusLabel={labels.statusLabels[team.status] || team.status}
             />
           ))}

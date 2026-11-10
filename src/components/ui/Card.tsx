@@ -4,18 +4,11 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   interactive?: boolean;
 }
 
-export function Card({
-  className = "",
-  interactive = false,
-  children,
-  ...props
-}: CardProps) {
+export function Card({ className = "", interactive = false, children, ...props }: CardProps) {
   return (
     <div
       className={`rounded-xl border border-slate-200 bg-white text-slate-900 shadow-card transition-all duration-200 ${
-        interactive
-          ? "hover:border-primary-300 hover:shadow-card-hover cursor-pointer"
-          : ""
+        interactive ? "cursor-pointer hover:border-primary-300 hover:shadow-card-hover" : ""
       } ${className}`}
       {...props}
     >
@@ -30,7 +23,7 @@ export function CardHeader({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={`p-5 sm:p-6 pb-3 ${className}`} {...props}>
+    <div className={`p-5 pb-3 sm:p-6 ${className}`} {...props}>
       {children}
     </div>
   );
@@ -46,7 +39,7 @@ export function CardTitle({
 }) {
   return (
     <Component
-      className={`font-semibold text-lg text-slate-900 tracking-tight ${className}`}
+      className={`text-lg font-semibold tracking-tight text-slate-900 ${className}`}
       {...props}
     >
       {children}
@@ -60,7 +53,7 @@ export function CardDescription({
   ...props
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={`text-sm text-slate-500 mt-1 leading-normal ${className}`} {...props}>
+    <p className={`mt-1 text-sm leading-normal text-slate-500 ${className}`} {...props}>
       {children}
     </p>
   );
@@ -72,7 +65,7 @@ export function CardContent({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={`p-5 sm:p-6 pt-0 ${className}`} {...props}>
+    <div className={`p-5 pt-0 sm:p-6 ${className}`} {...props}>
       {children}
     </div>
   );
@@ -85,7 +78,7 @@ export function CardFooter({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={`p-5 sm:p-6 pt-3 border-t border-slate-100 flex items-center justify-between gap-3 ${className}`}
+      className={`flex items-center justify-between gap-3 border-t border-slate-100 p-5 pt-3 sm:p-6 ${className}`}
       {...props}
     >
       {children}

@@ -17,9 +17,7 @@ export function InquiriesClient({ initialInquiries }: Props) {
   const handleResolve = async (id: string) => {
     try {
       const updated = await inquiryService.resolve(id);
-      setInquiries((prev) =>
-        prev.map((item) => (item.id === id ? updated : item)),
-      );
+      setInquiries((prev) => prev.map((item) => (item.id === id ? updated : item)));
     } catch {
       // In case of mock error, optimistically mark resolved
       setInquiries((prev) =>

@@ -20,11 +20,7 @@ export function RegistrationDetail({ registration }: Props) {
   async function handleUpdateStatus(newStatus: Registration["status"]) {
     setSaving(true);
     try {
-      const updated = await registrationService.updateStatus(
-        registration.id,
-        newStatus,
-        note,
-      );
+      const updated = await registrationService.updateStatus(registration.id, newStatus, note);
       setStatus(updated.status);
     } finally {
       setSaving(false);
@@ -33,10 +29,7 @@ export function RegistrationDetail({ registration }: Props) {
 
   return (
     <div className="space-y-6">
-      <RegistrationDetailCard
-        registration={registration}
-        currentStatus={status}
-      />
+      <RegistrationDetailCard registration={registration} currentStatus={status} />
 
       <StatusActions
         currentStatus={status}

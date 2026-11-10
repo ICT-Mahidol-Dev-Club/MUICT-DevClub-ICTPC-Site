@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { teamsService } from "@/lib/services";
 import type { PublicTeam } from "@/types";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -6,7 +6,7 @@ import { TeamsGrid } from "@/components/sections/TeamsGrid";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
 export default async function TeamsPage() {
-  const t = useTranslations("teams");
+  const t = await getTranslations("teams");
 
   let teams: PublicTeam[] = [];
   let error = false;
@@ -25,7 +25,7 @@ export default async function TeamsPage() {
         description="Browse all confirmed and registered teams for the upcoming contest."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {error ? (
           <ErrorMessage message="Failed to load teams. Please refresh the page." />
         ) : (

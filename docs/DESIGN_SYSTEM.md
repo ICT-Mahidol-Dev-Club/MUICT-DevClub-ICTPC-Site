@@ -15,7 +15,9 @@ Welcome to the Design System for the **ICTPC** (Faculty of ICT Annual Competitiv
 ## 1. Color Tokens & Palette
 
 ### Primary: Royal Blue
+
 The anchor color representing Mahidol ICT's prestige and technical focus.
+
 - **Hex**: `#1536D6` (`primary-600`)
 - **Tokens**:
   - `primary-50`: `#EFF3FF` (Light background tint, hover states)
@@ -30,7 +32,9 @@ The anchor color representing Mahidol ICT's prestige and technical focus.
 ### Accents (Used Sparingly)
 
 #### Accent Magenta
+
 Used for celebration tags, special event callouts, and contest highlights.
+
 - **Hex**: `#D96BD9` (`magenta-500`)
 - **Tokens**:
   - `magenta-50`: `#FDF4FD`
@@ -39,11 +43,14 @@ Used for celebration tags, special event callouts, and contest highlights.
   - `magenta-700`: `#993799` (Text on white / dark variant)
 
 #### Accent Lime
+
 Used for status tags, live contest countdowns, solved problems (Accepted verdicts), and vibrant technical chips.
+
 - **Hex**: `#B5E04A` (`lime-400` / `lime-500`)
 - **Contrast Rule**: Because white text on `#B5E04A` lacks contrast (1.2:1), text on Lime elements **MUST ALWAYS** use dark slate (`#1A2E05` or `text-lime-950`). This provides **9.2:1** contrast ratio (exceeds WCAG AAA).
 
 ### Neutrals & Surfaces
+
 - **Background**: `#F8FAFC` (Slate 50)
 - **Card Surface**: `#FFFFFF` (Pure White)
 - **Muted Surface**: `#F1F5F9` (Slate 100)
@@ -53,6 +60,7 @@ Used for status tags, live contest countdowns, solved problems (Accepted verdict
 - **Text Muted / Placeholder**: `#94A3B8` (Slate 400)
 
 ### Feedback / Status
+
 - **Success / Accepted (AC)**: Emerald `#059669` / `#10B981` (bg `#ECFDF5`, text `#065F46`)
 - **Wrong Answer (WA) / Rejected / Error**: Rose `#E11D48` / `#F43F5E` (bg `#FFF1F2`, text `#9F1239`)
 - **Time Limit Exceeded (TLE) / Pending / Warning**: Amber `#D97706` (bg `#FFFBEB`, text `#92400E`)
@@ -68,6 +76,7 @@ Used for status tags, live contest countdowns, solved problems (Accepted verdict
   - Used for: Contest year (e.g. `ICTPC27`), problem codes (`A`, `B`, `C`), submission time stamps, scoreboard times, and terminal/code tags.
 
 ### Type Scale
+
 - `text-xs`: 0.75rem / 12px (Micro tags, timestamps)
 - `text-sm`: 0.875rem / 14px (Badges, table cells, form labels, captions)
 - `text-base`: 1rem / 16px (Body copy, form inputs, button text)
@@ -117,3 +126,99 @@ Used for status tags, live contest countdowns, solved problems (Accepted verdict
 - **Desktop Viewport**: `1440px` (Modern widescreen display)
   - Max container width: `max-w-7xl` (1280px) or `max-w-6xl` (1152px) centered with responsive gutters `px-4 sm:px-6 lg:px-8`.
   - Grid layouts: 2, 3, or 4 columns with balanced gap spacing.
+
+---
+
+## 6. Component Implementation Status
+
+> Updated: 2026-11-10
+
+### UI Primitives (`src/components/ui/`)
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| `Button` | ✅ Done | 6 variants: primary, secondary, outline, ghost, lime, danger |
+| `Input` | ✅ Done | With label, error, helper text, icon slots |
+| `Textarea` | ✅ Done | Matching Input API |
+| `Checkbox` | ✅ Done | Accessible with label |
+| `Badge` | ✅ Done | Variants: primary, lime, slate, rose, amber, emerald |
+| `Card` / `CardHeader` / `CardContent` | ✅ Done | Composable card system |
+| `Alert` | ✅ Done | info, success, warning, error |
+| `Accordion` | ✅ Done | Used by FAQ |
+| `Table` / `TableHeader` / `TableBody` / `TableRow` / `TableHead` / `TableCell` | ✅ Done | Responsive scrollable |
+| `PageHeader` | ✅ Done | badge, description, actions slots |
+| `EmptyState` | ✅ Done | title, icon, action slots |
+| `ErrorMessage` | ✅ Done | with/without retry |
+| `LoadingSpinner` | ✅ Done | Accessible aria-label |
+| `Skeleton` | ✅ Done | Used for loading states |
+
+### Layout Components (`src/components/layout/`)
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| `SiteHeader` | ✅ Done | Sticky, mobile drawer, EN/TH toggle, responsive |
+| `SiteFooter` | ✅ Done | Site name, year, quick links |
+| `AdminLayout` | ✅ Done | Collapsible sidebar, logout, active route highlight |
+
+### Section Components (`src/components/sections/`)
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| `HeroSection` | ✅ Done | Animated pulse badge, grid background, CTA |
+| `CountdownSection` | ✅ Done | Live countdown with `useEffect`, event-started state |
+| `AboutSnippet` | ✅ Done | |
+| `AboutDetails` | ✅ Done | |
+| `RulesSectionList` | ✅ Done | |
+| `ScheduleTimeline` | ✅ Done | |
+| `RegistrationForm` | ✅ Done | Multi-member accordion cards, Zod errors |
+| `ClosedBanner` | ✅ Done | |
+| `SuccessBanner` | ✅ Done | |
+| `TeamsGrid` | ✅ Done | |
+| `TeamCard` | ✅ Done | Status badge variants |
+| `ContactForm` | ✅ Done | |
+| `LineOpenChatLink` | ✅ Done | |
+| `OrgBanner` | ✅ Done | |
+| `OrganizerGrid` | ✅ Done | |
+| `OrganizerCard` | ✅ Done | |
+| `DeveloperGrid` | ✅ Done | |
+| `DeveloperCard` | ✅ Done | |
+| `NotPublishedBanner` | ✅ Done | |
+| `ScoreboardTable` | ✅ Done | Verdict pills (AC/WA/TLE/RTE/CE), medal ranks |
+| `ProblemList` | ✅ Done | |
+| `ProblemCard` | ✅ Done | Difficulty badge |
+| `PracticeSessionList` | ✅ Done | |
+| `PracticeSessionCard` | ✅ Done | Materials list |
+| `FaqAccordion` | ✅ Done | Animated expand/collapse |
+| `AdminPageHeader` | ✅ Done | Back link |
+| `StatCard` | ✅ Done | Linked stat with count |
+| `RegistrationsTable` | ✅ Done | Sortable, action links |
+| `RegistrationDetailCard` | ✅ Done | Full member list, status badge |
+| `StatusActions` | ✅ Done | Confirm/reject with note |
+| `InquiriesTable` | ✅ Done | Optimistic resolve via `InquiriesClient` |
+| `AdminLoginForm` | ✅ Done | |
+
+---
+
+## 7. Inter Font Setup
+
+Add the following to `src/app/[locale]/layout.tsx` to load Inter and JetBrains Mono from Google Fonts:
+
+```typescript
+import { Inter, JetBrains_Mono } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+```
+
+Then apply `${inter.variable} ${jetbrainsMono.variable}` to `<html>` and reference with `font-sans` / `font-mono` Tailwind utilities (already configured in `tailwind.config.js`).
+
+> **Note**: Thai script rendering relies on `Noto Sans Thai` / `Sarabun` as system font fallbacks. No additional loading needed for local dev; production may add a hosted Thai font for consistency.

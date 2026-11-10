@@ -23,29 +23,23 @@ export interface AdminLoginFormProps {
   };
 }
 
-export function AdminLoginForm({
-  form,
-  loading,
-  error,
-  onSubmit,
-  labels,
-}: AdminLoginFormProps) {
+export function AdminLoginForm({ form, loading, error, onSubmit, labels }: AdminLoginFormProps) {
   const {
     register,
     formState: { errors },
   } = form;
 
   return (
-    <div className="w-full max-w-md mx-auto">
-      <Card className="p-6 sm:p-8 border-slate-200 bg-white shadow-card">
+    <div className="mx-auto w-full max-w-md">
+      <Card className="border-slate-200 bg-white p-6 shadow-card sm:p-8">
         <CardHeader className="p-0 pb-6 text-center">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-600 text-white font-mono text-base font-bold mx-auto mb-3 shadow-sm">
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-600 font-mono text-base font-bold text-white shadow-sm">
             ADM
           </div>
-          <CardTitle as="h1" className="text-xl sm:text-2xl font-bold text-slate-900">
+          <CardTitle as="h1" className="text-xl font-bold text-slate-900 sm:text-2xl">
             {labels.heading}
           </CardTitle>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <p className="mt-1 text-xs text-slate-500 sm:text-sm">
             Sign in to access registrations and inquiries.
           </p>
         </CardHeader>
@@ -90,13 +84,18 @@ export function AdminLoginForm({
             </Button>
           </form>
 
-          <div className="mt-6 pt-4 border-t border-slate-100 text-center">
+          <div className="mt-6 border-t border-slate-100 pt-4 text-center">
             <Link
               href="/"
-              className="text-xs text-slate-500 hover:text-primary-600 transition-colors font-medium inline-flex items-center gap-1"
+              className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 transition-colors hover:text-primary-600"
             >
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
               </svg>
               <span>Back to Public Contest Site</span>
             </Link>

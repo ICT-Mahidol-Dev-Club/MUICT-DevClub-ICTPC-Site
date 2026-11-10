@@ -4,10 +4,7 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import {
-  registrationSchema,
-  type RegistrationFormValues,
-} from "@/lib/validation";
+import { registrationSchema, type RegistrationFormValues } from "@/lib/validation";
 import { registrationService } from "@/lib/services";
 import { siteConfig } from "@/config/site.config";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -17,9 +14,7 @@ import { SuccessBanner } from "@/components/sections/SuccessBanner";
 
 export default function RegisterPage() {
   const t = useTranslations("register");
-  const [submitState, setSubmitState] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const form = useForm<RegistrationFormValues>({
     resolver: zodResolver(registrationSchema),
@@ -58,12 +53,8 @@ export default function RegisterPage() {
   if (!siteConfig.registrationOpen) {
     return (
       <div className="pb-16">
-        <PageHeader
-          badge="APPLY"
-          heading={t("heading")}
-          description={t("description")}
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PageHeader badge="APPLY" heading={t("heading")} description={t("description")} />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <ClosedBanner message={t("registrationClosed")} />
         </div>
       </div>
@@ -73,12 +64,8 @@ export default function RegisterPage() {
   if (submitState === "success") {
     return (
       <div className="pb-16">
-        <PageHeader
-          badge="APPLY"
-          heading={t("heading")}
-          description={t("description")}
-        />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PageHeader badge="APPLY" heading={t("heading")} description={t("description")} />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SuccessBanner message={t("form.success")} />
         </div>
       </div>
@@ -87,13 +74,9 @@ export default function RegisterPage() {
 
   return (
     <div className="pb-16">
-      <PageHeader
-        badge="APPLY"
-        heading={t("heading")}
-        description={t("description")}
-      />
+      <PageHeader badge="APPLY" heading={t("heading")} description={t("description")} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <RegistrationForm
           form={form}
           fields={fields}

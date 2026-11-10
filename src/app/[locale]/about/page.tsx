@@ -14,7 +14,7 @@ export default function AboutPage() {
         description="Learn more about the contest history, format, mission, and how to participate."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AboutDetails
           mission={t("mission")}
           coOrganizers={t("coOrganizers")}

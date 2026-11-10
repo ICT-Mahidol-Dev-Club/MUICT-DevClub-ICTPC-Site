@@ -15,7 +15,7 @@ export default function OrganizersPage() {
         description="The joint committee of SMO MUICT and Dev Club MUICT dedicated to making ICTPC possible."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="mx-auto max-w-7xl space-y-12 px-4 sm:px-6 lg:px-8">
         <OrgBanner
           smo={{
             name: t("smo.name"),

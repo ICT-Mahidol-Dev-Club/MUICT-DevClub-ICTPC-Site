@@ -28,13 +28,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans antialiased">
+      <body className="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-900 antialiased">
         <NextIntlClientProvider messages={messages}>
-          <SiteHeader
-            currentLocale={locale as "en" | "th"}
-            currentPath=""
-          />
-          <main className="flex-1 flex flex-col">{children}</main>
+          <SiteHeader currentLocale={locale as "en" | "th"} currentPath="" />
+          <main className="flex flex-1 flex-col">{children}</main>
           <SiteFooter siteName={siteName} year={siteConfig.eventYear} />
         </NextIntlClientProvider>
       </body>

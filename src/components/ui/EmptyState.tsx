@@ -8,18 +8,12 @@ export interface EmptyStateProps {
   className?: string;
 }
 
-export function EmptyState({
-  message,
-  icon,
-  title,
-  action,
-  className = "",
-}: EmptyStateProps) {
+export function EmptyState({ message, icon, title, action, className = "" }: EmptyStateProps) {
   return (
     <div
-      className={`flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-xl border border-dashed border-slate-300 bg-white/60 ${className}`}
+      className={`flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white/60 p-8 text-center sm:p-12 ${className}`}
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400 mb-4">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
         {icon || (
           <svg
             className="h-6 w-6"
@@ -36,10 +30,8 @@ export function EmptyState({
           </svg>
         )}
       </div>
-      {title && (
-        <h4 className="text-base font-semibold text-slate-900 mb-1">{title}</h4>
-      )}
-      <p className="max-w-md text-sm text-slate-500 leading-relaxed">{message}</p>
+      {title && <h4 className="mb-1 text-base font-semibold text-slate-900">{title}</h4>}
+      <p className="max-w-md text-sm leading-relaxed text-slate-500">{message}</p>
       {action && <div className="mt-5">{action}</div>}
     </div>
   );

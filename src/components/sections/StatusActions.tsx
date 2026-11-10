@@ -30,17 +30,17 @@ export function StatusActions({
   labels,
 }: StatusActionsProps) {
   return (
-    <Card className="p-6 bg-white border-slate-200 shadow-card">
+    <Card className="border-slate-200 bg-white p-6 shadow-card">
       <CardHeader className="p-0 pb-4">
-        <CardTitle as="h3" className="text-base text-slate-900 font-bold">
+        <CardTitle as="h3" className="text-base font-bold text-slate-900">
           Review &amp; Status Actions
         </CardTitle>
-        <p className="text-xs text-slate-500 mt-0.5">
+        <p className="mt-0.5 text-xs text-slate-500">
           Update the registration decision or leave an internal committee note.
         </p>
       </CardHeader>
 
-      <CardContent className="p-0 space-y-4">
+      <CardContent className="space-y-4 p-0">
         <Textarea
           label={labels.note}
           id="reg-note"
@@ -53,8 +53,8 @@ export function StatusActions({
 
         <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-slate-400">Current:</span>
-            <span className="font-mono text-xs font-bold uppercase text-slate-700 bg-slate-100 px-2 py-0.5 rounded">
+            <span className="font-mono text-xs text-slate-400">Current:</span>
+            <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-bold uppercase text-slate-700">
               {currentStatus}
             </span>
           </div>

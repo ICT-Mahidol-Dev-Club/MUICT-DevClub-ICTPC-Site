@@ -20,10 +20,7 @@ export interface RegistrationsTableProps {
   };
 }
 
-export function RegistrationsTable({
-  registrations,
-  labels,
-}: RegistrationsTableProps) {
+export function RegistrationsTable({ registrations, labels }: RegistrationsTableProps) {
   if (registrations.length === 0) {
     return (
       <EmptyState
@@ -36,11 +33,23 @@ export function RegistrationsTable({
   const getStatusBadge = (status: Registration["status"]) => {
     switch (status) {
       case "confirmed":
-        return <Badge variant="success" size="sm" dot>Confirmed</Badge>;
+        return (
+          <Badge variant="success" size="sm" dot>
+            Confirmed
+          </Badge>
+        );
       case "rejected":
-        return <Badge variant="danger" size="sm" dot>Rejected</Badge>;
+        return (
+          <Badge variant="danger" size="sm" dot>
+            Rejected
+          </Badge>
+        );
       default:
-        return <Badge variant="warning" size="sm" dot>Pending</Badge>;
+        return (
+          <Badge variant="warning" size="sm" dot>
+            Pending
+          </Badge>
+        );
     }
   };
 
@@ -59,13 +68,9 @@ export function RegistrationsTable({
       <TableBody>
         {registrations.map((reg) => (
           <TableRow key={reg.id}>
-            <TableCell className="font-mono text-xs text-slate-500">
-              {reg.id}
-            </TableCell>
+            <TableCell className="font-mono text-xs text-slate-500">{reg.id}</TableCell>
             <TableCell>
-              <div className="font-semibold text-slate-900">
-                {reg.teamName}
-              </div>
+              <div className="font-semibold text-slate-900">{reg.teamName}</div>
               <div className="text-xs text-slate-400">
                 {reg.members.map((m) => m.nickname).join(", ")}
               </div>
@@ -73,9 +78,7 @@ export function RegistrationsTable({
             <TableCell className="text-center font-mono font-medium">
               {reg.members.length}
             </TableCell>
-            <TableCell>
-              {getStatusBadge(reg.status)}
-            </TableCell>
+            <TableCell>{getStatusBadge(reg.status)}</TableCell>
             <TableCell className="font-mono text-xs text-slate-500">
               {new Date(reg.submittedAt).toLocaleDateString(undefined, {
                 month: "short",
@@ -87,11 +90,16 @@ export function RegistrationsTable({
             <TableCell className="text-right">
               <Link
                 href={`/admin/registrations/${reg.id}`}
-                className="inline-flex items-center gap-1 text-xs font-semibold text-primary-600 hover:text-primary-700 bg-primary-50 px-2.5 py-1 rounded-md hover:bg-primary-100 transition-colors"
+                className="inline-flex items-center gap-1 rounded-md bg-primary-50 px-2.5 py-1 text-xs font-semibold text-primary-600 transition-colors hover:bg-primary-100 hover:text-primary-700"
               >
                 <span>View</span>
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </Link>
             </TableCell>

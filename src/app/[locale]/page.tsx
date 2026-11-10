@@ -31,10 +31,7 @@ export default function HomePage() {
         }}
       />
 
-      <AboutSnippet
-        heading={t("about.heading")}
-        body={t("about.body")}
-      />
+      <AboutSnippet heading={t("about.heading")} body={t("about.body")} />
     </div>
   );
 }

@@ -8,8 +8,8 @@ export interface DeveloperGridProps {
 
 export function DeveloperGrid({ developers }: DeveloperGridProps) {
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="mx-auto max-w-5xl space-y-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {developers.map((dev, idx) => (
           <DeveloperCard
             key={idx}

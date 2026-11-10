@@ -10,11 +10,6 @@ export const metadata: Metadata = {
     "ICTPC is the annual competitive programming contest for ICT and DST students at Mahidol University.",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

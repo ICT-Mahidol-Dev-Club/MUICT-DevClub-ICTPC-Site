@@ -8,28 +8,26 @@ export interface SuccessBannerProps {
 
 export function SuccessBanner({ message }: SuccessBannerProps) {
   return (
-    <Card className="max-w-2xl mx-auto p-8 sm:p-10 text-center border-emerald-200 bg-emerald-50/50 shadow-card">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600 mx-auto mb-4">
+    <Card className="mx-auto max-w-2xl border-emerald-200 bg-emerald-50/50 p-8 text-center shadow-card sm:p-10">
+      <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
         <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
-        Registration Submitted!
-      </h2>
-      <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-6 max-w-lg mx-auto">
+      <h2 className="mb-2 text-xl font-bold text-slate-900 sm:text-2xl">Registration Submitted!</h2>
+      <p className="mx-auto mb-6 max-w-lg text-sm leading-relaxed text-slate-700 sm:text-base">
         {message}
       </p>
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Link
           href="/teams"
-          className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-primary-600 text-white text-sm font-semibold hover:bg-primary-700 transition-colors shadow-sm"
+          className="inline-flex items-center justify-center rounded-lg bg-primary-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-700"
         >
           View Registered Teams
         </Link>
         <Link
           href="/"
-          className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-white border border-slate-300 text-slate-700 text-sm font-medium hover:bg-slate-50 transition-colors"
+          className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
         >
           Return to Home
         </Link>

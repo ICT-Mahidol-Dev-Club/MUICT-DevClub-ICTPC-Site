@@ -21,11 +21,7 @@ export interface InquiriesTableProps {
   onResolve: (id: string) => void;
 }
 
-export function InquiriesTable({
-  inquiries,
-  labels,
-  onResolve,
-}: InquiriesTableProps) {
+export function InquiriesTable({ inquiries, labels, onResolve }: InquiriesTableProps) {
   if (inquiries.length === 0) {
     return (
       <EmptyState
@@ -50,15 +46,9 @@ export function InquiriesTable({
       <TableBody>
         {inquiries.map((inq) => (
           <TableRow key={inq.id}>
-            <TableCell className="font-semibold text-slate-900">
-              {inq.name}
-            </TableCell>
-            <TableCell className="font-mono text-xs text-slate-600">
-              {inq.email}
-            </TableCell>
-            <TableCell className="max-w-xs truncate text-slate-700">
-              {inq.message}
-            </TableCell>
+            <TableCell className="font-semibold text-slate-900">{inq.name}</TableCell>
+            <TableCell className="font-mono text-xs text-slate-600">{inq.email}</TableCell>
+            <TableCell className="max-w-xs truncate text-slate-700">{inq.message}</TableCell>
             <TableCell className="font-mono text-xs text-slate-500">
               {new Date(inq.submittedAt).toLocaleDateString(undefined, {
                 month: "short",
@@ -82,12 +72,12 @@ export function InquiriesTable({
                   size="sm"
                   variant="outline"
                   onClick={() => onResolve(inq.id)}
-                  className="text-xs py-1 px-2.5"
+                  className="px-2.5 py-1 text-xs"
                 >
                   {labels.resolve}
                 </Button>
               ) : (
-                <span className="text-xs text-slate-400 font-mono">Done</span>
+                <span className="font-mono text-xs text-slate-400">Done</span>
               )}
             </TableCell>
           </TableRow>

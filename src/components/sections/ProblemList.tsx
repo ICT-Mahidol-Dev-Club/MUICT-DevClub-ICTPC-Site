@@ -29,10 +29,7 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
   const filteredProblems = useMemo(() => {
     return problems.filter((problem) => {
       // Difficulty match
-      if (
-        selectedDifficulty !== "all" &&
-        problem.difficulty !== selectedDifficulty
-      ) {
+      if (selectedDifficulty !== "all" && problem.difficulty !== selectedDifficulty) {
         return false;
       }
       // Year match
@@ -44,9 +41,7 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
         const matchesTitle = problem.title.toLowerCase().includes(q);
-        const matchesTags = problem.tags.some((tag) =>
-          tag.toLowerCase().includes(q),
-        );
+        const matchesTags = problem.tags.some((tag) => tag.toLowerCase().includes(q));
         if (!matchesTitle && !matchesTags) return false;
       }
       return true;
@@ -65,16 +60,21 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
   return (
     <div className="space-y-6">
       {/* Controls Bar: Search, Difficulty Tabs, and Year Selector */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200">
+      <div className="flex flex-col items-stretch justify-between gap-4 rounded-xl border border-slate-200 bg-white p-4 md:flex-row md:items-center">
         {/* Search */}
-        <div className="flex-1 max-w-sm">
+        <div className="max-w-sm flex-1">
           <Input
             placeholder="Search problems by name or #tag…"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             leftIcon={
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
             }
           />
@@ -87,9 +87,9 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
             <button
               type="button"
               onClick={() => setSelectedDifficulty("all")}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
+              className={`rounded-md px-3 py-1.5 transition-colors ${
                 selectedDifficulty === "all"
-                  ? "bg-white text-primary-600 font-semibold shadow-sm"
+                  ? "bg-white font-semibold text-primary-600 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -98,9 +98,9 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
             <button
               type="button"
               onClick={() => setSelectedDifficulty("easy")}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
+              className={`rounded-md px-3 py-1.5 transition-colors ${
                 selectedDifficulty === "easy"
-                  ? "bg-white text-emerald-700 font-semibold shadow-sm"
+                  ? "bg-white font-semibold text-emerald-700 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -109,9 +109,9 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
             <button
               type="button"
               onClick={() => setSelectedDifficulty("medium")}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
+              className={`rounded-md px-3 py-1.5 transition-colors ${
                 selectedDifficulty === "medium"
-                  ? "bg-white text-amber-700 font-semibold shadow-sm"
+                  ? "bg-white font-semibold text-amber-700 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -120,9 +120,9 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
             <button
               type="button"
               onClick={() => setSelectedDifficulty("hard")}
-              className={`px-3 py-1.5 rounded-md transition-colors ${
+              className={`rounded-md px-3 py-1.5 transition-colors ${
                 selectedDifficulty === "hard"
-                  ? "bg-white text-rose-700 font-semibold shadow-sm"
+                  ? "bg-white font-semibold text-rose-700 shadow-sm"
                   : "text-slate-600 hover:text-slate-900"
               }`}
             >
@@ -135,7 +135,7 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-mono font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-600"
+              className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 font-mono text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-600"
               aria-label="Filter by year"
             >
               <option value="all">All Years</option>
@@ -156,14 +156,12 @@ export function ProblemList({ problems, difficultyLabels }: ProblemListProps) {
           message="No problems matched the selected filters. Try adjusting your query."
         />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredProblems.map((problem) => (
             <ProblemCard
               key={problem.id}
               problem={problem}
-              difficultyLabel={
-                difficultyLabels[problem.difficulty] || problem.difficulty
-              }
+              difficultyLabel={difficultyLabels[problem.difficulty] || problem.difficulty}
             />
           ))}
         </div>

@@ -37,57 +37,55 @@ export function ScoreboardTable({ rows, columns }: ScoreboardTableProps) {
   const getRankBadge = (rank: number) => {
     if (rank === 1) {
       return (
-        <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-amber-100 text-amber-800 font-bold text-xs border border-amber-300">
+        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-amber-300 bg-amber-100 text-xs font-bold text-amber-800">
           🥇
         </span>
       );
     }
     if (rank === 2) {
       return (
-        <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-slate-200 text-slate-700 font-bold text-xs border border-slate-300">
+        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-300 bg-slate-200 text-xs font-bold text-slate-700">
           🥈
         </span>
       );
     }
     if (rank === 3) {
       return (
-        <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-orange-100 text-orange-800 font-bold text-xs border border-orange-300">
+        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-orange-300 bg-orange-100 text-xs font-bold text-orange-800">
           🥉
         </span>
       );
     }
-    return <span className="font-mono text-slate-500 font-semibold">{rank}</span>;
+    return <span className="font-mono font-semibold text-slate-500">{rank}</span>;
   };
 
   const getVerdictPill = (verdict: ProblemVerdict | string) => {
     if (verdict === "AC") {
       return (
-        <span className="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+        <span className="inline-flex items-center justify-center rounded border border-emerald-300 bg-emerald-100 px-2 py-0.5 font-mono text-[11px] font-bold text-emerald-800">
           AC
         </span>
       );
     }
     if (verdict === "WA") {
       return (
-        <span className="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-rose-50 text-rose-700 border border-rose-200">
+        <span className="inline-flex items-center justify-center rounded border border-rose-200 bg-rose-50 px-2 py-0.5 font-mono text-[11px] font-medium text-rose-700">
           WA
         </span>
       );
     }
     if (verdict === "TLE") {
       return (
-        <span className="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-mono font-medium bg-amber-50 text-amber-700 border border-amber-200">
+        <span className="inline-flex items-center justify-center rounded border border-amber-200 bg-amber-50 px-2 py-0.5 font-mono text-[11px] font-medium text-amber-700">
           TLE
         </span>
       );
     }
     if (verdict === "-") {
-      return (
-        <span className="text-slate-300 font-mono text-xs">-</span>
-      );
+      return <span className="font-mono text-xs text-slate-300">-</span>;
     }
     return (
-      <span className="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-mono bg-slate-100 text-slate-600">
+      <span className="inline-flex items-center justify-center rounded bg-slate-100 px-2 py-0.5 font-mono text-[11px] text-slate-600">
         {verdict}
       </span>
     );
@@ -96,7 +94,7 @@ export function ScoreboardTable({ rows, columns }: ScoreboardTableProps) {
   return (
     <div className="space-y-4">
       {/* Legend */}
-      <div className="flex flex-wrap items-center justify-end gap-3 text-xs text-slate-500 font-mono">
+      <div className="flex flex-wrap items-center justify-end gap-3 font-mono text-xs text-slate-500">
         <span className="flex items-center gap-1.5">
           <span className="h-2 w-2 rounded-full bg-emerald-500" /> AC: Accepted
         </span>
@@ -125,13 +123,9 @@ export function ScoreboardTable({ rows, columns }: ScoreboardTableProps) {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.teamName} className={row.rank <= 3 ? "bg-amber-50/20" : ""}>
-              <TableCell className="text-center font-medium">
-                {getRankBadge(row.rank)}
-              </TableCell>
-              <TableCell className="font-semibold text-slate-900">
-                {row.teamName}
-              </TableCell>
-              <TableCell className="text-center font-mono font-bold text-primary-600 text-base">
+              <TableCell className="text-center font-medium">{getRankBadge(row.rank)}</TableCell>
+              <TableCell className="font-semibold text-slate-900">{row.teamName}</TableCell>
+              <TableCell className="text-center font-mono text-base font-bold text-primary-600">
                 {row.solved}
               </TableCell>
               <TableCell className="text-center font-mono text-slate-600">

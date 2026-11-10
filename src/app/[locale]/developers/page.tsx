@@ -8,13 +8,9 @@ export default function DevelopersPage() {
 
   return (
     <div className="pb-16">
-      <PageHeader
-        badge="ENGINEERING"
-        heading={t("heading")}
-        description={t("description")}
-      />
+      <PageHeader badge="ENGINEERING" heading={t("heading")} description={t("description")} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <DeveloperGrid developers={developers} />
       </div>
     </div>

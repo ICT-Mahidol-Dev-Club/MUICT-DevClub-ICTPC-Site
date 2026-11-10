@@ -9,17 +9,15 @@ export interface OrganizerGridProps {
 
 export function OrganizerGrid({ team, heading }: OrganizerGridProps) {
   return (
-    <div className="space-y-6 max-w-5xl mx-auto pt-6">
+    <div className="mx-auto max-w-5xl space-y-6 pt-6">
       <div className="text-center sm:text-left">
-        <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-          {heading}
-        </h2>
-        <p className="text-xs sm:text-sm text-slate-500 mt-1">
+        <h2 className="text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">{heading}</h2>
+        <p className="mt-1 text-xs text-slate-500 sm:text-sm">
           The students and committee members leading the contest operations.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-4">
         {team.map((member, idx) => (
           <OrganizerCard
             key={idx}

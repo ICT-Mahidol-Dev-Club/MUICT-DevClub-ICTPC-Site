@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { problemSetsService } from "@/lib/services";
 import type { ProblemSet } from "@/types";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -6,7 +6,7 @@ import { ProblemList } from "@/components/sections/ProblemList";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
 export default async function ProblemsPage() {
-  const t = useTranslations("problems");
+  const t = await getTranslations("problems");
 
   let problems: ProblemSet[] = [];
   let error = false;
@@ -25,7 +25,7 @@ export default async function ProblemsPage() {
         description="Explore the algorithmic problems and challenges from previous ICTPC contest editions."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {error ? (
           <ErrorMessage message="Failed to load problem sets. Please refresh the page." />
         ) : (

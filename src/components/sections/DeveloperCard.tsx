@@ -9,24 +9,19 @@ export interface DeveloperCardProps {
   imageUrl?: string;
 }
 
-export function DeveloperCard({
-  name,
-  role,
-  github,
-  imageUrl,
-}: DeveloperCardProps) {
+export function DeveloperCard({ name, role, github, imageUrl }: DeveloperCardProps) {
   return (
-    <Card className="p-5 sm:p-6 text-center flex flex-col items-center justify-between bg-white border-slate-200 hover:border-slate-300 transition-all shadow-card h-full">
+    <Card className="flex h-full flex-col items-center justify-between border-slate-200 bg-white p-5 text-center shadow-card transition-all hover:border-slate-300 sm:p-6">
       <div className="flex flex-col items-center">
         {imageUrl ? (
           <img
             src={imageUrl}
             alt={name}
-            className="h-20 w-20 rounded-full object-cover border-2 border-slate-100 shadow-sm mb-3.5"
+            className="mb-3.5 h-20 w-20 rounded-full border-2 border-slate-100 object-cover shadow-sm"
           />
         ) : (
           <div
-            className="h-20 w-20 rounded-full bg-gradient-to-br from-primary-600 to-primary-800 text-white flex items-center justify-center font-mono font-bold text-lg shadow-sm mb-3.5"
+            className="mb-3.5 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary-600 to-primary-800 font-mono text-lg font-bold text-white shadow-sm"
             aria-hidden="true"
           >
             {name
@@ -37,21 +32,19 @@ export function DeveloperCard({
           </div>
         )}
 
-        <h3 className="font-semibold text-slate-900 text-base">
-          {name}
-        </h3>
+        <h3 className="text-base font-semibold text-slate-900">{name}</h3>
         <Badge variant="slate" size="sm" className="mt-1 font-mono text-[11px]">
           {role}
         </Badge>
       </div>
 
       {github && (
-        <div className="mt-4 pt-3 border-t border-slate-100 w-full flex justify-center">
+        <div className="mt-4 flex w-full justify-center border-t border-slate-100 pt-3">
           <a
             href={github.startsWith("http") ? github : `https://github.com/${github}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-slate-600 hover:text-primary-600 transition-colors"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-slate-600 transition-colors hover:text-primary-600"
           >
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
               <path

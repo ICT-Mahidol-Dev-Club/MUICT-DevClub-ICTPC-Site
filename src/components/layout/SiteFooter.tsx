@@ -3,64 +3,68 @@ import { Link } from "@/i18n/navigation";
 
 export interface SiteFooterProps {
   siteName: string; // from getSiteName()
-  year: number;     // from siteConfig.eventYear
+  year: number; // from siteConfig.eventYear
 }
 
 export function SiteFooter({ siteName, year }: SiteFooterProps) {
   return (
-    <footer className="mt-auto border-t border-slate-200 bg-white text-slate-600 text-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <footer className="mt-auto border-t border-slate-200 bg-white text-sm text-slate-600">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand & Mission */}
-          <div className="md:col-span-2 space-y-3">
+          <div className="space-y-3 md:col-span-2">
             <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-600 text-white font-mono text-xs font-bold">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary-600 font-mono text-xs font-bold text-white">
                 &gt;_
               </span>
-              <span className="font-mono font-bold text-base text-slate-900 tracking-tight">
+              <span className="font-mono text-base font-bold tracking-tight text-slate-900">
                 {siteName}
               </span>
-              <span className="text-xs font-mono text-primary-600 bg-primary-50 px-2 py-0.5 rounded border border-primary-200">
+              <span className="rounded border border-primary-200 bg-primary-50 px-2 py-0.5 font-mono text-xs text-primary-600">
                 Edition {year}
               </span>
             </div>
-            <p className="text-slate-500 text-xs sm:text-sm max-w-sm leading-relaxed">
-              Faculty of ICT Annual Competitive Programming Contest, Mahidol University.
-              Empowering algorithmic problem-solving and collaboration for ICT &amp; DST students.
+            <p className="max-w-sm text-xs leading-relaxed text-slate-500 sm:text-sm">
+              Faculty of ICT Annual Competitive Programming Contest, Mahidol University. Empowering
+              algorithmic problem-solving and collaboration for ICT &amp; DST students.
             </p>
             <div className="pt-2 text-xs text-slate-400">
-              Co-organized by <span className="font-medium text-slate-600">SMO MUICT</span> &amp; <span className="font-medium text-slate-600">Dev Club MUICT</span>
+              Co-organized by <span className="font-medium text-slate-600">SMO MUICT</span> &amp;{" "}
+              <span className="font-medium text-slate-600">Dev Club MUICT</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-slate-900 text-xs uppercase tracking-wider mb-3">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-900">
               Contest
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               <li>
-                <Link href="/about" className="hover:text-primary-600 transition-colors">
+                <Link href="/about" className="transition-colors hover:text-primary-600">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/rules" className="hover:text-primary-600 transition-colors">
+                <Link href="/rules" className="transition-colors hover:text-primary-600">
                   Rules &amp; Eligibility
                 </Link>
               </li>
               <li>
-                <Link href="/schedule" className="hover:text-primary-600 transition-colors">
+                <Link href="/schedule" className="transition-colors hover:text-primary-600">
                   Event Schedule
                 </Link>
               </li>
               <li>
-                <Link href="/register" className="hover:text-primary-600 transition-colors font-medium text-primary-600">
+                <Link
+                  href="/register"
+                  className="font-medium text-primary-600 transition-colors hover:text-primary-600"
+                >
                   Register Team
                 </Link>
               </li>
               <li>
-                <Link href="/teams" className="hover:text-primary-600 transition-colors">
+                <Link href="/teams" className="transition-colors hover:text-primary-600">
                   Registered Teams
                 </Link>
               </li>
@@ -69,37 +73,37 @@ export function SiteFooter({ siteName, year }: SiteFooterProps) {
 
           {/* Resources & Community */}
           <div>
-            <h4 className="font-semibold text-slate-900 text-xs uppercase tracking-wider mb-3">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-900">
               Community
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               <li>
-                <Link href="/scores" className="hover:text-primary-600 transition-colors">
+                <Link href="/scores" className="transition-colors hover:text-primary-600">
                   Scoreboard
                 </Link>
               </li>
               <li>
-                <Link href="/problems" className="hover:text-primary-600 transition-colors">
+                <Link href="/problems" className="transition-colors hover:text-primary-600">
                   Past Problems
                 </Link>
               </li>
               <li>
-                <Link href="/practice" className="hover:text-primary-600 transition-colors">
+                <Link href="/practice" className="transition-colors hover:text-primary-600">
                   Practice Sessions
                 </Link>
               </li>
               <li>
-                <Link href="/organizers" className="hover:text-primary-600 transition-colors">
+                <Link href="/organizers" className="transition-colors hover:text-primary-600">
                   Organizers
                 </Link>
               </li>
               <li>
-                <Link href="/developers" className="hover:text-primary-600 transition-colors">
+                <Link href="/developers" className="transition-colors hover:text-primary-600">
                   Developers
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-primary-600 transition-colors">
+                <Link href="/contact" className="transition-colors hover:text-primary-600">
                   Contact Us
                 </Link>
               </li>
@@ -108,10 +112,13 @@ export function SiteFooter({ siteName, year }: SiteFooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} {siteName}. Faculty of ICT, Mahidol University. All rights reserved.</p>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-8 text-xs text-slate-400 sm:flex-row">
+          <p>
+            © {new Date().getFullYear()} {siteName}. Faculty of ICT, Mahidol University. All rights
+            reserved.
+          </p>
           <div className="flex items-center gap-4">
-            <Link href="/admin" className="hover:text-slate-600 transition-colors">
+            <Link href="/admin" className="transition-colors hover:text-slate-600">
               Admin Portal
             </Link>
           </div>

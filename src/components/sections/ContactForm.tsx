@@ -23,12 +23,7 @@ export interface ContactFormProps {
   };
 }
 
-export function ContactForm({
-  form,
-  submitState,
-  onSubmit,
-  labels,
-}: ContactFormProps) {
+export function ContactForm({ form, submitState, onSubmit, labels }: ContactFormProps) {
   const {
     register,
     formState: { errors },
@@ -38,22 +33,20 @@ export function ContactForm({
 
   if (submitState === "success") {
     return (
-      <Card className="p-8 sm:p-10 text-center border-emerald-200 bg-emerald-50/50 shadow-card">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 mx-auto mb-4">
+      <Card className="border-emerald-200 bg-emerald-50/50 p-8 text-center shadow-card sm:p-10">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-lg font-bold text-slate-900 mb-2">Message Sent</h3>
-        <p className="text-sm text-slate-700 leading-relaxed max-w-md mx-auto">
-          {labels.success}
-        </p>
+        <h3 className="mb-2 text-lg font-bold text-slate-900">Message Sent</h3>
+        <p className="mx-auto max-w-md text-sm leading-relaxed text-slate-700">{labels.success}</p>
       </Card>
     );
   }
 
   return (
-    <Card className="p-6 sm:p-8 bg-white border-slate-200 shadow-card">
+    <Card className="border-slate-200 bg-white p-6 shadow-card sm:p-8">
       <form onSubmit={onSubmit} noValidate className="space-y-5">
         <Input
           label={labels.name}

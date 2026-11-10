@@ -18,10 +18,7 @@ export default async function RegistrationDetailPage({ params }: Props) {
 
   return (
     <AdminLayout session={session}>
-      <AdminPageHeader
-        heading={`Team: ${registration.teamName}`}
-        backHref="/admin/registrations"
-      />
+      <AdminPageHeader heading={`Team: ${registration.teamName}`} backHref="/admin/registrations" />
       <RegistrationDetail registration={registration} />
     </AdminLayout>
   );

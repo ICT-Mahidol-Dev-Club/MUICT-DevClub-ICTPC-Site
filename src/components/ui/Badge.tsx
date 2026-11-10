@@ -1,14 +1,7 @@
 import React from "react";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?:
-    | "primary"
-    | "magenta"
-    | "lime"
-    | "slate"
-    | "success"
-    | "warning"
-    | "danger";
+  variant?: "primary" | "magenta" | "lime" | "slate" | "success" | "warning" | "danger";
   size?: "sm" | "md";
   dot?: boolean;
 }
@@ -48,12 +41,12 @@ export function Badge({
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 font-medium rounded-md border tracking-wide transition-colors ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-md border font-medium tracking-wide transition-colors ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
       {...props}
     >
       {dot && (
         <span
-          className={`h-1.5 w-1.5 rounded-full shrink-0 ${dotClasses[variant]}`}
+          className={`h-1.5 w-1.5 shrink-0 rounded-full ${dotClasses[variant]}`}
           aria-hidden="true"
         />
       )}

@@ -7,17 +7,13 @@ export interface ErrorMessageProps {
   className?: string;
 }
 
-export function ErrorMessage({
-  message,
-  retry,
-  className = "",
-}: ErrorMessageProps) {
+export function ErrorMessage({ message, retry, className = "" }: ErrorMessageProps) {
   return (
     <div
       role="alert"
-      className={`rounded-xl border border-rose-200 bg-rose-50/70 p-6 sm:p-8 text-center flex flex-col items-center justify-center ${className}`}
+      className={`flex flex-col items-center justify-center rounded-xl border border-rose-200 bg-rose-50/70 p-6 text-center sm:p-8 ${className}`}
     >
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-100 text-rose-600 mb-3">
+      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-100 text-rose-600">
         <svg
           className="h-6 w-6"
           fill="none"
@@ -33,12 +29,8 @@ export function ErrorMessage({
           />
         </svg>
       </div>
-      <h4 className="text-base font-semibold text-rose-950 mb-1">
-        Something went wrong
-      </h4>
-      <p className="max-w-md text-sm text-rose-800 leading-relaxed mb-4">
-        {message}
-      </p>
+      <h4 className="mb-1 text-base font-semibold text-rose-950">Something went wrong</h4>
+      <p className="mb-4 max-w-md text-sm leading-relaxed text-rose-800">{message}</p>
       {retry && (
         <Button
           variant="outline"

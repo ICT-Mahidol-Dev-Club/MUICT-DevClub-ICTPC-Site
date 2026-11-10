@@ -14,7 +14,7 @@ export default function RulesPage() {
         description="Guidelines on team eligibility, submission verdicts, scoring mechanics, and code of conduct."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <RulesSectionList sections={sections} />
       </div>
     </div>

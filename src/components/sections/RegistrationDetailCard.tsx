@@ -15,29 +15,41 @@ export function RegistrationDetailCard({
   const getStatusBadge = (status: Registration["status"]) => {
     switch (status) {
       case "confirmed":
-        return <Badge variant="success" size="md" dot>Confirmed</Badge>;
+        return (
+          <Badge variant="success" size="md" dot>
+            Confirmed
+          </Badge>
+        );
       case "rejected":
-        return <Badge variant="danger" size="md" dot>Rejected</Badge>;
+        return (
+          <Badge variant="danger" size="md" dot>
+            Rejected
+          </Badge>
+        );
       default:
-        return <Badge variant="warning" size="md" dot>Pending Review</Badge>;
+        return (
+          <Badge variant="warning" size="md" dot>
+            Pending Review
+          </Badge>
+        );
     }
   };
 
   return (
     <Card className="overflow-hidden border-slate-200 bg-white shadow-card">
       {/* Header Info */}
-      <CardHeader className="bg-slate-50/70 border-b border-slate-100 pb-5">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <CardHeader className="border-b border-slate-100 bg-slate-50/70 pb-5">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded">
+            <div className="mb-1 flex items-center gap-2">
+              <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs text-slate-400">
                 ID: {registration.id}
               </span>
-              <span className="text-xs text-slate-500 font-mono">
+              <span className="font-mono text-xs text-slate-500">
                 Submitted: {new Date(registration.submittedAt).toLocaleString()}
               </span>
             </div>
-            <CardTitle as="h2" className="text-2xl text-slate-900 font-bold">
+            <CardTitle as="h2" className="text-2xl font-bold text-slate-900">
               {registration.teamName}
             </CardTitle>
           </div>
@@ -45,27 +57,25 @@ export function RegistrationDetailCard({
         </div>
       </CardHeader>
 
-      <CardContent className="pt-6 space-y-6">
+      <CardContent className="space-y-6 pt-6">
         {/* Members Breakdown */}
         <div>
-          <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+          <h3 className="mb-3 font-mono text-xs uppercase tracking-wider text-slate-400">
             Team Members ({registration.members.length})
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {registration.members.map((member, idx) => (
               <div
                 key={idx}
-                className="rounded-lg border border-slate-200 bg-slate-50/50 p-4 space-y-2"
+                className="space-y-2 rounded-lg border border-slate-200 bg-slate-50/50 p-4"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-slate-900 text-sm">
-                    {member.fullName}
-                  </span>
+                  <span className="text-sm font-semibold text-slate-900">{member.fullName}</span>
                   <Badge variant="slate" size="sm">
                     {member.nickname}
                   </Badge>
                 </div>
-                <div className="text-xs space-y-1 text-slate-600 font-mono">
+                <div className="space-y-1 font-mono text-xs text-slate-600">
                   <div>
                     <span className="text-slate-400">ID:</span> {member.studentId}
                   </div>
@@ -73,7 +83,8 @@ export function RegistrationDetailCard({
                     <span className="text-slate-400">Email:</span> {member.email}
                   </div>
                   <div>
-                    <span className="text-slate-400">Faculty:</span> {member.faculty} (Year {member.year})
+                    <span className="text-slate-400">Faculty:</span> {member.faculty} (Year{" "}
+                    {member.year})
                   </div>
                 </div>
               </div>
@@ -82,16 +93,14 @@ export function RegistrationDetailCard({
         </div>
 
         {/* Consent & Admin info */}
-        <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4 text-xs text-slate-500 font-mono">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-slate-100 pt-4 font-mono text-xs text-slate-500">
           <div className="flex items-center gap-1.5">
             <span
               className={`h-2 w-2 rounded-full ${
                 registration.consentGiven ? "bg-emerald-500" : "bg-rose-500"
               }`}
             />
-            <span>
-              {registration.consentGiven ? "Consent Given" : "Consent Missing"}
-            </span>
+            <span>{registration.consentGiven ? "Consent Given" : "Consent Missing"}</span>
           </div>
           {registration.note && (
             <div className="text-slate-600">

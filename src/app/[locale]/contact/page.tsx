@@ -15,9 +15,7 @@ import { FaqAccordion } from "@/components/sections/FaqAccordion";
 export default function ContactPage() {
   const t = useTranslations("contact");
   const tFaq = useTranslations("faq");
-  const [submitState, setSubmitState] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const form = useForm<InquiryFormValues>({
     resolver: zodResolver(inquirySchema),
@@ -44,13 +42,9 @@ export default function ContactPage() {
 
   return (
     <div className="pb-16">
-      <PageHeader
-        badge="GET IN TOUCH"
-        heading={t("heading")}
-        description={t("description")}
-      />
+      <PageHeader badge="GET IN TOUCH" heading={t("heading")} description={t("description")} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="mx-auto max-w-7xl space-y-12 px-4 sm:px-6 lg:px-8">
         {/* LINE OpenChat Card */}
         <LineOpenChatLink
           url={siteConfig.lineOpenChatUrl}
@@ -58,13 +52,11 @@ export default function ContactPage() {
           buttonLabel={t("lineButton")}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
           {/* Inquiry Form */}
-          <div className="lg:col-span-6 space-y-3">
-            <h2 className="text-xl font-bold text-slate-900">
-              Send an Inquiry
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mb-4">
+          <div className="space-y-3 lg:col-span-6">
+            <h2 className="text-xl font-bold text-slate-900">Send an Inquiry</h2>
+            <p className="mb-4 text-xs text-slate-500 sm:text-sm">
               Our organizing committee will reply to your registered email address.
             </p>
             <ContactForm
@@ -84,10 +76,7 @@ export default function ContactPage() {
 
           {/* FAQ Accordion */}
           <div className="lg:col-span-6">
-            <FaqAccordion
-              heading={tFaq("heading")}
-              items={faqItems}
-            />
+            <FaqAccordion heading={tFaq("heading")} items={faqItems} />
           </div>
         </div>
       </div>

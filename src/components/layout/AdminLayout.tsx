@@ -33,7 +33,12 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
       label: "Dashboard",
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+          />
         </svg>
       ),
       exact: true,
@@ -43,7 +48,12 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
       label: "Registrations",
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+          />
         </svg>
       ),
     },
@@ -52,7 +62,12 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
       label: "Inquiries",
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+          />
         </svg>
       ),
     },
@@ -64,21 +79,26 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
+    <div className="flex min-h-screen flex-col bg-slate-50 md:flex-row">
       {/* Mobile admin header */}
-      <div className="md:hidden flex items-center justify-between bg-slate-900 text-white px-4 py-3">
+      <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-white md:hidden">
         <div className="flex items-center gap-2">
-          <span className="font-mono font-bold text-sm text-primary-400">ICTPC</span>
-          <span className="text-xs bg-slate-800 px-2 py-0.5 rounded text-slate-300">Admin</span>
+          <span className="font-mono text-sm font-bold text-primary-400">ICTPC</span>
+          <span className="rounded bg-slate-800 px-2 py-0.5 text-xs text-slate-300">Admin</span>
         </div>
         <button
           type="button"
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-1.5 rounded-lg text-slate-300 hover:bg-slate-800"
+          className="rounded-lg p-1.5 text-slate-300 hover:bg-slate-800"
           aria-label="Toggle menu"
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
           </svg>
         </button>
       </div>
@@ -87,16 +107,16 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
       <aside
         className={`${
           sidebarOpen ? "block" : "hidden"
-        } md:flex md:w-64 flex-col bg-slate-900 text-slate-300 shrink-0 border-r border-slate-800`}
+        } shrink-0 flex-col border-r border-slate-800 bg-slate-900 text-slate-300 md:flex md:w-64`}
       >
-        <div className="p-5 border-b border-slate-800 flex items-center justify-between">
+        <div className="flex items-center justify-between border-b border-slate-800 p-5">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600 text-white font-mono text-xs font-bold">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600 font-mono text-xs font-bold text-white">
               ADM
             </div>
             <div>
-              <div className="font-bold text-sm text-white font-mono">ICTPC Admin</div>
-              <div className="text-xs text-slate-400 truncate max-w-[140px]">
+              <div className="font-mono text-sm font-bold text-white">ICTPC Admin</div>
+              <div className="max-w-[140px] truncate text-xs text-slate-400">
                 {session?.email || "Staff Portal"}
               </div>
             </div>
@@ -104,7 +124,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-1.5" aria-label="Admin navigation">
+        <nav className="flex-1 space-y-1.5 p-4" aria-label="Admin navigation">
           {navItems.map((item) => {
             const active = isActive(item);
             return (
@@ -112,9 +132,9 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setSidebarOpen(false)}
-                className={`flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-sm font-medium transition-colors ${
                   active
-                    ? "bg-primary-600 text-white font-semibold"
+                    ? "bg-primary-600 font-semibold text-white"
                     : "text-slate-300 hover:bg-slate-800 hover:text-white"
                 }`}
               >
@@ -126,13 +146,18 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
         </nav>
 
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-slate-800 space-y-2">
+        <div className="space-y-2 border-t border-slate-800 p-4">
           <Link
             href="/"
-            className="flex items-center gap-2 px-3 py-2 text-xs text-slate-400 hover:text-white transition-colors"
+            className="flex items-center gap-2 px-3 py-2 text-xs text-slate-400 transition-colors hover:text-white"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
             </svg>
             <span>Back to Public Site</span>
           </Link>
@@ -143,10 +168,15 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
             fullWidth
             loading={loggingOut}
             onClick={handleLogout}
-            className="text-rose-400 hover:text-rose-300 hover:bg-rose-950/40 justify-start"
+            className="justify-start text-rose-400 hover:bg-rose-950/40 hover:text-rose-300"
           >
-            <svg className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
             </svg>
             Sign Out
           </Button>
@@ -154,8 +184,8 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
       </aside>
 
       {/* Main Admin Area */}
-      <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 overflow-y-auto">
-        <div className="max-w-6xl mx-auto">{children}</div>
+      <main className="min-w-0 flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <div className="mx-auto max-w-6xl">{children}</div>
       </main>
     </div>
   );

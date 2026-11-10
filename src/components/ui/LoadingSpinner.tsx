@@ -21,14 +21,12 @@ export function LoadingSpinner({
     <div
       role="status"
       aria-live="polite"
-      className={`flex flex-col items-center justify-center p-8 gap-3 ${className}`}
+      className={`flex flex-col items-center justify-center gap-3 p-8 ${className}`}
     >
       <div
         className={`animate-spin rounded-full border-primary-200 border-t-primary-600 ${sizeClasses[size]}`}
       />
-      {label && (
-        <span className="text-sm font-medium text-slate-500">{label}</span>
-      )}
+      {label && <span className="text-sm font-medium text-slate-500">{label}</span>}
     </div>
   );
 }

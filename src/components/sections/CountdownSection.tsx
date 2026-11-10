@@ -45,9 +45,7 @@ export function CountdownSection({ eventDate, labels }: CountdownSectionProps) {
       }
 
       const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-      );
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
@@ -61,12 +59,12 @@ export function CountdownSection({ eventDate, labels }: CountdownSectionProps) {
 
   if (!mounted) {
     return (
-      <section aria-label="countdown" className="py-10 bg-slate-50/50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="text-sm font-medium text-slate-500 mb-6">{labels.label}</p>
-          <div className="grid grid-cols-4 gap-3 max-w-lg mx-auto">
+      <section aria-label="countdown" className="bg-slate-50/50 py-10">
+        <div className="mx-auto max-w-4xl px-4 text-center">
+          <p className="mb-6 text-sm font-medium text-slate-500">{labels.label}</p>
+          <div className="mx-auto grid max-w-lg grid-cols-4 gap-3">
             {["--", "--", "--", "--"].map((_, i) => (
-              <div key={i} className="h-20 bg-slate-100 rounded-xl animate-pulse" />
+              <div key={i} className="h-20 animate-pulse rounded-xl bg-slate-100" />
             ))}
           </div>
         </div>
@@ -76,10 +74,10 @@ export function CountdownSection({ eventDate, labels }: CountdownSectionProps) {
 
   if (timeLeft.isPast) {
     return (
-      <section aria-label="countdown" className="py-8 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-lime-100 text-lime-950 border border-lime-300 font-semibold shadow-sm">
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-600 animate-ping" />
+      <section aria-label="countdown" className="border-b border-slate-200 bg-slate-50 py-8">
+        <div className="mx-auto max-w-4xl px-4 text-center">
+          <div className="inline-flex items-center gap-2.5 rounded-xl border border-lime-300 bg-lime-100 px-4 py-2 font-semibold text-lime-950 shadow-sm">
+            <span className="h-2.5 w-2.5 animate-ping rounded-full bg-emerald-600" />
             <span>Event is live! Good luck to all competitors!</span>
           </div>
         </div>
@@ -95,28 +93,35 @@ export function CountdownSection({ eventDate, labels }: CountdownSectionProps) {
   ];
 
   return (
-    <section
-      aria-label="countdown"
-      className="py-12 bg-white border-b border-slate-200/80"
-    >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-1.5 mb-6 text-xs font-mono font-medium text-slate-500 uppercase tracking-wider">
-          <svg className="h-4 w-4 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <section aria-label="countdown" className="border-b border-slate-200/80 bg-white py-12">
+      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div className="mb-6 inline-flex items-center gap-1.5 font-mono text-xs font-medium uppercase tracking-wider text-slate-500">
+          <svg
+            className="h-4 w-4 text-primary-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
           </svg>
           <span>{labels.label}</span>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 sm:gap-4 max-w-xl mx-auto">
+        <div className="mx-auto grid max-w-xl grid-cols-4 gap-2 sm:gap-4">
           {timeUnits.map((unit, idx) => (
             <Card
               key={idx}
-              className="p-3 sm:p-5 flex flex-col items-center justify-center bg-slate-50/70 border-slate-200/90 shadow-sm"
+              className="flex flex-col items-center justify-center border-slate-200/90 bg-slate-50/70 p-3 shadow-sm sm:p-5"
             >
-              <span className="font-mono text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              <span className="font-mono text-2xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
                 {String(unit.value).padStart(2, "0")}
               </span>
-              <span className="text-[10px] sm:text-xs font-medium text-slate-500 mt-1 uppercase tracking-wider">
+              <span className="mt-1 text-[10px] font-medium uppercase tracking-wider text-slate-500 sm:text-xs">
                 {unit.label}
               </span>
             </Card>

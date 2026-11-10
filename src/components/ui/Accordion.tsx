@@ -32,9 +32,7 @@ export function Accordion({
       setOpenItems((prev) => (prev.includes(value) ? [] : [value]));
     } else {
       setOpenItems((prev) =>
-        prev.includes(value)
-          ? prev.filter((item) => item !== value)
-          : [...prev, value],
+        prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value],
       );
     }
   };
@@ -54,15 +52,9 @@ interface AccordionItemProps {
   className?: string;
 }
 
-const AccordionItemContext = createContext<{ value: string; isOpen: boolean } | null>(
-  null,
-);
+const AccordionItemContext = createContext<{ value: string; isOpen: boolean } | null>(null);
 
-export function AccordionItem({
-  value,
-  children,
-  className = "",
-}: AccordionItemProps) {
+export function AccordionItem({ value, children, className = "" }: AccordionItemProps) {
   const ctx = useContext(AccordionContext);
   if (!ctx) throw new Error("AccordionItem must be inside an Accordion");
 
@@ -95,7 +87,7 @@ export function AccordionTrigger({
       type="button"
       onClick={() => ctx.toggleItem(value)}
       aria-expanded={isOpen}
-      className={`flex w-full items-center justify-between py-4 text-left font-medium text-slate-900 hover:text-primary-600 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 ${className}`}
+      className={`flex w-full items-center justify-between py-4 text-left font-medium text-slate-900 transition-colors duration-150 hover:text-primary-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 ${className}`}
     >
       <span className="text-base">{children}</span>
       <svg
@@ -129,10 +121,7 @@ export function AccordionContent({
   if (!itemCtx.isOpen) return null;
 
   return (
-    <div
-      role="region"
-      className={`pb-4 pt-1 text-sm text-slate-600 leading-relaxed ${className}`}
-    >
+    <div role="region" className={`pb-4 pt-1 text-sm leading-relaxed text-slate-600 ${className}`}>
       {children}
     </div>
   );

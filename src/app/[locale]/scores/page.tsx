@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { scoresService } from "@/lib/services";
 import { siteConfig } from "@/config/site.config";
 import type { ScoreRow } from "@/types";
@@ -8,7 +8,7 @@ import { ScoreboardTable } from "@/components/sections/ScoreboardTable";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
 export default async function ScoresPage() {
-  const t = useTranslations("scores");
+  const t = await getTranslations("scores");
 
   if (!siteConfig.scoresPublished) {
     return (
@@ -18,7 +18,7 @@ export default async function ScoresPage() {
           heading={t("heading")}
           description="Contest scoreboard tracking rankings, solved problems, and cumulative time penalty."
         />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <NotPublishedBanner message={t("notPublished")} />
         </div>
       </div>
@@ -42,7 +42,7 @@ export default async function ScoresPage() {
         description="Official rankings with problem verdicts and total contest time penalty."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {error ? (
           <ErrorMessage message="Failed to load scoreboard. Please refresh the page." />
         ) : (

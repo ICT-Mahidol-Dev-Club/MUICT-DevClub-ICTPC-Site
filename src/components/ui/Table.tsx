@@ -8,7 +8,7 @@ export function Table({
   return (
     <div className="w-full overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-card">
       <table
-        className={`w-full text-left text-sm text-slate-700 divide-y divide-slate-200 ${className}`}
+        className={`w-full divide-y divide-slate-200 text-left text-sm text-slate-700 ${className}`}
         {...props}
       >
         {children}
@@ -24,7 +24,7 @@ export function TableHeader({
 }: React.HTMLAttributes<HTMLTableSectionElement>) {
   return (
     <thead
-      className={`bg-slate-50/90 text-xs font-semibold text-slate-600 uppercase tracking-wider ${className}`}
+      className={`bg-slate-50/90 text-xs font-semibold uppercase tracking-wider text-slate-600 ${className}`}
       {...props}
     >
       {children}
@@ -38,10 +38,7 @@ export function TableBody({
   ...props
 }: React.HTMLAttributes<HTMLTableSectionElement>) {
   return (
-    <tbody
-      className={`divide-y divide-slate-100 bg-white ${className}`}
-      {...props}
-    >
+    <tbody className={`divide-y divide-slate-100 bg-white ${className}`} {...props}>
       {children}
     </tbody>
   );
@@ -54,7 +51,7 @@ export function TableRow({
 }: React.HTMLAttributes<HTMLTableRowElement>) {
   return (
     <tr
-      className={`transition-colors hover:bg-slate-50/60 focus-within:bg-slate-50/60 ${className}`}
+      className={`transition-colors focus-within:bg-slate-50/60 hover:bg-slate-50/60 ${className}`}
       {...props}
     >
       {children}
@@ -69,7 +66,7 @@ export function TableHead({
 }: React.ThHTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
-      className={`px-4 py-3.5 text-left font-semibold text-slate-700 whitespace-nowrap ${className}`}
+      className={`whitespace-nowrap px-4 py-3.5 text-left font-semibold text-slate-700 ${className}`}
       {...props}
     >
       {children}
@@ -83,10 +80,7 @@ export function TableCell({
   ...props
 }: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return (
-    <td
-      className={`px-4 py-3.5 text-slate-800 whitespace-nowrap ${className}`}
-      {...props}
-    >
+    <td className={`whitespace-nowrap px-4 py-3.5 text-slate-800 ${className}`} {...props}>
       {children}
     </td>
   );

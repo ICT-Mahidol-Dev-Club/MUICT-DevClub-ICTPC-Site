@@ -1,14 +1,7 @@
 import React from "react";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?:
-    | "primary"
-    | "secondary"
-    | "outline"
-    | "ghost"
-    | "lime"
-    | "danger";
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "lime" | "danger";
   size?: "sm" | "md" | "lg";
   loading?: boolean;
   fullWidth?: boolean;
@@ -50,8 +43,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         "bg-transparent text-primary-600 border border-primary-600 hover:bg-primary-50 active:bg-primary-100 disabled:border-slate-200 disabled:text-slate-400",
       ghost:
         "bg-transparent text-slate-700 hover:bg-slate-100 active:bg-slate-200 disabled:text-slate-400",
-      lime:
-        "bg-lime-400 text-lime-950 font-semibold hover:bg-lime-500 active:bg-lime-600 shadow-sm disabled:bg-lime-200 disabled:text-lime-800/60",
+      lime: "bg-lime-400 text-lime-950 font-semibold hover:bg-lime-500 active:bg-lime-600 shadow-sm disabled:bg-lime-200 disabled:text-lime-800/60",
       danger:
         "bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 shadow-sm disabled:bg-rose-300 disabled:text-white/80",
     };
@@ -69,7 +61,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading && (
           <svg
-            className="animate-spin -ml-0.5 h-4 w-4 shrink-0"
+            className="-ml-0.5 h-4 w-4 shrink-0 animate-spin"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
