@@ -172,3 +172,4 @@ When connecting a real back-end:
 | Styling | No inline styles; Tailwind classes only (UI agent adds them) |
 | Comments | Leave `// TODO(UI): ...` markers in every route page |
 | Privacy | Private fields (`email`, `studentId`) never reach `PublicTeam` or any public-facing render |
+

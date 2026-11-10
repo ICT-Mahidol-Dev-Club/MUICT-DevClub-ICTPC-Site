@@ -696,3 +696,4 @@ Shows: heading, body, retry button, collapsible error details.
 **File:** `src/app/[locale]/loading.tsx` *(already created — UI agent adds skeleton)*
 
 Shows: loading indicator with accessible `aria-busy`.
+

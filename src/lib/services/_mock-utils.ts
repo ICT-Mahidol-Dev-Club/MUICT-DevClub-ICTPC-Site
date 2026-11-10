@@ -18,3 +18,4 @@ export function maybeThrow(label: string): void {
 export function mockId(): string {
   return `mock-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
+

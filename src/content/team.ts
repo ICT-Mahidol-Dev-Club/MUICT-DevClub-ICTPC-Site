@@ -27,3 +27,4 @@ export const developers: DeveloperProfile[] = [
   { name: "Developer Name 2", role: "UI/UX", github: "https://github.com/placeholder" },
   // TODO: fill in real names and GitHub profiles
 ];
+

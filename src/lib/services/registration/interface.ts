@@ -27,3 +27,4 @@ export interface RegistrationService {
     note?: string,
   ): Promise<Registration>;
 }
+

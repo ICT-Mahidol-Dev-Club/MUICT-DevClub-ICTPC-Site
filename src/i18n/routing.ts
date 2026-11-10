@@ -5,3 +5,4 @@ export const routing = defineRouting({
   defaultLocale: "en",
   localePrefix: "as-needed", // /th/... for Thai; / for English (default)
 });
+

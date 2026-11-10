@@ -92,3 +92,4 @@ export const mockRegistrationService: RegistrationService = {
     return { ...reg };
   },
 };
+

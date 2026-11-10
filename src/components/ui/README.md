@@ -6,3 +6,4 @@ The structure agent (this codebase) must not add or modify files here.
 
 The UI agent will populate this directory with design-system primitives such as
 buttons, inputs, badges, modals, and other base components.
+

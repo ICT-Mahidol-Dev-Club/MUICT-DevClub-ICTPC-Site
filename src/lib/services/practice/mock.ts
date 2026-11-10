@@ -35,3 +35,4 @@ export const mockPracticeService: PracticeService = {
     return MOCK_SESSIONS.find((s) => s.id === id) ?? null;
   },
 };
+

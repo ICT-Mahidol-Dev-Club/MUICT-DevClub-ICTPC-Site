@@ -7,3 +7,4 @@ export interface ScoresService {
    */
   list(): Promise<ScoreRow[]>;
 }
+

@@ -7,3 +7,4 @@ export interface TeamsService {
    */
   listPublic(): Promise<PublicTeam[]>;
 }
+

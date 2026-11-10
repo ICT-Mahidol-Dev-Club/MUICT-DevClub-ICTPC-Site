@@ -19,3 +19,4 @@ export interface AdminService {
    */
   getSession(): Promise<AdminSession | null>;
 }
+

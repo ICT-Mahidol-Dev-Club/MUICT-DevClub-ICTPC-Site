@@ -244,3 +244,4 @@ const th = {
 } as const;
 
 export default th;
+

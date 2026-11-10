@@ -44,3 +44,4 @@ export function getSiteName(): string {
     ? `ICTPC${siteConfig.eventYear}`
     : "ICTPC";
 }
+

@@ -17,3 +17,4 @@ export interface InquiryService {
    */
   resolve(id: string): Promise<Inquiry>;
 }
+

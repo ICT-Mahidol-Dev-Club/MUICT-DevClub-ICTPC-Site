@@ -8,3 +8,4 @@ The UI agent will populate this directory with layout components:
 - `SiteHeader` — navigation bar with locale switcher
 - `SiteFooter` — footer with links
 - `AdminLayout` — admin shell with sidebar
+

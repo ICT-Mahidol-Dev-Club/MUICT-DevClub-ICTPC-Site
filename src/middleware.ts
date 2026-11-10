@@ -10,3 +10,4 @@ export const config = {
   // - Static files with extensions
   matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 };
+

@@ -329,3 +329,4 @@ interface ApiError {
 - [ ] Set `siteConfig.scoresPublished = true` when contest ends
 - [ ] Verify no private fields (email, studentId) leak through public endpoints
 - [ ] Run `npm run typecheck && npm run lint && npm run build`
+
