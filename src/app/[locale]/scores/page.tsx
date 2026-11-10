@@ -2,19 +2,25 @@ import { useTranslations } from "next-intl";
 import { scoresService } from "@/lib/services";
 import { siteConfig } from "@/config/site.config";
 import type { ScoreRow } from "@/types";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { NotPublishedBanner } from "@/components/sections/NotPublishedBanner";
+import { ScoreboardTable } from "@/components/sections/ScoreboardTable";
+import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
-// Server component
-// TODO(UI): Replace with <ScoreboardTable /> and <ScoreboardNotPublished />
 export default async function ScoresPage() {
   const t = useTranslations("scores");
 
   if (!siteConfig.scoresPublished) {
     return (
-      <div>
-        {/* TODO(UI): PageHeader — props: heading */}
-        <h1>{t("heading")}</h1>
-        {/* TODO(UI): NotPublishedBanner */}
-        <p>{t("notPublished")}</p>
+      <div className="pb-16">
+        <PageHeader
+          badge="LIVE STANDINGS"
+          heading={t("heading")}
+          description="Contest scoreboard tracking rankings, solved problems, and cumulative time penalty."
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <NotPublishedBanner message={t("notPublished")} />
+        </div>
       </div>
     );
   }
@@ -29,43 +35,28 @@ export default async function ScoresPage() {
   }
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading */}
-      <h1>{t("heading")}</h1>
+    <div className="pb-16">
+      <PageHeader
+        badge="LIVE STANDINGS"
+        heading={t("heading")}
+        description="Official rankings with problem verdicts and total contest time penalty."
+      />
 
-      {error && <p role="alert">Failed to load scores. Please refresh.</p>}
-
-      {/* TODO(UI): ScoreboardTable — props: rows, columns */}
-      {!error && (
-        <table>
-          <thead>
-            <tr>
-              <th>{t("columns.rank")}</th>
-              <th>{t("columns.team")}</th>
-              <th>{t("columns.solved")}</th>
-              <th>{t("columns.time")}</th>
-              {rows[0] &&
-                Object.keys(rows[0].problemResults).map((col) => (
-                  <th key={col}>{col}</th>
-                ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row.teamName}>
-                <td>{row.rank}</td>
-                <td>{row.teamName}</td>
-                <td>{row.solved}</td>
-                <td>{row.totalTime}</td>
-                {Object.values(row.problemResults).map((verdict, i) => (
-                  <td key={i}>{verdict}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {error ? (
+          <ErrorMessage message="Failed to load scoreboard. Please refresh the page." />
+        ) : (
+          <ScoreboardTable
+            rows={rows}
+            columns={{
+              rank: t("columns.rank"),
+              team: t("columns.team"),
+              solved: t("columns.solved"),
+              time: t("columns.time"),
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 }
-

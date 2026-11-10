@@ -1,27 +1,29 @@
 import { useTranslations } from "next-intl";
-import { getSiteName, siteConfig } from "@/config/site.config";
+import { siteConfig } from "@/config/site.config";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { AboutDetails } from "@/components/sections/AboutDetails";
 
-// TODO(UI): Replace with <AboutPageContent /> section components
 export default function AboutPage() {
   const t = useTranslations("about");
-  const siteName = getSiteName();
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading */}
-      <h1>{t("heading")}</h1>
+    <div className="pb-16">
+      <PageHeader
+        badge="ABOUT CONTEST"
+        heading={t("heading")}
+        description="Learn more about the contest history, format, mission, and how to participate."
+      />
 
-      {/* TODO(UI): AboutDetails — props: mission, coOrganizers, eligibility, format, eventDate, venue */}
-      <section>
-        <p>{t("mission")}</p>
-        <p>{t("coOrganizers")}</p>
-        <p>{t("eligibility")}</p>
-        <p>{t("format")}</p>
-        <p>
-          {siteConfig.venue} &mdash; <time dateTime={siteConfig.eventDate}>{siteConfig.eventDate}</time>
-        </p>
-      </section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AboutDetails
+          mission={t("mission")}
+          coOrganizers={t("coOrganizers")}
+          eligibility={t("eligibility")}
+          format={t("format")}
+          eventDate={siteConfig.eventDate}
+          venue={siteConfig.venue}
+        />
+      </div>
     </div>
   );
 }
-

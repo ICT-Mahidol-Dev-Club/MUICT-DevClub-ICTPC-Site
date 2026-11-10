@@ -1,9 +1,10 @@
 import { useTranslations } from "next-intl";
 import { problemSetsService } from "@/lib/services";
 import type { ProblemSet } from "@/types";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { ProblemList } from "@/components/sections/ProblemList";
+import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
-// Server component
-// TODO(UI): Replace with <ProblemList /> and <ProblemCard />
 export default async function ProblemsPage() {
   const t = useTranslations("problems");
 
@@ -17,33 +18,27 @@ export default async function ProblemsPage() {
   }
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading */}
-      <h1>{t("heading")}</h1>
+    <div className="pb-16">
+      <PageHeader
+        badge="ARCHIVE"
+        heading={t("heading")}
+        description="Explore the algorithmic problems and challenges from previous ICTPC contest editions."
+      />
 
-      {error && <p role="alert">Failed to load problems. Please refresh.</p>}
-
-      {!error && problems.length === 0 && <p>{t("empty")}</p>}
-
-      {/* TODO(UI): ProblemList — props: problems */}
-      {!error && problems.length > 0 && (
-        <ul>
-          {problems.map((p) => (
-            <li key={p.id}>
-              {/* TODO(UI): ProblemCard — props: problem */}
-              <h2>{p.title}</h2>
-              <span>{t(`difficulty.${p.difficulty}`)}</span>
-              <span>{p.tags.join(", ")}</span>
-              {p.statementUrl && (
-                <a href={p.statementUrl} target="_blank" rel="noopener noreferrer">
-                  View Problem
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {error ? (
+          <ErrorMessage message="Failed to load problem sets. Please refresh the page." />
+        ) : (
+          <ProblemList
+            problems={problems}
+            difficultyLabels={{
+              easy: t("difficulty.easy"),
+              medium: t("difficulty.medium"),
+              hard: t("difficulty.hard"),
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 }
-

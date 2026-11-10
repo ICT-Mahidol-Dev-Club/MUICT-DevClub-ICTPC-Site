@@ -4,12 +4,13 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { registrationService } from "@/lib/services";
 import type { Registration } from "@/types";
+import { RegistrationDetailCard } from "@/components/sections/RegistrationDetailCard";
+import { StatusActions } from "@/components/sections/StatusActions";
 
 interface Props {
   registration: Registration;
 }
 
-// TODO(UI): Replace with <RegistrationDetailCard /> and <StatusActions />
 export function RegistrationDetail({ registration }: Props) {
   const t = useTranslations("admin.registrations");
   const [status, setStatus] = useState(registration.status);
@@ -19,7 +20,11 @@ export function RegistrationDetail({ registration }: Props) {
   async function handleUpdateStatus(newStatus: Registration["status"]) {
     setSaving(true);
     try {
-      const updated = await registrationService.updateStatus(registration.id, newStatus, note);
+      const updated = await registrationService.updateStatus(
+        registration.id,
+        newStatus,
+        note,
+      );
       setStatus(updated.status);
     } finally {
       setSaving(false);
@@ -27,43 +32,26 @@ export function RegistrationDetail({ registration }: Props) {
   }
 
   return (
-    <div>
-      {/* TODO(UI): RegistrationDetailCard — props: registration, status */}
-      <h2>{registration.teamName}</h2>
-      <p>ID: {registration.id}</p>
-      <p>Submitted: {registration.submittedAt}</p>
-      <p>Status: {status}</p>
+    <div className="space-y-6">
+      <RegistrationDetailCard
+        registration={registration}
+        currentStatus={status}
+      />
 
-      <section>
-        <h3>Members</h3>
-        <ul>
-          {registration.members.map((m) => (
-            <li key={m.studentId}>
-              {m.fullName} ({m.nickname}) — {m.studentId} — {m.email} — {m.faculty} yr{m.year}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* TODO(UI): StatusActions — props: status, onConfirm, onReject, note, onNoteChange */}
-      <section>
-        <label htmlFor="reg-note">{t("note")}
-          <textarea
-            id="reg-note"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            rows={3}
-          />
-        </label>
-
-        <button disabled={saving} onClick={() => handleUpdateStatus("confirmed")}>
-          {t("confirm")}
-        </button>
-        <button disabled={saving} onClick={() => handleUpdateStatus("rejected")}>
-          {t("reject")}
-        </button>
-      </section>
+      <StatusActions
+        currentStatus={status}
+        note={note}
+        onNoteChange={setNote}
+        onConfirm={() => handleUpdateStatus("confirmed")}
+        onReject={() => handleUpdateStatus("rejected")}
+        saving={saving}
+        labels={{
+          note: t("note"),
+          confirm: t("confirm"),
+          reject: t("reject"),
+          save: t("save"),
+        }}
+      />
     </div>
   );
 }
-

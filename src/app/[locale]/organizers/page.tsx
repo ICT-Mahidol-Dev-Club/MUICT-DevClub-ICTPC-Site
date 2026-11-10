@@ -1,38 +1,34 @@
 import { useTranslations } from "next-intl";
-import { organizers, developers } from "@/content/team";
+import { organizers } from "@/content/team";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { OrgBanner } from "@/components/sections/OrgBanner";
+import { OrganizerGrid } from "@/components/sections/OrganizerGrid";
 
-// TODO(UI): Replace with <OrganizersSection /> and <OrganizerCard />
 export default function OrganizersPage() {
   const t = useTranslations("organizers");
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading */}
-      <h1>{t("heading")}</h1>
+    <div className="pb-16">
+      <PageHeader
+        badge="COMMITTEE"
+        heading={t("heading")}
+        description="The joint committee of SMO MUICT and Dev Club MUICT dedicated to making ICTPC possible."
+      />
 
-      {/* TODO(UI): OrgBanner — props: smo, devclub */}
-      <section>
-        <h2>{t("smo.name")}</h2>
-        <p>{t("smo.description")}</p>
-      </section>
-      <section>
-        <h2>{t("devclub.name")}</h2>
-        <p>{t("devclub.description")}</p>
-      </section>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <OrgBanner
+          smo={{
+            name: t("smo.name"),
+            description: t("smo.description"),
+          }}
+          devclub={{
+            name: t("devclub.name"),
+            description: t("devclub.description"),
+          }}
+        />
 
-      {/* TODO(UI): OrganizerGrid — props: team */}
-      <section>
-        <h2>{t("team")}</h2>
-        <ul>
-          {organizers.map((o) => (
-            <li key={o.name}>
-              {/* TODO(UI): OrganizerCard — props: name, role, imageUrl? */}
-              <strong>{o.name}</strong> — {o.role}
-            </li>
-          ))}
-        </ul>
-      </section>
+        <OrganizerGrid team={organizers} heading={t("team")} />
+      </div>
     </div>
   );
 }
-

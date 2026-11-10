@@ -1,9 +1,10 @@
 import { useTranslations } from "next-intl";
 import { teamsService } from "@/lib/services";
 import type { PublicTeam } from "@/types";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { TeamsGrid } from "@/components/sections/TeamsGrid";
+import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
-// Server component — data fetched at request time
-// TODO(UI): Replace with <TeamsGrid /> and <TeamCard />
 export default async function TeamsPage() {
   const t = useTranslations("teams");
 
@@ -17,39 +18,30 @@ export default async function TeamsPage() {
   }
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading */}
-      <h1>{t("heading")}</h1>
+    <div className="pb-16">
+      <PageHeader
+        badge="PARTICIPANTS"
+        heading={t("heading")}
+        description="Browse all confirmed and registered teams for the upcoming contest."
+      />
 
-      {/* TODO(UI): error state → <ErrorMessage /> */}
-      {error && <p role="alert">Failed to load teams. Please refresh.</p>}
-
-      {/* TODO(UI): empty state → <EmptyState message={t("teams.empty")} /> */}
-      {!error && teams.length === 0 && <p>{t("empty")}</p>}
-
-      {/* TODO(UI): TeamsGrid — props: teams */}
-      {!error && teams.length > 0 && (
-        <ul>
-          {teams.map((team) => (
-            <li key={team.id}>
-              {/* TODO(UI): TeamCard — props: team */}
-              <h2>{team.teamName}</h2>
-              <p>
-                {t("memberCount", { count: team.memberCount })}
-              </p>
-              <p>{t(`status.${team.status}`)}</p>
-              <ul>
-                {team.members.map((m) => (
-                  <li key={m.nickname}>
-                    {m.nickname} ({m.faculty}, Year {m.year})
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {error ? (
+          <ErrorMessage message="Failed to load teams. Please refresh the page." />
+        ) : (
+          <TeamsGrid
+            teams={teams}
+            labels={{
+              memberCount: t("memberCount"),
+              statusLabels: {
+                pending: t("status.pending"),
+                confirmed: t("status.confirmed"),
+                rejected: t("status.rejected"),
+              },
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 }
-

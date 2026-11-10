@@ -1,7 +1,9 @@
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getLocale } from "next-intl/server";
+import { getMessages } from "next-intl/server";
 import type { Metadata } from "next";
-import { getSiteName } from "@/config/site.config";
+import { getSiteName, siteConfig } from "@/config/site.config";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteName = getSiteName();
@@ -22,16 +24,20 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const messages = await getMessages();
+  const siteName = getSiteName();
 
   return (
     <html lang={locale}>
-      <body>
+      <body className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans antialiased">
         <NextIntlClientProvider messages={messages}>
-          {/* TODO(UI): add <SiteHeader /> and <SiteFooter /> here */}
-          <main>{children}</main>
+          <SiteHeader
+            currentLocale={locale as "en" | "th"}
+            currentPath=""
+          />
+          <main className="flex-1 flex flex-col">{children}</main>
+          <SiteFooter siteName={siteName} year={siteConfig.eventYear} />
         </NextIntlClientProvider>
       </body>
     </html>
   );
 }
-

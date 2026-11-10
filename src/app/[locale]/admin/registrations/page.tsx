@@ -2,11 +2,13 @@ import { useTranslations } from "next-intl";
 import { requireAdminSession } from "@/lib/auth/admin-guard";
 import { registrationService } from "@/lib/services";
 import type { Registration } from "@/types";
-import { Link } from "@/i18n/navigation";
+import { AdminLayout } from "@/components/layout/AdminLayout";
+import { AdminPageHeader } from "@/components/sections/AdminPageHeader";
+import { RegistrationsTable } from "@/components/sections/RegistrationsTable";
+import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
-// TODO(UI): Replace with <RegistrationsTable /> and <RegistrationRow />
 export default async function AdminRegistrationsPage() {
-  await requireAdminSession();
+  const session = await requireAdminSession();
   const t = useTranslations("admin.registrations");
 
   let registrations: Registration[] = [];
@@ -19,40 +21,20 @@ export default async function AdminRegistrationsPage() {
   }
 
   return (
-    <div>
-      {/* TODO(UI): AdminPageHeader — props: heading, backHref */}
-      <h1>{t("heading")}</h1>
+    <AdminLayout session={session}>
+      <AdminPageHeader heading={t("heading")} backHref="/admin" />
 
-      {error && <p role="alert">Failed to load registrations.</p>}
-
-      {/* TODO(UI): RegistrationsTable — props: registrations */}
-      {!error && (
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Team</th>
-              <th>Members</th>
-              <th>{t("status")}</th>
-              <th>{t("actions")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {registrations.map((r) => (
-              <tr key={r.id}>
-                <td>{r.id}</td>
-                <td>{r.teamName}</td>
-                <td>{r.members.length}</td>
-                <td>{r.status}</td>
-                <td>
-                  <Link href={`/admin/registrations/${r.id}`}>View</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {error ? (
+        <ErrorMessage message="Failed to load registrations. Please try again." />
+      ) : (
+        <RegistrationsTable
+          registrations={registrations}
+          labels={{
+            status: t("status"),
+            actions: t("actions"),
+          }}
+        />
       )}
-    </div>
+    </AdminLayout>
   );
 }
-

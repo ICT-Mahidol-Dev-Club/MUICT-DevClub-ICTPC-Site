@@ -7,19 +7,28 @@ import { useState } from "react";
 import { inquirySchema, type InquiryFormValues } from "@/lib/validation";
 import { inquiryService } from "@/lib/services";
 import { siteConfig } from "@/config/site.config";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { ContactForm } from "@/components/sections/ContactForm";
+import { LineOpenChatLink } from "@/components/sections/LineOpenChatLink";
+import { FaqAccordion } from "@/components/sections/FaqAccordion";
 
-// TODO(UI): Replace with <ContactForm /> and <ContactInfo />
 export default function ContactPage() {
   const t = useTranslations("contact");
-  const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">(
-    "idle",
-  );
+  const tFaq = useTranslations("faq");
+  const [submitState, setSubmitState] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<InquiryFormValues>({ resolver: zodResolver(inquirySchema) });
+  const form = useForm<InquiryFormValues>({
+    resolver: zodResolver(inquirySchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  const { handleSubmit } = form;
 
   async function onSubmit(data: InquiryFormValues) {
     setSubmitState("loading");
@@ -31,45 +40,57 @@ export default function ContactPage() {
     }
   }
 
+  const faqItems = tFaq.raw("items") as Array<{ q: string; a: string }>;
+
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading, description */}
-      <h1>{t("heading")}</h1>
-      <p>{t("description")}</p>
+    <div className="pb-16">
+      <PageHeader
+        badge="GET IN TOUCH"
+        heading={t("heading")}
+        description={t("description")}
+      />
 
-      {submitState === "success" ? (
-        <p role="status">{t("form.success")}</p>
-      ) : (
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <label htmlFor="contact-name">{t("form.name")}
-            <input id="contact-name" {...register("name")} />
-          </label>
-          {errors.name && <span role="alert">{errors.name.message}</span>}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {/* LINE OpenChat Card */}
+        <LineOpenChatLink
+          url={siteConfig.lineOpenChatUrl}
+          promptText={t("line")}
+          buttonLabel={t("lineButton")}
+        />
 
-          <label htmlFor="contact-email">{t("form.email")}
-            <input id="contact-email" type="email" {...register("email")} />
-          </label>
-          {errors.email && <span role="alert">{errors.email.message}</span>}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Inquiry Form */}
+          <div className="lg:col-span-6 space-y-3">
+            <h2 className="text-xl font-bold text-slate-900">
+              Send an Inquiry
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-500 mb-4">
+              Our organizing committee will reply to your registered email address.
+            </p>
+            <ContactForm
+              form={form}
+              submitState={submitState}
+              onSubmit={handleSubmit(onSubmit)}
+              labels={{
+                name: t("form.name"),
+                email: t("form.email"),
+                message: t("form.message"),
+                submit: t("form.submit"),
+                success: t("form.success"),
+                error: t("form.error"),
+              }}
+            />
+          </div>
 
-          <label htmlFor="contact-message">{t("form.message")}
-            <textarea id="contact-message" {...register("message")} rows={5} />
-          </label>
-          {errors.message && <span role="alert">{errors.message.message}</span>}
-
-          {submitState === "error" && <p role="alert">{t("form.error")}</p>}
-
-          <button type="submit" disabled={submitState === "loading"}>
-            {submitState === "loading" ? "…" : t("form.submit")}
-          </button>
-        </form>
-      )}
-
-      {/* TODO(UI): LineOpenChatLink — props: url, buttonLabel */}
-      <p>{t("line")}</p>
-      <a href={siteConfig.lineOpenChatUrl} target="_blank" rel="noopener noreferrer">
-        {t("lineButton")}
-      </a>
+          {/* FAQ Accordion */}
+          <div className="lg:col-span-6">
+            <FaqAccordion
+              heading={tFaq("heading")}
+              items={faqItems}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-

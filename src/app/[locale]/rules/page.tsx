@@ -1,28 +1,22 @@
 import { useTranslations } from "next-intl";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { RulesSectionList } from "@/components/sections/RulesSectionList";
 
-// TODO(UI): Replace with <RulesPageContent /> using <RulesSection /> per section
 export default function RulesPage() {
   const t = useTranslations("rules");
-  // sections is an array of { title, items[] }
   const sections = t.raw("sections") as Array<{ title: string; items: string[] }>;
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading */}
-      <h1>{t("heading")}</h1>
+    <div className="pb-16">
+      <PageHeader
+        badge="REGULATIONS"
+        heading={t("heading")}
+        description="Guidelines on team eligibility, submission verdicts, scoring mechanics, and code of conduct."
+      />
 
-      {/* TODO(UI): RulesSectionList — props: sections */}
-      {sections.map((section) => (
-        <section key={section.title}>
-          <h2>{section.title}</h2>
-          <ul>
-            {section.items.map((item, i) => (
-              <li key={i}>{item}</li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <RulesSectionList sections={sections} />
+      </div>
     </div>
   );
 }
-

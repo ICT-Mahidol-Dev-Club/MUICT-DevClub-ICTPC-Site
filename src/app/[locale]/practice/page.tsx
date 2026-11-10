@@ -1,9 +1,10 @@
 import { useTranslations } from "next-intl";
 import { practiceService } from "@/lib/services";
 import type { PracticeSession } from "@/types";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { PracticeSessionList } from "@/components/sections/PracticeSessionList";
+import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
-// Server component
-// TODO(UI): Replace with <PracticeSessionList /> and <PracticeSessionCard />
 export default async function PracticePage() {
   const t = useTranslations("practice");
 
@@ -21,68 +22,38 @@ export default async function PracticePage() {
   const past = sessions.filter((s) => new Date(s.date) < now);
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading, description */}
-      <h1>{t("heading")}</h1>
-      <p>{t("description")}</p>
+    <div className="pb-16">
+      <PageHeader
+        badge="TRAINING"
+        heading={t("heading")}
+        description={t("description")}
+      />
 
-      {error && <p role="alert">Failed to load sessions. Please refresh.</p>}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {error ? (
+          <ErrorMessage message="Failed to load practice sessions. Please refresh the page." />
+        ) : (
+          <>
+            <PracticeSessionList
+              sessions={upcoming}
+              heading={t("upcoming")}
+              labels={{
+                register: t("register"),
+                materialsLabel: t("materialsLabel"),
+              }}
+            />
 
-      {!error && sessions.length === 0 && <p>{t("empty")}</p>}
-
-      {/* TODO(UI): PracticeSessionList upcoming — props: sessions, label */}
-      {!error && upcoming.length > 0 && (
-        <section>
-          <h2>{t("upcoming")}</h2>
-          <SessionList sessions={upcoming} t={t} />
-        </section>
-      )}
-
-      {/* TODO(UI): PracticeSessionList past — props: sessions, label */}
-      {!error && past.length > 0 && (
-        <section>
-          <h2>{t("past")}</h2>
-          <SessionList sessions={past} t={t} />
-        </section>
-      )}
+            <PracticeSessionList
+              sessions={past}
+              heading={t("past")}
+              labels={{
+                register: t("register"),
+                materialsLabel: t("materialsLabel"),
+              }}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 }
-
-// Inline sub-component — will be replaced by the UI agent
-function SessionList({
-  sessions,
-  t,
-}: {
-  sessions: PracticeSession[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  t: any;
-}) {
-  return (
-    <ul>
-      {sessions.map((s) => (
-        <li key={s.id}>
-          {/* TODO(UI): PracticeSessionCard — props: session */}
-          <h3>{s.title}</h3>
-          <time dateTime={s.date}>{s.date}</time>
-          <p>{s.description}</p>
-          {s.registrationUrl && (
-            <a href={s.registrationUrl} target="_blank" rel="noopener noreferrer">
-              {t("register")}
-            </a>
-          )}
-          {s.materials.length > 0 && (
-            <ul aria-label={t("materialsLabel")}>
-              {s.materials.map((m) => (
-                <li key={m.url}>
-                  <a href={m.url}>{m.label}</a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
-  );
-}
-

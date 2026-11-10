@@ -6,18 +6,24 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { adminLoginSchema, type AdminLoginFormValues } from "@/lib/validation";
 import { adminService } from "@/lib/services";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { AdminLoginForm } from "@/components/sections/AdminLoginForm";
 
-// TODO(UI): Replace with <AdminLoginForm />
 export default function AdminLoginPage() {
   const t = useTranslations("admin.login");
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<AdminLoginFormValues>({
+  const form = useForm<AdminLoginFormValues>({
     resolver: zodResolver(adminLoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
+
+  const { handleSubmit } = form;
 
   async function onSubmit(data: AdminLoginFormValues) {
     setLoading(true);
@@ -33,27 +39,20 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div>
-      {/* TODO(UI): AdminLoginCard */}
-      <h1>{t("heading")}</h1>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <label htmlFor="admin-email">{t("email")}
-          <input id="admin-email" type="email" {...register("email")} />
-        </label>
-        {errors.email && <span role="alert">{errors.email.message}</span>}
-
-        <label htmlFor="admin-password">{t("password")}
-          <input id="admin-password" type="password" {...register("password")} />
-        </label>
-        {errors.password && <span role="alert">{errors.password.message}</span>}
-
-        {error && <p role="alert">{error}</p>}
-
-        <button type="submit" disabled={loading}>
-          {loading ? "…" : t("submit")}
-        </button>
-      </form>
+    <div className="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <AdminLoginForm
+        form={form}
+        loading={loading}
+        error={error}
+        onSubmit={handleSubmit(onSubmit)}
+        labels={{
+          heading: t("heading"),
+          email: t("email"),
+          password: t("password"),
+          submit: t("submit"),
+          error: t("error"),
+        }}
+      />
     </div>
   );
 }
-

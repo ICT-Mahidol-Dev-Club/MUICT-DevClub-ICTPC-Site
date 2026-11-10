@@ -1,30 +1,27 @@
 import { useTranslations } from "next-intl";
 import { siteConfig } from "@/config/site.config";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { ScheduleTimeline } from "@/components/sections/ScheduleTimeline";
 
-// TODO(UI): Replace with <SchedulePageContent /> using <ScheduleTimeline />
 export default function SchedulePage() {
   const t = useTranslations("schedule");
   const events = t.raw("events") as Array<{ time: string; label: string }>;
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading */}
-      <h1>{t("heading")}</h1>
+    <div className="pb-16">
+      <PageHeader
+        badge="TIMETABLE"
+        heading={t("heading")}
+        description="Detailed itinerary for contest day, from morning registration to the awards ceremony."
+      />
 
-      {/* TODO(UI): ScheduleTimeline — props: events, eventDate, venue */}
-      <p>
-        <time dateTime={siteConfig.eventDate}>{siteConfig.eventDate}</time>
-        {" — "}
-        {siteConfig.venue}
-      </p>
-      <ol>
-        {events.map((e) => (
-          <li key={e.time}>
-            <span>{e.time}</span> — <span>{e.label}</span>
-          </li>
-        ))}
-      </ol>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScheduleTimeline
+          events={events}
+          eventDate={siteConfig.eventDate}
+          venue={siteConfig.venue}
+        />
+      </div>
     </div>
   );
 }
-

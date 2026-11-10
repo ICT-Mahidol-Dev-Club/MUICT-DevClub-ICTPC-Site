@@ -1,34 +1,22 @@
 import { useTranslations } from "next-intl";
 import { developers } from "@/content/team";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { DeveloperGrid } from "@/components/sections/DeveloperGrid";
 
-// TODO(UI): Replace with <DevelopersSection /> and <DeveloperCard />
 export default function DevelopersPage() {
   const t = useTranslations("developers");
 
   return (
-    <div>
-      {/* TODO(UI): PageHeader — props: heading, description */}
-      <h1>{t("heading")}</h1>
-      <p>{t("description")}</p>
+    <div className="pb-16">
+      <PageHeader
+        badge="ENGINEERING"
+        heading={t("heading")}
+        description={t("description")}
+      />
 
-      {/* TODO(UI): DeveloperGrid — props: developers */}
-      <ul>
-        {developers.map((d) => (
-          <li key={d.name}>
-            {/* TODO(UI): DeveloperCard — props: name, role, github?, imageUrl? */}
-            <strong>{d.name}</strong> — {d.role}
-            {d.github && (
-              <>
-                {" "}
-                <a href={d.github} target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </a>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <DeveloperGrid developers={developers} />
+      </div>
     </div>
   );
 }
-

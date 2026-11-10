@@ -1,24 +1,28 @@
 import { notFound } from "next/navigation";
 import { requireAdminSession } from "@/lib/auth/admin-guard";
 import { registrationService } from "@/lib/services";
+import { AdminLayout } from "@/components/layout/AdminLayout";
+import { AdminPageHeader } from "@/components/sections/AdminPageHeader";
 import { RegistrationDetail } from "../RegistrationDetail";
 
 interface Props {
   params: Promise<{ id: string }>;
 }
 
-// TODO(UI): Wrap RegistrationDetail in admin layout shell
 export default async function RegistrationDetailPage({ params }: Props) {
-  await requireAdminSession();
+  const session = await requireAdminSession();
   const { id } = await params;
 
   const registration = await registrationService.getById(id);
   if (!registration) notFound();
 
   return (
-    <div>
-      {/* TODO(UI): AdminPageHeader — props: heading, backHref */}
+    <AdminLayout session={session}>
+      <AdminPageHeader
+        heading={`Team: ${registration.teamName}`}
+        backHref="/admin/registrations"
+      />
       <RegistrationDetail registration={registration} />
-    </div>
+    </AdminLayout>
   );
 }
