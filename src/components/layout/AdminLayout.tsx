@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import type { AdminSession } from "@/types";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link, usePathname, getPathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export interface AdminLayoutProps {
   children: React.ReactNode;
@@ -13,6 +13,7 @@ export interface AdminLayoutProps {
 
 export function AdminLayout({ children, session }: AdminLayoutProps) {
   const t = useTranslations("admin.nav");
+  const locale = useLocale();
   const pathname = usePathname();
   const [loggingOut, setLoggingOut] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,7 +22,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
     setLoggingOut(true);
     try {
       await fetch("/api/admin/logout", { method: "POST" });
-      window.location.href = "/en/admin/login";
+      window.location.href = getPathname({ href: "/admin/login", locale });
     } finally {
       setLoggingOut(false);
     }

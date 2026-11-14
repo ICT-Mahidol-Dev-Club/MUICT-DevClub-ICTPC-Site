@@ -1,6 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { getPathname } from "@/i18n/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -9,6 +10,7 @@ import { AdminLoginForm } from "@/components/sections/AdminLoginForm";
 
 export default function AdminLoginPage() {
   const t = useTranslations("admin.login");
+  const locale = useLocale();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -38,7 +40,7 @@ export default function AdminLoginPage() {
       }
 
       // Hard navigation so the server re-renders /admin with the new cookie
-      window.location.href = "/en/admin";
+      window.location.href = getPathname({ href: "/admin", locale });
     } catch {
       setError(t("error"));
     } finally {
