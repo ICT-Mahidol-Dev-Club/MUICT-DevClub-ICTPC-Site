@@ -10,6 +10,7 @@ import { ErrorMessage } from "@/components/ui/ErrorMessage";
 export default async function AdminInquiriesPage() {
   const session = await requireAdminSession();
   const t = await getTranslations("admin.inquiries");
+  const nt = await getTranslations("admin.nav");
 
   let inquiries: Inquiry[] = [];
   let error = false;
@@ -22,10 +23,10 @@ export default async function AdminInquiriesPage() {
 
   return (
     <AdminLayout session={session}>
-      <AdminPageHeader heading={t("heading")} backHref="/admin" />
+      <AdminPageHeader heading={t("heading")} backHref="/admin" labels={{ back: nt("back") }} />
 
       {error ? (
-        <ErrorMessage message="Failed to load inquiries. Please try again." />
+        <ErrorMessage message={t("error")}/>
       ) : (
         <InquiriesClient initialInquiries={inquiries} />
       )}

@@ -6,30 +6,47 @@ import { Badge } from "@/components/ui/Badge";
 export interface RegistrationDetailCardProps {
   registration: Registration;
   currentStatus: Registration["status"];
+  labels: {
+    badge: {
+      confirmed: string;
+      rejected: string;
+      pending: string;
+    };
+    submitted: string;
+    teamMembers: string;
+    studentId: string;
+    email: string;
+    program: string;
+    year: string;
+    consentGiven: string;
+    consentMissing: string;
+    note: string;
+  };
 }
 
 export function RegistrationDetailCard({
   registration,
   currentStatus,
+  labels,
 }: RegistrationDetailCardProps) {
   const getStatusBadge = (status: Registration["status"]) => {
     switch (status) {
       case "confirmed":
         return (
           <Badge variant="success" size="md" dot>
-            Confirmed
+            {labels.badge.confirmed}
           </Badge>
         );
       case "rejected":
         return (
           <Badge variant="danger" size="md" dot>
-            Rejected
+            {labels.badge.rejected}
           </Badge>
         );
       default:
         return (
           <Badge variant="warning" size="md" dot>
-            Pending Review
+            {labels.badge.pending}
           </Badge>
         );
     }
@@ -46,7 +63,7 @@ export function RegistrationDetailCard({
                 ID: {registration.id}
               </span>
               <span className="font-mono text-xs text-slate-500">
-                Submitted: {new Date(registration.submittedAt).toLocaleString()}
+                {labels.submitted}: {new Date(registration.submittedAt).toLocaleString()}
               </span>
             </div>
             <CardTitle as="h2" className="text-2xl font-bold text-slate-900">
@@ -61,7 +78,7 @@ export function RegistrationDetailCard({
         {/* Members Breakdown */}
         <div>
           <h3 className="mb-3 font-mono text-xs uppercase tracking-wider text-slate-400">
-            Team Members ({registration.members.length})
+            {labels.teamMembers} ({registration.members.length})
           </h3>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {registration.members.map((member, idx) => (
@@ -77,13 +94,14 @@ export function RegistrationDetailCard({
                 </div>
                 <div className="space-y-1 font-mono text-xs text-slate-600">
                   <div>
-                    <span className="text-slate-400">ID:</span> {member.studentId}
+                    <span className="text-slate-400">{labels.studentId}:</span> {member.studentId}
                   </div>
                   <div>
-                    <span className="text-slate-400">Email:</span> {member.email}
+                    <span className="text-slate-400">{labels.email}:</span> {member.email}
                   </div>
                   <div>
-                    <span className="text-slate-400">Faculty:</span> {member.faculty} (Year{" "}
+                    <span className="text-slate-400">{labels.program}:</span> {member.faculty} (
+                    {`${labels.year} `}
                     {member.year})
                   </div>
                 </div>
@@ -100,11 +118,12 @@ export function RegistrationDetailCard({
                 registration.consentGiven ? "bg-emerald-500" : "bg-rose-500"
               }`}
             />
-            <span>{registration.consentGiven ? "Consent Given" : "Consent Missing"}</span>
+            <span>{registration.consentGiven ? labels.consentGiven : labels.consentMissing}</span>
           </div>
           {registration.note && (
             <div className="text-slate-600">
-              <span className="font-semibold text-slate-400">Note:</span> {registration.note}
+              <span className="font-semibold text-slate-400">{labels.note}:</span>{" "}
+              {registration.note}
             </div>
           )}
         </div>

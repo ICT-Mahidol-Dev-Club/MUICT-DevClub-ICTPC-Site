@@ -79,8 +79,7 @@ const en = {
     mission:
       "To foster algorithmic thinking and competitive programming skills among ICT and DST students at Mahidol University.",
     coOrganizers: "Co-organized by SMO MUICT and Dev Club MUICT.",
-    eligibility:
-      "Open to currently enrolled ICT and DST students at Mahidol University.",
+    eligibility: "Open to currently enrolled ICT and DST students at Mahidol University.",
     format:
       "Teams of 1–3 members compete by solving a set of algorithmic problems within a 3-hour contest window.",
   },
@@ -238,22 +237,68 @@ const en = {
     ],
   },
   admin: {
+    nav: {
+      dashboard: "Dashboard",
+      registrations: "Registrations",
+      inquiries: "Inquiries",
+      toPublic: "Back to Public Site",
+      signOut: "Sign Out",
+      back: "Back",
+    },
     login: {
       heading: "Admin Login",
+      description: "Sign in to access registrations and inquiries.",
       email: "Email",
       password: "Password",
       submit: "Login",
       error: "Invalid credentials.",
+      errorTitle: "Access Denied",
+      toPublic: "Back to Public Site",
     },
     dashboard: {
       heading: "Admin Dashboard",
       registrations: "Registrations",
+      pendingReview: "Pending Review",
+      confirmedTeams: "Confirmed Teams",
       inquiries: "Inquiries",
     },
     registrations: {
       heading: "Registrations",
-      status: "Status",
-      actions: "Actions",
+      header: {
+        id: "ID",
+        teamName: "Team Name",
+        members: "Members",
+        status: "Status",
+        submitted: "Submitted",
+        actions: "Actions",
+      },
+      badge: {
+        confirmed: "Confirmed",
+        rejected: "Rejected",
+        pending: "Pending",
+      },
+      empty: {
+        title: "No Registrations",
+        message: "No team registrations have been submitted yet.",
+      },
+      infoCard: {
+        submitted: "Submitted",
+        studentId: "Student ID",
+        teamMembers: "Team Members",
+        email: "Email",
+        program: "Program",
+        year: "Year",
+        consentGiven: "Consent Given",
+        consentMissing: "Consent Missing",
+      },
+      statusAction: {
+        title: "Review & Status Actions",
+        description: "Update the registration decision or leave an internal committee note.",
+        notePlaceholder: "Internal notes (e.g., student verified on central registrar)",
+        current: "Current",
+      },
+      error: "Failed to load registrations. Please try again.",
+      view: "View",
       confirm: "Confirm",
       reject: "Reject",
       note: "Note",
@@ -262,7 +307,22 @@ const en = {
     inquiries: {
       heading: "Inquiries",
       resolve: "Mark Resolved",
+      open: "Open",
       resolved: "Resolved",
+      header: {
+        sender: "Sender",
+        email: "Email",
+        message: "Message",
+        date: "Date",
+        status: "Status",
+        action: "Action",
+      },
+      empty: {
+        title: "No Inquiries",
+        message: "No user messages or inquiries have been received yet.",
+      },
+      error: "Failed to load inquiries. Please try again.",
+      done: "Done",
     },
   },
   errors: {
@@ -286,4 +346,3 @@ const en = {
 
 export default en;
 export type Messages = typeof en;
-

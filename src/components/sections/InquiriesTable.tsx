@@ -17,30 +17,39 @@ export interface InquiriesTableProps {
   labels: {
     resolve: string;
     resolved: string;
+    header: {
+      sender: string;
+      email: string;
+      message: string;
+      date: string;
+      status: string;
+      action: string;
+    };
+    empty: {
+      title: string;
+      message: string;
+    };
+    open: string;
+    done: string;
   };
   onResolve: (id: string) => void;
 }
 
 export function InquiriesTable({ inquiries, labels, onResolve }: InquiriesTableProps) {
   if (inquiries.length === 0) {
-    return (
-      <EmptyState
-        title="No Inquiries"
-        message="No user messages or inquiries have been received yet."
-      />
-    );
+    return <EmptyState title={labels.empty.title} message={labels.empty.message} />;
   }
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-36">Sender</TableHead>
-          <TableHead className="w-48">Email</TableHead>
-          <TableHead>Message</TableHead>
-          <TableHead className="w-32 font-mono">Date</TableHead>
-          <TableHead className="w-28 text-center">Status</TableHead>
-          <TableHead className="w-32 text-right">Action</TableHead>
+          <TableHead className="w-36">{labels.header.sender}</TableHead>
+          <TableHead className="w-48">{labels.header.email}</TableHead>
+          <TableHead>{labels.header.message}</TableHead>
+          <TableHead className="w-32 font-mono">{labels.header.date}</TableHead>
+          <TableHead className="w-28 text-center">{labels.header.status}</TableHead>
+          <TableHead className="w-32 text-right">{labels.header.action}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -62,7 +71,7 @@ export function InquiriesTable({ inquiries, labels, onResolve }: InquiriesTableP
                 </Badge>
               ) : (
                 <Badge variant="warning" size="sm" dot>
-                  Open
+                  {labels.open}
                 </Badge>
               )}
             </TableCell>
@@ -77,7 +86,7 @@ export function InquiriesTable({ inquiries, labels, onResolve }: InquiriesTableP
                   {labels.resolve}
                 </Button>
               ) : (
-                <span className="font-mono text-xs text-slate-400">Done</span>
+                <span className="font-mono text-xs text-slate-400">{labels.done}</span>
               )}
             </TableCell>
           </TableRow>

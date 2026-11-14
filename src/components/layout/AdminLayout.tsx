@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import type { AdminSession } from "@/types";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 
 export interface AdminLayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ export interface AdminLayoutProps {
 }
 
 export function AdminLayout({ children, session }: AdminLayoutProps) {
+  const t = useTranslations("admin.nav");
   const pathname = usePathname();
   const [loggingOut, setLoggingOut] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -28,7 +30,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
   const navItems = [
     {
       href: "/admin",
-      label: "Dashboard",
+      label: t("dashboard"),
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -43,7 +45,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
     },
     {
       href: "/admin/registrations",
-      label: "Registrations",
+      label: t("registrations"),
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -57,7 +59,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
     },
     {
       href: "/admin/inquiries",
-      label: "Inquiries",
+      label: t("inquiries"),
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -157,7 +159,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            <span>Back to Public Site</span>
+            <span>{t("toPublic")}</span>
           </Link>
 
           <Button
@@ -176,7 +178,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
               />
             </svg>
-            Sign Out
+            {t("signOut")}
           </Button>
         </div>
       </aside>

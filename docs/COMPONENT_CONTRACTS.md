@@ -18,6 +18,7 @@
 ## Shared / Layout Components
 
 ### `SiteHeader`
+
 **File:** `src/components/layout/SiteHeader.tsx`
 
 ```typescript
@@ -33,12 +34,13 @@ interface SiteHeaderProps {
 ---
 
 ### `SiteFooter`
+
 **File:** `src/components/layout/SiteFooter.tsx`
 
 ```typescript
 interface SiteFooterProps {
   siteName: string; // from getSiteName()
-  year: number;     // from siteConfig.eventYear
+  year: number; // from siteConfig.eventYear
 }
 ```
 
@@ -48,12 +50,13 @@ interface SiteFooterProps {
 ---
 
 ### `AdminLayout`
+
 **File:** `src/components/layout/AdminLayout.tsx`
 
 ```typescript
 interface AdminLayoutProps {
   children: React.ReactNode;
-  session?: AdminSession;  // optional — guard redirects if missing
+  session?: AdminSession; // optional — guard redirects if missing
 }
 ```
 
@@ -63,13 +66,14 @@ interface AdminLayoutProps {
 ---
 
 ### `PageHeader`
+
 **File:** `src/components/ui/PageHeader.tsx`
 
 ```typescript
 interface PageHeaderProps {
   heading: string;
   description?: string;
-  badge?: string;       // mono-spaced label chip above heading (e.g. "PARTICIPANTS")
+  badge?: string; // mono-spaced label chip above heading (e.g. "PARTICIPANTS")
   actions?: React.ReactNode; // optional slot for buttons in top-right
   className?: string;
 }
@@ -80,13 +84,14 @@ interface PageHeaderProps {
 ---
 
 ### `EmptyState`
+
 **File:** `src/components/ui/EmptyState.tsx`
 
 ```typescript
 interface EmptyStateProps {
   message: string;
   icon?: React.ReactNode;
-  title?: string;        // optional bolded heading above message
+  title?: string; // optional bolded heading above message
   action?: React.ReactNode; // optional CTA button slot
   className?: string;
 }
@@ -97,6 +102,7 @@ interface EmptyStateProps {
 ---
 
 ### `ErrorMessage`
+
 **File:** `src/components/ui/ErrorMessage.tsx`
 
 ```typescript
@@ -111,6 +117,7 @@ interface ErrorMessageProps {
 ---
 
 ### `LoadingSpinner`
+
 **File:** `src/components/ui/LoadingSpinner.tsx`
 
 ```typescript
@@ -126,6 +133,7 @@ interface LoadingSpinnerProps {
 ## Home Page Sections (`/`)
 
 ### `HeroSection`
+
 **File:** `src/components/sections/HeroSection.tsx`
 
 ```typescript
@@ -145,6 +153,7 @@ interface HeroSectionProps {
 ---
 
 ### `CountdownSection`
+
 **File:** `src/components/sections/CountdownSection.tsx`
 
 ```typescript
@@ -159,6 +168,7 @@ interface CountdownSectionProps {
 ---
 
 ### `AboutSnippet`
+
 **File:** `src/components/sections/AboutSnippet.tsx`
 
 ```typescript
@@ -175,6 +185,7 @@ interface AboutSnippetProps {
 ## About Page (`/about`)
 
 ### `AboutDetails`
+
 **File:** `src/components/sections/AboutDetails.tsx`
 
 ```typescript
@@ -195,6 +206,7 @@ interface AboutDetailsProps {
 ## Rules Page (`/rules`)
 
 ### `RulesSectionList`
+
 **File:** `src/components/sections/RulesSectionList.tsx`
 
 ```typescript
@@ -215,11 +227,12 @@ interface RulesSectionListProps {
 ## Schedule Page (`/schedule`)
 
 ### `ScheduleTimeline`
+
 **File:** `src/components/sections/ScheduleTimeline.tsx`
 
 ```typescript
 interface ScheduleEvent {
-  time: string;  // e.g. "09:30"
+  time: string; // e.g. "09:30"
   label: string;
 }
 
@@ -237,6 +250,7 @@ interface ScheduleTimelineProps {
 ## Registration Page (`/register`)
 
 ### `RegistrationForm`
+
 **File:** `src/components/sections/RegistrationForm.tsx`
 
 ```typescript
@@ -264,6 +278,7 @@ interface RegistrationFormProps {
     consent: string;
     submit: string;
     error: string;
+    errorTitle: string;
   };
 }
 ```
@@ -273,6 +288,7 @@ interface RegistrationFormProps {
 ---
 
 ### `ClosedBanner`
+
 **File:** `src/components/sections/ClosedBanner.tsx`
 
 ```typescript
@@ -286,6 +302,7 @@ interface ClosedBannerProps {
 ---
 
 ### `SuccessBanner`
+
 **File:** `src/components/sections/SuccessBanner.tsx`
 
 ```typescript
@@ -301,6 +318,7 @@ interface SuccessBannerProps {
 ## Teams Page (`/teams`)
 
 ### `TeamsGrid`
+
 **File:** `src/components/sections/TeamsGrid.tsx`
 
 ```typescript
@@ -320,6 +338,7 @@ interface TeamsGridProps {
 ---
 
 ### `TeamCard`
+
 **File:** `src/components/sections/TeamCard.tsx`
 
 ```typescript
@@ -339,6 +358,7 @@ interface TeamCardProps {
 ## Contact Page (`/contact`)
 
 ### `ContactForm`
+
 **File:** `src/components/sections/ContactForm.tsx`
 
 ```typescript
@@ -355,6 +375,7 @@ interface ContactFormProps {
     submit: string;
     success: string;
     error: string;
+    errorTitle: string;
   };
 }
 ```
@@ -364,6 +385,7 @@ interface ContactFormProps {
 ---
 
 ### `LineOpenChatLink`
+
 **File:** `src/components/sections/LineOpenChatLink.tsx`
 
 ```typescript
@@ -381,6 +403,7 @@ interface LineOpenChatLinkProps {
 ## Organizers Page (`/organizers`)
 
 ### `OrgBanner`
+
 **File:** `src/components/sections/OrgBanner.tsx`
 
 ```typescript
@@ -400,6 +423,7 @@ interface OrgBannerProps {
 ---
 
 ### `OrganizerGrid`
+
 **File:** `src/components/sections/OrganizerGrid.tsx`
 
 ```typescript
@@ -416,6 +440,7 @@ interface OrganizerGridProps {
 ---
 
 ### `OrganizerCard`
+
 **File:** `src/components/sections/OrganizerCard.tsx`
 
 ```typescript
@@ -433,6 +458,7 @@ interface OrganizerCardProps {
 ## Developers Page (`/developers`)
 
 ### `DeveloperGrid`
+
 **File:** `src/components/sections/DeveloperGrid.tsx`
 
 ```typescript
@@ -448,6 +474,7 @@ interface DeveloperGridProps {
 ---
 
 ### `DeveloperCard`
+
 **File:** `src/components/sections/DeveloperCard.tsx`
 
 ```typescript
@@ -466,6 +493,7 @@ interface DeveloperCardProps {
 ## Scores Page (`/scores`)
 
 ### `NotPublishedBanner`
+
 **File:** `src/components/sections/NotPublishedBanner.tsx`
 
 ```typescript
@@ -479,6 +507,7 @@ interface NotPublishedBannerProps {
 ---
 
 ### `ScoreboardTable`
+
 **File:** `src/components/sections/ScoreboardTable.tsx`
 
 ```typescript
@@ -502,6 +531,7 @@ interface ScoreboardTableProps {
 ## Problems Page (`/problems`)
 
 ### `ProblemList`
+
 **File:** `src/components/sections/ProblemList.tsx`
 
 ```typescript
@@ -518,6 +548,7 @@ interface ProblemListProps {
 ---
 
 ### `ProblemCard`
+
 **File:** `src/components/sections/ProblemCard.tsx`
 
 ```typescript
@@ -536,6 +567,7 @@ interface ProblemCardProps {
 ## Practice Page (`/practice`)
 
 ### `PracticeSessionList`
+
 **File:** `src/components/sections/PracticeSessionList.tsx`
 
 ```typescript
@@ -556,6 +588,7 @@ interface PracticeSessionListProps {
 ---
 
 ### `PracticeSessionCard`
+
 **File:** `src/components/sections/PracticeSessionCard.tsx`
 
 ```typescript
@@ -574,13 +607,48 @@ interface PracticeSessionCardProps {
 
 ## Admin Components
 
+### `AdminLoginForm`
+
+**File:** `src/components/sections/AdminLoginForm.tsx`
+
+```typescript
+import type { UseFormReturn } from "react-hook-form";
+import type { AdminLoginFormValues } from "@/lib/validation";
+
+interface AdminLoginFormProps {
+  form: UseFormReturn<AdminLoginFormValues>;
+  loading: boolean;
+  error: string | null;
+  onSubmit: (e: React.FormEvent) => void;
+  labels: {
+    heading: string;
+    description: string;
+    email: string;
+    password: string;
+    submit: string;
+    error: string;
+    errorTitle: string;
+    toPublic: string;
+  };
+}
+```
+
+**States:** idle, loading, error
+
+---
+
 ### `AdminPageHeader`
+
 **File:** `src/components/sections/AdminPageHeader.tsx`
 
 ```typescript
 interface AdminPageHeaderProps {
   heading: string;
   backHref?: string;
+  actions?: React.ReactNode;
+  labels: {
+    back: string;
+  }
 }
 ```
 
@@ -589,6 +657,7 @@ interface AdminPageHeaderProps {
 ---
 
 ### `StatCard`
+
 **File:** `src/components/sections/StatCard.tsx`
 
 ```typescript
@@ -604,6 +673,7 @@ interface StatCardProps {
 ---
 
 ### `RegistrationsTable`
+
 **File:** `src/components/sections/RegistrationsTable.tsx`
 
 ```typescript
@@ -612,8 +682,24 @@ import type { Registration } from "@/types";
 interface RegistrationsTableProps {
   registrations: Registration[];
   labels: {
-    status: string;
-    actions: string;
+    header: {
+      id: string;
+      teamName: string;
+      members: string;
+      status: string;
+      submitted: string;
+      actions: string;
+    };
+    badge: {
+      confirmed: string;
+      rejected: string;
+      pending: string;
+    };
+    empty: {
+      title: string;
+      message: string;
+    };
+    view: string;
   };
 }
 ```
@@ -623,6 +709,7 @@ interface RegistrationsTableProps {
 ---
 
 ### `RegistrationDetailCard`
+
 **File:** `src/components/sections/RegistrationDetailCard.tsx`
 
 ```typescript
@@ -631,6 +718,22 @@ import type { Registration } from "@/types";
 interface RegistrationDetailCardProps {
   registration: Registration;
   currentStatus: Registration["status"];
+  labels: {
+    badge: {
+      confirmed: string;
+      rejected: string;
+      pending: string;
+    };
+    submitted: string;
+    teamMembers: string;
+    studentId: string;
+    email: string;
+    program: string;
+    year: string;
+    consentGiven: string;
+    consentMissing: string;
+    note: string;
+  };
 }
 ```
 
@@ -639,6 +742,7 @@ interface RegistrationDetailCardProps {
 ---
 
 ### `StatusActions`
+
 **File:** `src/components/sections/StatusActions.tsx`
 
 ```typescript
@@ -650,7 +754,16 @@ interface StatusActionsProps {
   onReject: () => void;
   saving: boolean;
   labels: {
+    badge: {
+      confirmed: string;
+      rejected: string;
+      pending: string;
+    };
+    title: string;
+    description: string;
     note: string;
+    notePlaceholder: string;
+    current: string;
     confirm: string;
     reject: string;
     save: string;
@@ -663,6 +776,7 @@ interface StatusActionsProps {
 ---
 
 ### `InquiriesTable`
+
 **File:** `src/components/sections/InquiriesTable.tsx`
 
 ```typescript
@@ -673,6 +787,20 @@ interface InquiriesTableProps {
   labels: {
     resolve: string;
     resolved: string;
+    header: {
+      sender: string;
+      email: string;
+      message: string;
+      date: string;
+      status: string;
+      action: string;
+    };
+    empty: {
+      title: string;
+      message: string;
+    };
+    open: string;
+    done: string;
   };
   onResolve: (id: string) => void;
 }
@@ -685,21 +813,23 @@ interface InquiriesTableProps {
 ## Error / Loading Pages
 
 ### `NotFoundPage` (route-level)
-**File:** `src/app/[locale]/not-found.tsx` *(already created — UI agent styles it)*
+
+**File:** `src/app/[locale]/not-found.tsx` _(already created — UI agent styles it)_
 
 Receives: `heading`, `body`, `back` from `errors.notFound` messages.
 
 ---
 
 ### `ErrorPage` (route-level)
-**File:** `src/app/[locale]/error.tsx` *(already created — UI agent styles it)*
+
+**File:** `src/app/[locale]/error.tsx` _(already created — UI agent styles it)_
 
 Shows: heading, body, retry button, collapsible error details.
 
 ---
 
 ### `LoadingPage` (route-level)
-**File:** `src/app/[locale]/loading.tsx` *(already created — UI agent adds skeleton)*
+
+**File:** `src/app/[locale]/loading.tsx` _(already created — UI agent adds skeleton)_
 
 Shows: loading indicator with accessible `aria-busy`.
-

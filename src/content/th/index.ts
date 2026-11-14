@@ -18,8 +18,7 @@ const th = {
   home: {
     hero: {
       tagline: "การแข่งขันโปรแกรมมิ่งประจำปีของคณะ ICT",
-      subtitle:
-        "เปิดรับนักศึกษา ICT และ DST มหาวิทยาลัยมหิดล จัดโดย SMO MUICT และ Dev Club",
+      subtitle: "เปิดรับนักศึกษา ICT และ DST มหาวิทยาลัยมหิดล จัดโดย SMO MUICT และ Dev Club",
       ctaRegister: "สมัครเลย",
       ctaLearnMore: "เรียนรู้เพิ่มเติม",
     },
@@ -80,8 +79,7 @@ const th = {
       "ส่งเสริมทักษะการคิดเชิงอัลกอริทึมและการแข่งขันโปรแกรมมิ่งสำหรับนักศึกษา ICT และ DST มหาวิทยาลัยมหิดล",
     coOrganizers: "จัดร่วมโดย SMO MUICT และ Dev Club MUICT",
     eligibility: "รับสมัครนักศึกษา ICT และ DST ที่กำลังศึกษาอยู่ในมหาวิทยาลัยมหิดล",
-    format:
-      "ทีมละ 1–3 คน แข่งขันแก้โจทย์อัลกอริทึมภายใน 3 ชั่วโมง",
+    format: "ทีมละ 1–3 คน แข่งขันแก้โจทย์อัลกอริทึมภายใน 3 ชั่วโมง",
   },
   rules: {
     heading: "กติกาการแข่งขัน",
@@ -178,7 +176,8 @@ const th = {
     },
     devclub: {
       name: "Dev Club MUICT",
-      description: "ชมรมนักพัฒนาของ MUICT ที่มุ่งเน้นด้านวิศวกรรมซอฟต์แวร์และ competitive programming",
+      description:
+        "ชมรมนักพัฒนาของ MUICT ที่มุ่งเน้นด้านวิศวกรรมซอฟต์แวร์และ competitive programming",
     },
     team: "ทีมจัดงาน",
   },
@@ -236,22 +235,68 @@ const th = {
     ],
   },
   admin: {
+    nav: {
+      dashboard: "แดชบอร์ด",
+      registrations: "การสมัคร",
+      inquiries: "คำถาม",
+      toPublic: "กลับหน้าสาธารณะ",
+      signOut: "ออกจากระบบ",
+      back: "กลับ"
+    },
     login: {
       heading: "เข้าสู่ระบบแอดมิน",
+      description: "เข้าสู่ระบบเพื่อดูข้อมูลลงทะเบียนและคำถาม",
       email: "อีเมล",
       password: "รหัสผ่าน",
       submit: "เข้าสู่ระบบ",
       error: "ข้อมูลรับรองไม่ถูกต้อง",
+      errorTitle: "ไม่อนุญาตให้เข้าหน้านี้",
+      toPublic: "กลับหน้าสาธารณะ",
     },
     dashboard: {
       heading: "แดชบอร์ดแอดมิน",
       registrations: "การสมัคร",
+      pendingReview: "รอตรวจสอบ",
+      confirmedTeams: "ยืนยันแล้ว",
       inquiries: "คำถาม",
     },
     registrations: {
       heading: "รายการสมัคร",
-      status: "สถานะ",
-      actions: "การดำเนินการ",
+      header: {
+        id: "ID",
+        teamName: "ชื่อทีม",
+        members: "จำนวนสมาชิก",
+        status: "สถานะ",
+        submitted: "เวลาสมัคร",
+        actions: "ดำเนินการ",
+      },
+      badge: {
+        confirmed: "ยืนยันแล้ว",
+        rejected: "ปฏิเสธ",
+        pending: "รอตรวจสอบ",
+      },
+      empty: {
+        title: "ไม่มีทีมสมัคร",
+        message: "ยังไม่มีทีมสมัคร",
+      },
+      infoCard: {
+        submitted: "สมัคร ณ เวลา",
+        studentId: "รหัสนักศึกษา",
+        teamMembers: "สมาชิกทีม",
+        email: "อีเมล",
+        program: "หลักสูตร",
+        year: "ชั้นปีที่",
+        consentGiven: "ให้คำยินยอมแล้ว",
+        consentMissing: "ขาดคำยินยอม",
+      },
+      statusAction: {
+        title: "ดำเนินการรายการสมัคร",
+        description: "เปลี่ยนสถานะการสมัครหรือบันทึกหมายเหตุภายใน",
+        notePlaceholder: "หมายเหตุภายใน (ยืนยันนศ. ในทะเบียนกลางแล้ว ฯลฯ)",
+        current: "สถานะปัจจุบัน",
+      },
+      error: "ไม่สามารถโหลดรายการสมัครได้ กรุณาลองอีกครั้ง",
+      view: "ดูทีม",
       confirm: "ยืนยัน",
       reject: "ปฏิเสธ",
       note: "หมายเหตุ",
@@ -259,8 +304,23 @@ const th = {
     },
     inquiries: {
       heading: "คำถาม",
-      resolve: "ทำเครื่องหมายว่าแก้ไขแล้ว",
-      resolved: "แก้ไขแล้ว",
+      resolve: "ทำเครื่องหมายว่าตอบแล้ว",
+      open: "ยังไม่ได้ตอบ",
+      resolved: "ตอบแล้ว",
+      header: {
+        sender: "ผู้ถาม",
+        email: "อีเมล",
+        message: "ข้อความ",
+        date: "ส่งวันที่",
+        status: "สถานะ",
+        action: "ดำเนินการ",
+      },
+      empty: {
+        title: "ไม่มีคำถาม",
+        message: "ยังไม่มีผู้ใช้ส่งคำถาม",
+      },
+      error: "ไม่สามารถโหลดคำถามได้ กรุณาลองอีกครั้ง",
+      done: "เรียบร้อย",
     },
   },
   errors: {
@@ -283,4 +343,3 @@ const th = {
 } as const;
 
 export default th;
-

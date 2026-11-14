@@ -55,10 +55,13 @@ export default function AdminLoginPage() {
         onSubmit={handleSubmit(onSubmit)}
         labels={{
           heading: t("heading"),
+          description: t("description"),
           email: t("email"),
           password: t("password"),
           submit: t("submit"),
           error: t("error"),
+          errorTitle: t("errorTitle"),
+          toPublic: t("toPublic"),
         }}
       />
     </div>

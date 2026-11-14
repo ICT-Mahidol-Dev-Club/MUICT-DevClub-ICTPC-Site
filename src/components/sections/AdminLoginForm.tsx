@@ -16,10 +16,13 @@ export interface AdminLoginFormProps {
   onSubmit: (e: React.FormEvent) => void;
   labels: {
     heading: string;
+    description: string;
     email: string;
     password: string;
     submit: string;
     error: string;
+    errorTitle: string;
+    toPublic: string;
   };
 }
 
@@ -40,7 +43,7 @@ export function AdminLoginForm({ form, loading, error, onSubmit, labels }: Admin
             {labels.heading}
           </CardTitle>
           <p className="mt-1 text-xs text-slate-500 sm:text-sm">
-            Sign in to access registrations and inquiries.
+            {labels.description}
           </p>
         </CardHeader>
 
@@ -69,7 +72,7 @@ export function AdminLoginForm({ form, loading, error, onSubmit, labels }: Admin
             />
 
             {error && (
-              <Alert variant="error" title="Access Denied">
+              <Alert variant="error" title={labels.errorTitle}>
                 {error}
               </Alert>
             )}
@@ -99,7 +102,7 @@ export function AdminLoginForm({ form, loading, error, onSubmit, labels }: Admin
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              <span>Back to Public Contest Site</span>
+              <span>{labels.toPublic}</span>
             </Link>
           </div>
         </CardContent>
