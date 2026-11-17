@@ -239,6 +239,7 @@ const th = {
       dashboard: "แดชบอร์ด",
       registrations: "การสมัคร",
       inquiries: "คำถาม",
+      configuration: "การตั้งค่า",
       toPublic: "กลับหน้าสาธารณะ",
       signOut: "ออกจากระบบ",
       back: "กลับ"
@@ -321,6 +322,19 @@ const th = {
       },
       error: "ไม่สามารถโหลดคำถามได้ กรุณาลองอีกครั้ง",
       done: "เรียบร้อย",
+    },
+    configuration: {
+      heading: "การตั้งค่า",
+      edition: "ปี",
+      showEdition: "แสดงปี",
+      dateTime: "วัน-เวลา",
+      reset: "รีเซ็ต",
+      venue: "สถานที่",
+      rulesThai: "กฏ (ภาษาไทย)",
+      rulesEnglish: "กฏ (ภาษาอังกฤษ)",
+      revealScores: "เปิดเผยคะแนน",
+      enableRegistrations: "เปิดรับสมัคร",
+      save: "บันทึก",
     },
   },
   errors: {
