@@ -109,14 +109,16 @@ export function ConfigurationForm({
             rows={8}
             placeholder="พิมพ์กฏและกติกาการแข่งขันที่นี่"
             required
-            // TODO: ADD THAI RULES
+            error={errors.rulesTh?.message}
+            {...register("rulesTh")}
           />
           <Textarea
             label={labels.rulesEnglish}
             rows={8}
             placeholder="Competition rules and regulations here..."
             required
-            // TODO: ADD ENGLISH RULES
+            error={errors.rulesEn?.message}
+            {...register("rulesEn")}
           />
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">

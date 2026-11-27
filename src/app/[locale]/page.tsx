@@ -8,12 +8,17 @@ import { CountdownSection } from "@/components/sections/CountdownSection";
 import { WhatWhySection } from "@/components/sections/WhatWhySection";
 import { WhenWhereSection } from "@/components/sections/WhenWhereSection";
 import { AboutDetails } from "@/components/sections/AboutDetails";
-import { RulesSectionList } from "@/components/sections/RulesSectionList";
 import { OrgBanner } from "@/components/sections/OrgBanner";
 import { OrganizerGrid } from "@/components/sections/OrganizerGrid";
 import { configService } from "@/lib/services";
 
-export default async function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const locale = (await params).locale;
+
   const tHome = await getTranslations("home");
   const tAbout = await getTranslations("about");
   const tRules = await getTranslations("rules");
@@ -21,11 +26,6 @@ export default async function HomePage() {
   const tOrganizers = await getTranslations("organizers");
   const config = await configService.get();
   const siteName = getSiteName(config);
-
-  const rulesSections = tRules.raw("sections") as Array<{
-    title: string;
-    items: string[];
-  }>;
 
   const scheduleEvents = tSchedule.raw("events") as Array<{
     time: string;
@@ -141,7 +141,11 @@ export default async function HomePage() {
               Guidelines on team eligibility, submission verdicts, scoring mechanics, and code of conduct.
             </p>
           </div>
-          <RulesSectionList sections={rulesSections} titleAs="h3" />
+          <div className="mx-auto max-w-4xl rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+            <p className="whitespace-pre-wrap break-words text-left text-base leading-relaxed text-slate-700">
+              {locale === "th" ? config.rulesTh : config.rulesEn}
+            </p>
+          </div>
         </div>
       </section>
 

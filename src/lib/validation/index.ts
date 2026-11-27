@@ -87,6 +87,8 @@ export const configSchema = z.object({
   scoresCsvUrl: z.string().url(),
   scoresPublished: z.boolean(),
   registrationOpen: z.boolean(),
+  rulesTh: z.string(),
+  rulesEn: z.string(),
 });
 
 export type ConfigFormValues = z.infer<typeof configSchema>;

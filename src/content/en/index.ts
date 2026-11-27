@@ -85,32 +85,6 @@ const en = {
   },
   rules: {
     heading: "Contest Rules",
-    sections: [
-      {
-        title: "Eligibility",
-        items: [
-          "Participants must be currently enrolled ICT or DST students at Mahidol University.",
-          "Each team may have 1–3 members.",
-          "A student may only join one team.",
-        ],
-      },
-      {
-        title: "Contest Format",
-        items: [
-          "Problems are scored by number solved, then by total penalty time.",
-          "A correct submission earns +0 penalty. An incorrect submission earns +20 minutes penalty.",
-          "The contest duration is 3 hours.",
-        ],
-      },
-      {
-        title: "Code of Conduct",
-        items: [
-          "All submitted code must be original work by the team.",
-          "Plagiarism results in immediate disqualification.",
-          "Participants must follow the instructions of contest staff.",
-        ],
-      },
-    ],
   },
   schedule: {
     heading: "Event Schedule",
