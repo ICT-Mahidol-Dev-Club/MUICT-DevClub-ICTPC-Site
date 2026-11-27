@@ -22,6 +22,7 @@ export interface SiteConfig {
   registrationOpen: boolean;
 }
 
+// base configuration, is overridden by database
 export const siteConfig: SiteConfig = {
   eventYear: 27,
   showYearInName: true,
@@ -39,7 +40,7 @@ export const siteConfig: SiteConfig = {
  * Returns "ICTPC" or "ICTPCXX" depending on showYearInName.
  * Use this everywhere a site name is displayed.
  */
-export function getSiteName(): string {
+export function getSiteName(siteConfig: SiteConfig): string {
   return siteConfig.showYearInName
     ? `ICTPC${siteConfig.eventYear}`
     : "ICTPC";
