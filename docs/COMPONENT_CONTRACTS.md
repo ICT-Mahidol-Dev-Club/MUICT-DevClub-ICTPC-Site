@@ -143,7 +143,7 @@ interface HeroSectionProps {
   subtitle: string;
   ctaRegister: string;
   ctaLearnMore: string;
-  eventDate: string; // ISO 8601
+  eventDate: string | null; // ISO 8601
   registrationOpen: boolean;
 }
 ```
@@ -158,7 +158,7 @@ interface HeroSectionProps {
 
 ```typescript
 interface CountdownSectionProps {
-  eventDate: string; // ISO 8601
+  eventDate: string | null; // ISO 8601
   labels: { label: string; days: string; hours: string; minutes: string; seconds: string };
 }
 ```
@@ -194,29 +194,8 @@ interface AboutDetailsProps {
   coOrganizers: string;
   eligibility: string;
   format: string;
-  eventDate: string;
+  eventDate: string | null;
   venue: string;
-}
-```
-
-**States:** default
-
----
-
-## Rules Page (`/rules`)
-
-### `RulesSectionList`
-
-**File:** `src/components/sections/RulesSectionList.tsx`
-
-```typescript
-interface RulesSection {
-  title: string;
-  items: string[];
-}
-
-interface RulesSectionListProps {
-  sections: RulesSection[];
 }
 ```
 
@@ -238,7 +217,7 @@ interface ScheduleEvent {
 
 interface ScheduleTimelineProps {
   events: ScheduleEvent[];
-  eventDate: string;
+  eventDate: string | null;
   venue: string;
 }
 ```
@@ -807,6 +786,38 @@ interface InquiriesTableProps {
 ```
 
 **States:** loading, empty, populated
+
+---
+
+### `ConfigurationForm`
+**File:** `src/components/sections/ConfigurationForm.tsx`
+
+```typescript
+import type { UseFormReturn } from "react-hook-form";
+import type { ConfigFormValues } from "@/lib/validation";
+
+export interface ConfigurationFormProps {
+  form: UseFormReturn<ConfigFormValues>;
+  loading: boolean;
+  error: string | null;
+  onSubmit: (e: React.BaseSyntheticEvent) => void;
+  labels: {
+    edition: string;
+    showEdition: string;
+    dateTime: string;
+    reset: string;
+    venue: string;
+    rulesThai: string;
+    rulesEnglish: string;
+    revealScores: string;
+    enableRegistrations: string;
+    save: string;
+    errorTitle: string;
+  },
+}
+```
+
+**States:** idle, loading, error
 
 ---
 
