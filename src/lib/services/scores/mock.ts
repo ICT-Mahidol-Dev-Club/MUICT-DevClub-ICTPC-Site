@@ -32,7 +32,7 @@ export const mockScoresService: ScoresService = {
     await mockDelay();
     maybeThrow("scoresService.list");
     const config = await configService.get();
-    if (!config.scoresPublished) return [];
+    if (!config.scoresPublished || !config.scoresCsvUrl) return [];
     const res = await fetch(config.scoresCsvUrl);
     if (!res.ok) throw new Error("Failed to fetch scores CSV");
     const text = await res.text();

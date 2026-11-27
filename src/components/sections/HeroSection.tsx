@@ -8,7 +8,7 @@ export interface HeroSectionProps {
   subtitle: string;
   ctaRegister: string;
   ctaLearnMore: string;
-  eventDate: string; // ISO 8601
+  eventDate: string | null; // ISO 8601
   registrationOpen: boolean;
 }
 
@@ -21,11 +21,11 @@ export function HeroSection({
   eventDate,
   registrationOpen,
 }: HeroSectionProps) {
-  const formattedDate = new Date(eventDate).toLocaleDateString(undefined, {
+  const formattedDate = eventDate !== null ? new Date(eventDate).toLocaleDateString(undefined, {
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
+  }) : "TBA";
 
   return (
     <section

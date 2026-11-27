@@ -90,6 +90,7 @@ export function ConfigurationForm({
                 type="button"
                 variant="secondary"
                 className="shrink-0"
+                onClick={() => form.setValue("eventDate", "", { shouldDirty: true })}
               >
                 {labels.reset}
               </Button>

@@ -1,6 +1,6 @@
 const TZ = "Asia/Bangkok";
 
-export function toBangkokInput(value: string | Date) {
+export function toBangkokInput(value: string | Date | null) {
   if (!value) return "";
   return new Date(value)
     .toLocaleString("sv-SE", { timeZone: TZ })

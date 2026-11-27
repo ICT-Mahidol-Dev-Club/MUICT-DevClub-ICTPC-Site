@@ -3,20 +3,19 @@
 // Never hard-code eventYear or the site name anywhere else.
 // ─────────────────────────────────────────────────────────────────
 
-// TODO: allow eventDate, lineOpenChatUrl, scoresCsvUrl to be undefined
 export interface SiteConfig {
   /** The contest edition number, e.g. 27 for ICTPC27 */
   eventYear: number;
   /** When true, getSiteName() returns "ICTPC27" instead of "ICTPC" */
   showYearInName: boolean;
   /** ISO 8601 date string of the contest day */
-  eventDate: string;
+  eventDate: string | null;
   /** Venue name (bilingual; display using the i18n content files) */
   venue: string;
   /** LINE OpenChat URL for participants */
-  lineOpenChatUrl: string;
+  lineOpenChatUrl: string | null;
   /** URL of the publicly hosted scores CSV */
-  scoresCsvUrl: string;
+  scoresCsvUrl: string | null;
   /** Whether the scoreboard is visible to the public */
   scoresPublished: boolean;
   /** Whether registration is currently open */

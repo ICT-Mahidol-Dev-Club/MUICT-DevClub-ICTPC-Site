@@ -47,11 +47,11 @@ export default function ContactPage() {
 
       <div className="mx-auto max-w-7xl space-y-12 px-4 sm:px-6 lg:px-8">
         {/* LINE OpenChat Card */}
-        <LineOpenChatLink
+        {config.lineOpenChatUrl && <LineOpenChatLink
           url={config.lineOpenChatUrl}
           promptText={t("line")}
           buttonLabel={t("lineButton")}
-        />
+        />}
 
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
           {/* Inquiry Form */}

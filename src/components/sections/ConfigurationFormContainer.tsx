@@ -20,7 +20,11 @@ export function ConfigurationFormContainer({
 
   const form = useForm<ConfigFormValues>({
     resolver: zodResolver(configSchema),
-    defaultValues: { ...config, eventDate: toBangkokInput(config.eventDate) },
+    defaultValues: { ...config,
+      eventDate: toBangkokInput(config.eventDate),
+      lineOpenChatUrl: config.lineOpenChatUrl ?? "",
+      scoresCsvUrl: config.scoresCsvUrl ?? "",
+    },
   });
 
   async function onSubmit(data: ConfigFormValues) {

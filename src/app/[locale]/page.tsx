@@ -51,6 +51,7 @@ export default async function HomePage({
       />
 
       {/* 2. Contest Starts In (existing countdown) */}
+      {config.eventDate !== null && 
       <CountdownSection
         eventDate={config.eventDate}
         labels={{
@@ -61,6 +62,7 @@ export default async function HomePage({
           seconds: tHome("countdown.seconds"),
         }}
       />
+      }
 
       {/* 3. What is ICTPC + Why you should join (new) */}
       <WhatWhySection
