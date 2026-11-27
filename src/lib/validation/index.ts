@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { fromBangkokInput } from "./datetime";
 
 // ─────────────────────────────────────────────────────────────────
 // Registration / Team Member
@@ -67,3 +68,25 @@ export const adminLoginSchema = z.object({
 
 export type AdminLoginFormValues = z.infer<typeof adminLoginSchema>;
 
+// ─────────────────────────────────────────────────────────────────
+// Configuration
+// ─────────────────────────────────────────────────────────────────
+
+const LOCAL_INPUT = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+
+// TODO: allow eventDate, lineOpenChatUrl, scoresCsvUrl to be undefined
+export const configSchema = z.object({
+  eventYear: z.coerce.number().min(0),
+  showYearInName: z.boolean(),
+  eventDate: z
+    .string()
+    .refine((v) => !isNaN(Date.parse(v)), "Invalid date")
+    .transform((v) => (LOCAL_INPUT.test(v) ? fromBangkokInput(v) : v)),
+  venue: z.string().max(100),
+  lineOpenChatUrl: z.string().url(),
+  scoresCsvUrl: z.string().url(),
+  scoresPublished: z.boolean(),
+  registrationOpen: z.boolean(),
+});
+
+export type ConfigFormValues = z.infer<typeof configSchema>;

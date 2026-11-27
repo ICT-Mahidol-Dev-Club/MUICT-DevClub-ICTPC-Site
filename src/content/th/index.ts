@@ -327,7 +327,7 @@ const th = {
       heading: "การตั้งค่า",
       edition: "ปี",
       showEdition: "แสดงปี",
-      dateTime: "วัน-เวลา",
+      dateTime: "วัน-เวลา (เวลาไทย)",
       reset: "รีเซ็ต",
       venue: "สถานที่",
       rulesThai: "กฏ (ภาษาไทย)",
@@ -335,6 +335,8 @@ const th = {
       revealScores: "เปิดเผยคะแนน",
       enableRegistrations: "เปิดรับสมัคร",
       save: "บันทึก",
+      errorTitle: "บันทึกข้อมูลล้มเหลว",
+      error: "กรุณาลองอีกครั้ง"
     },
   },
   errors: {

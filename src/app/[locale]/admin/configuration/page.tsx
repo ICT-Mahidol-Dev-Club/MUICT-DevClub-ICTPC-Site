@@ -1,21 +1,21 @@
 import { AdminLayout } from "@/components/layout/AdminLayout";
 import { AdminPageHeader } from "@/components/sections/AdminPageHeader";
-import { ConfigurationForm } from "@/components/sections/ConfigurationForm";
+import { ConfigurationFormContainer } from "@/components/sections/ConfigurationFormContainer";
 import { requireAdminSession } from "@/lib/auth/admin-guard";
+import { configService } from "@/lib/services";
 import { getTranslations } from "next-intl/server";
 
 export default async function AdminConfigurationPage() {
   const session = await requireAdminSession();
   const t = await getTranslations("admin.configuration");
   const nt = await getTranslations("admin.nav");
-
-  // get configuration here
+  const config = await configService.get();
 
   return (
     <AdminLayout session={session}>
       <AdminPageHeader heading={t("heading")} backHref="/admin" labels={{ back: nt("back") }} />
-    
-      <ConfigurationForm
+      <ConfigurationFormContainer
+        config={config}
         labels={{
           edition: t("edition"),
           showEdition: t("showEdition"),
@@ -27,6 +27,7 @@ export default async function AdminConfigurationPage() {
           revealScores: t("revealScores"),
           enableRegistrations: t("enableRegistrations"),
           save: t("save"),
+          errorTitle: t("errorTitle")
         }}
       />
     </AdminLayout>

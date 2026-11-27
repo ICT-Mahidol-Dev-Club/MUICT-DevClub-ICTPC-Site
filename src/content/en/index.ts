@@ -329,7 +329,7 @@ const en = {
       heading: "Configuration",
       edition: "Edition",
       showEdition: "Show Edition",
-      dateTime: "Date/Time",
+      dateTime: "Date/Time (UTC+7)",
       reset: "Reset",
       venue: "Venue",
       rulesThai: "Rules (Thai)",
@@ -337,6 +337,8 @@ const en = {
       revealScores: "Reveal Scores",
       enableRegistrations: "Enable Registrations",
       save: "Save",
+      errorTitle: "Failed to Save Configuration",
+      error: "Please try again later."
     },
   },
   errors: {

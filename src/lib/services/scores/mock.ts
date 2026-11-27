@@ -33,7 +33,6 @@ export const mockScoresService: ScoresService = {
     maybeThrow("scoresService.list");
     const config = await configService.get();
     if (!config.scoresPublished) return [];
-    // In mock mode, fetch from /mock-data/scores.csv (served as static)
     const res = await fetch(config.scoresCsvUrl);
     if (!res.ok) throw new Error("Failed to fetch scores CSV");
     const text = await res.text();

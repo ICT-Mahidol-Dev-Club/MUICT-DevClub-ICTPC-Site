@@ -3,6 +3,7 @@
 // Never hard-code eventYear or the site name anywhere else.
 // ─────────────────────────────────────────────────────────────────
 
+// TODO: allow eventDate, lineOpenChatUrl, scoresCsvUrl to be undefined
 export interface SiteConfig {
   /** The contest edition number, e.g. 27 for ICTPC27 */
   eventYear: number;
@@ -31,7 +32,7 @@ export const siteConfig: SiteConfig = {
   lineOpenChatUrl: "https://line.me/ti/g2/PLACEHOLDER",
   scoresCsvUrl:
     process.env.NEXT_PUBLIC_SCORES_CSV_URL ??
-    "/mock-data/scores.csv", // local mock fallback
+    "http://localhost:3000/mock-data/scores.csv", // local mock fallback
   scoresPublished: false,
   registrationOpen: true,
 };
