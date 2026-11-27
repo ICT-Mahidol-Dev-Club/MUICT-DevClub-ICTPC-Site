@@ -1,6 +1,6 @@
 import React from "react";
 import { getTranslations } from "next-intl/server";
-import { getSiteName, siteConfig } from "@/config/site.config";
+import { getSiteName } from "@/config/site.config";
 import { organizers } from "@/content/team";
 import { Badge } from "@/components/ui/Badge";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -11,6 +11,7 @@ import { AboutDetails } from "@/components/sections/AboutDetails";
 import { RulesSectionList } from "@/components/sections/RulesSectionList";
 import { OrgBanner } from "@/components/sections/OrgBanner";
 import { OrganizerGrid } from "@/components/sections/OrganizerGrid";
+import { configService } from "@/lib/services";
 
 export default async function HomePage() {
   const tHome = await getTranslations("home");
@@ -18,7 +19,8 @@ export default async function HomePage() {
   const tRules = await getTranslations("rules");
   const tSchedule = await getTranslations("schedule");
   const tOrganizers = await getTranslations("organizers");
-  const siteName = getSiteName();
+  const config = await configService.get();
+  const siteName = getSiteName(config);
 
   const rulesSections = tRules.raw("sections") as Array<{
     title: string;
@@ -44,13 +46,13 @@ export default async function HomePage() {
         subtitle={tHome("hero.subtitle")}
         ctaRegister={tHome("hero.ctaRegister")}
         ctaLearnMore={tHome("hero.ctaLearnMore")}
-        eventDate={siteConfig.eventDate}
-        registrationOpen={siteConfig.registrationOpen}
+        eventDate={config.eventDate}
+        registrationOpen={config.registrationOpen}
       />
 
       {/* 2. Contest Starts In (existing countdown) */}
       <CountdownSection
-        eventDate={siteConfig.eventDate}
+        eventDate={config.eventDate}
         labels={{
           label: tHome("countdown.label"),
           days: tHome("countdown.days"),
@@ -69,7 +71,7 @@ export default async function HomePage() {
         whyHeading={tHome("whatWhy.whyHeading")}
         whySubtitle={tHome("whatWhy.whySubtitle")}
         benefits={benefits}
-        registrationOpen={siteConfig.registrationOpen}
+        registrationOpen={config.registrationOpen}
       />
 
       {/* 4. When and Where (new) */}
@@ -80,8 +82,8 @@ export default async function HomePage() {
         venueTitle={tHome("whenWhere.venueTitle")}
         dateTitle={tHome("whenWhere.dateTitle")}
         mapHint={tHome("whenWhere.mapHint")}
-        eventDate={siteConfig.eventDate}
-        venue={siteConfig.venue}
+        eventDate={config.eventDate}
+        venue={config.venue}
         events={scheduleEvents}
       />
 
@@ -111,8 +113,8 @@ export default async function HomePage() {
             coOrganizers={tAbout("coOrganizers")}
             eligibility={tAbout("eligibility")}
             format={tAbout("format")}
-            eventDate={siteConfig.eventDate}
-            venue={siteConfig.venue}
+            eventDate={config.eventDate}
+            venue={config.venue}
             summary={true}
           />
         </div>

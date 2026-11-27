@@ -1,7 +1,7 @@
 import type { ScoreRow, ProblemVerdict } from "@/types";
 import type { ScoresService } from "./interface";
-import { siteConfig } from "@/config/site.config";
 import { mockDelay, maybeThrow } from "../_mock-utils";
+import { configService } from "..";
 
 // Parse CSV text into ScoreRow[]
 // Expected header: rank,teamName,solved,totalTime,<problem columns...>
@@ -31,9 +31,10 @@ export const mockScoresService: ScoresService = {
   async list(): Promise<ScoreRow[]> {
     await mockDelay();
     maybeThrow("scoresService.list");
-    if (!siteConfig.scoresPublished) return [];
+    const config = await configService.get();
+    if (!config.scoresPublished) return [];
     // In mock mode, fetch from /mock-data/scores.csv (served as static)
-    const res = await fetch(siteConfig.scoresCsvUrl);
+    const res = await fetch(config.scoresCsvUrl);
     if (!res.ok) throw new Error("Failed to fetch scores CSV");
     const text = await res.text();
     return parseCsv(text);

@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { scoresService } from "@/lib/services";
-import { siteConfig } from "@/config/site.config";
+import { configService, scoresService } from "@/lib/services";
 import type { ScoreRow } from "@/types";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { NotPublishedBanner } from "@/components/sections/NotPublishedBanner";
@@ -9,8 +8,9 @@ import { ErrorMessage } from "@/components/ui/ErrorMessage";
 
 export default async function ScoresPage() {
   const t = await getTranslations("scores");
+  const config = await configService.get();
 
-  if (!siteConfig.scoresPublished) {
+  if (!config.scoresPublished) {
     return (
       <div className="pb-16">
         <PageHeader

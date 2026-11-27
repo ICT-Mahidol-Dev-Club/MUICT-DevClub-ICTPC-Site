@@ -5,16 +5,17 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { inquirySchema, type InquiryFormValues } from "@/lib/validation";
-import { inquiryService } from "@/lib/services";
-import { siteConfig } from "@/config/site.config";
+import { configService, inquiryService } from "@/lib/services";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { LineOpenChatLink } from "@/components/sections/LineOpenChatLink";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
+import { useConfig } from "@/components/layout/ConfigProvider";
 
 export default function ContactPage() {
   const t = useTranslations("contact");
   const tFaq = useTranslations("faq");
+  const config = useConfig();
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const form = useForm<InquiryFormValues>({
@@ -47,7 +48,7 @@ export default function ContactPage() {
       <div className="mx-auto max-w-7xl space-y-12 px-4 sm:px-6 lg:px-8">
         {/* LINE OpenChat Card */}
         <LineOpenChatLink
-          url={siteConfig.lineOpenChatUrl}
+          url={config.lineOpenChatUrl}
           promptText={t("line")}
           buttonLabel={t("lineButton")}
         />
