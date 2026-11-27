@@ -15,19 +15,30 @@ import { EmptyState } from "@/components/ui/EmptyState";
 export interface RegistrationsTableProps {
   registrations: Registration[];
   labels: {
-    status: string;
-    actions: string;
+    header: {
+      id: string;
+      teamName: string;
+      members: string;
+      status: string;
+      submitted: string;
+      actions: string;
+    };
+    badge: {
+      confirmed: string;
+      rejected: string;
+      pending: string;
+    };
+    empty: {
+      title: string;
+      message: string;
+    };
+    view: string;
   };
 }
 
 export function RegistrationsTable({ registrations, labels }: RegistrationsTableProps) {
   if (registrations.length === 0) {
-    return (
-      <EmptyState
-        title="No Registrations"
-        message="No team registrations have been submitted yet."
-      />
-    );
+    return <EmptyState title={labels.empty.title} message={labels.empty.message} />;
   }
 
   const getStatusBadge = (status: Registration["status"]) => {
@@ -35,19 +46,19 @@ export function RegistrationsTable({ registrations, labels }: RegistrationsTable
       case "confirmed":
         return (
           <Badge variant="success" size="sm" dot>
-            Confirmed
+            {labels.badge.confirmed}
           </Badge>
         );
       case "rejected":
         return (
           <Badge variant="danger" size="sm" dot>
-            Rejected
+            {labels.badge.rejected}
           </Badge>
         );
       default:
         return (
           <Badge variant="warning" size="sm" dot>
-            Pending
+            {labels.badge.pending}
           </Badge>
         );
     }
@@ -57,12 +68,12 @@ export function RegistrationsTable({ registrations, labels }: RegistrationsTable
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-24 font-mono">ID</TableHead>
-          <TableHead>Team Name</TableHead>
-          <TableHead className="w-28 text-center">Members</TableHead>
-          <TableHead className="w-36">{labels.status}</TableHead>
-          <TableHead className="w-36">Submitted</TableHead>
-          <TableHead className="w-28 text-right">{labels.actions}</TableHead>
+          <TableHead className="w-24 font-mono">{labels.header.id}</TableHead>
+          <TableHead>{labels.header.teamName}</TableHead>
+          <TableHead className="w-28 text-center">{labels.header.members}</TableHead>
+          <TableHead className="w-36">{labels.header.status}</TableHead>
+          <TableHead className="w-36">{labels.header.submitted}</TableHead>
+          <TableHead className="w-28 text-right">{labels.header.actions}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -92,7 +103,7 @@ export function RegistrationsTable({ registrations, labels }: RegistrationsTable
                 href={`/admin/registrations/${reg.id}`}
                 className="inline-flex items-center gap-1 rounded-md bg-primary-50 px-2.5 py-1 text-xs font-semibold text-primary-600 transition-colors hover:bg-primary-100 hover:text-primary-700"
               >
-                <span>View</span>
+                <span>{labels.view}</span>
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
                     strokeLinecap="round"

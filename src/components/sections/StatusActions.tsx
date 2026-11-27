@@ -13,7 +13,16 @@ export interface StatusActionsProps {
   onReject: () => void;
   saving: boolean;
   labels: {
+    badge: {
+      confirmed: string;
+      rejected: string;
+      pending: string;
+    };
+    title: string;
+    description: string;
     note: string;
+    notePlaceholder: string;
+    current: string;
     confirm: string;
     reject: string;
     save: string;
@@ -33,11 +42,9 @@ export function StatusActions({
     <Card className="border-slate-200 bg-white p-6 shadow-card">
       <CardHeader className="p-0 pb-4">
         <CardTitle as="h3" className="text-base font-bold text-slate-900">
-          Review &amp; Status Actions
+          {labels.title}
         </CardTitle>
-        <p className="mt-0.5 text-xs text-slate-500">
-          Update the registration decision or leave an internal committee note.
-        </p>
+        <p className="mt-0.5 text-xs text-slate-500">{labels.description}</p>
       </CardHeader>
 
       <CardContent className="space-y-4 p-0">
@@ -46,16 +53,16 @@ export function StatusActions({
           id="reg-note"
           value={note}
           onChange={(e) => onNoteChange(e.target.value)}
-          placeholder="Internal notes (e.g., student verified on central registrar)"
+          placeholder={labels.notePlaceholder}
           rows={3}
           disabled={saving}
         />
 
         <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-slate-400">Current:</span>
+            <span className="font-mono text-xs text-slate-400">{labels.current}:</span>
             <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-bold uppercase text-slate-700">
-              {currentStatus}
+              {labels.badge[currentStatus]}
             </span>
           </div>
 

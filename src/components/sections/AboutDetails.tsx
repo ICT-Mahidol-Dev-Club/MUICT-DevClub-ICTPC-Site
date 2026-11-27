@@ -7,7 +7,7 @@ export interface AboutDetailsProps {
   coOrganizers: string;
   eligibility: string;
   format: string;
-  eventDate: string;
+  eventDate: string | null;
   venue: string;
   summary?: boolean;
 }
@@ -21,12 +21,12 @@ export function AboutDetails({
   venue,
   summary = false,
 }: AboutDetailsProps) {
-  const formattedDate = new Date(eventDate).toLocaleDateString(undefined, {
+  const formattedDate = eventDate !== null ? new Date(eventDate).toLocaleDateString(undefined, {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
+  }) : "TBA";
 
   if (summary) {
     return (

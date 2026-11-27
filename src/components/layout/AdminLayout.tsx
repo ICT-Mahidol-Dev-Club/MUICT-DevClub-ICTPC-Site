@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import type { AdminSession } from "@/types";
-import { Link, usePathname } from "@/i18n/navigation";
+import { Link, usePathname, getPathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
+import { useLocale, useTranslations } from "next-intl";
 
 export interface AdminLayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,8 @@ export interface AdminLayoutProps {
 }
 
 export function AdminLayout({ children, session }: AdminLayoutProps) {
+  const t = useTranslations("admin.nav");
+  const locale = useLocale();
   const pathname = usePathname();
   const [loggingOut, setLoggingOut] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -19,7 +22,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
     setLoggingOut(true);
     try {
       await fetch("/api/admin/logout", { method: "POST" });
-      window.location.href = "/en/admin/login";
+      window.location.href = getPathname({ href: "/admin/login", locale });
     } finally {
       setLoggingOut(false);
     }
@@ -28,7 +31,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
   const navItems = [
     {
       href: "/admin",
-      label: "Dashboard",
+      label: t("dashboard"),
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -43,7 +46,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
     },
     {
       href: "/admin/registrations",
-      label: "Registrations",
+      label: t("registrations"),
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -57,7 +60,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
     },
     {
       href: "/admin/inquiries",
-      label: "Inquiries",
+      label: t("inquiries"),
       icon: (
         <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path
@@ -68,6 +71,26 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
           />
         </svg>
       ),
+    },
+    {
+      href: "/admin/configuration",
+      label: t("configuration"),
+      icon: (
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+          />
+        </svg>
+      )
     },
   ];
 
@@ -157,7 +180,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            <span>Back to Public Site</span>
+            <span>{t("toPublic")}</span>
           </Link>
 
           <Button
@@ -176,7 +199,7 @@ export function AdminLayout({ children, session }: AdminLayoutProps) {
                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
               />
             </svg>
-            Sign Out
+            {t("signOut")}
           </Button>
         </div>
       </aside>

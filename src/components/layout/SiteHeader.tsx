@@ -2,18 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { getSiteName, siteConfig } from "@/config/site.config";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/Badge";
 
 export interface SiteHeaderProps {
   currentLocale: "en" | "th";
   currentPath: string;
+  siteName: string;
 }
 
-export function SiteHeader({ currentLocale, currentPath }: SiteHeaderProps) {
+export function SiteHeader({ currentLocale, currentPath, siteName }: SiteHeaderProps) {
   const t = useTranslations("nav");
-  const siteName = getSiteName();
   const router = useRouter();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

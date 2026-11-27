@@ -31,7 +31,11 @@ export function InquiriesClient({ initialInquiries }: Props) {
       inquiries={inquiries}
       labels={{
         resolve: t("resolve"),
+        open: t("open"),
         resolved: t("resolved"),
+        header: t.raw("header"),
+        empty: t.raw("empty"),
+        done: t("done"),
       }}
       onResolve={handleResolve}
     />

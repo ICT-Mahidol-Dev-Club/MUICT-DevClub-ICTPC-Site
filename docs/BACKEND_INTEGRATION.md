@@ -31,6 +31,7 @@ For each domain, create a `real.ts` file next to the existing `mock.ts` and impl
 | Scores | `src/lib/services/scores/interface.ts` | `scores/mock.ts` | `scores/real.ts` |
 | Problem Sets | `src/lib/services/problemSets/interface.ts` | `problemSets/mock.ts` | `problemSets/real.ts` |
 | Practice | `src/lib/services/practice/interface.ts` | `practice/mock.ts` | `practice/real.ts` |
+| Config | `src/lib/services/config/interface.ts` | `config/mock.ts` | `config/real.ts` |
 
 Then in `src/lib/services/index.ts`, replace each `mock*Service` with `real*Service` in the `useMocks=false` branch.
 

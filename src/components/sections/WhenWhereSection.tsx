@@ -11,7 +11,7 @@ export interface WhenWhereSectionProps {
   badge: string;
   heading: string;
   description: string;
-  eventDate: string;
+  eventDate: string | null;
   venue: string;
   venueTitle: string;
   dateTitle: string;
@@ -30,12 +30,12 @@ export function WhenWhereSection({
   mapHint,
   events,
 }: WhenWhereSectionProps) {
-  const formattedDate = new Date(eventDate).toLocaleDateString(undefined, {
+  const formattedDate = eventDate !== null ? new Date(eventDate).toLocaleDateString(undefined, {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
+  }) : "TBA";
 
   return (
     <section

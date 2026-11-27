@@ -10,6 +10,7 @@ import { mockAdminService } from "./admin/mock";
 import { mockScoresService } from "./scores/mock";
 import { mockProblemSetsService } from "./problemSets/mock";
 import { mockPracticeService } from "./practice/mock";
+import { mockConfigService } from "./config/mock";
 
 // Re-export interface types so callers can type-annotate without
 // importing from deep paths.
@@ -20,6 +21,7 @@ export type { AdminService } from "./admin/interface";
 export type { ScoresService } from "./scores/interface";
 export type { ProblemSetsService } from "./problemSets/interface";
 export type { PracticeService } from "./practice/interface";
+export type { ConfigService } from "./config/interface";
 
 const useMocks = process.env.NEXT_PUBLIC_USE_MOCKS !== "false";
 
@@ -54,3 +56,6 @@ export const practiceService = useMocks
   ? mockPracticeService
   : mockPracticeService; // TODO(backend): replace with realPracticeService
 
+export const configService = useMocks
+  ? mockConfigService
+  : mockConfigService;  // TODO(backend): replace with realConfigService

@@ -29,6 +29,9 @@
 │   │       ├── error.tsx
 │   │       ├── loading.tsx
 │   │       └── admin/
+│   │           ├── configuration/
+│   │           │   ├── actions.ts
+│   │           │   ├── page.tsx
 │   │           ├── login/page.tsx   (client)
 │   │           ├── page.tsx         dashboard
 │   │           ├── registrations/
@@ -37,7 +40,7 @@
 │   │           │   └── [id]/page.tsx
 │   │           └── inquiries/page.tsx
 │   ├── config/
-│   │   └── site.config.ts       # Single source of truth for year/event data
+│   │   └── site.config.ts       # Base configuration for event data
 │   ├── content/
 │   │   ├── en/index.ts          # English messages (deep const object)
 │   │   ├── th/index.ts          # Thai messages (same shape)
@@ -55,6 +58,7 @@
 │   │   │   ├── registration/
 │   │   │   │   ├── interface.ts
 │   │   │   │   └── mock.ts
+│   │   │   ├── config/
 │   │   │   ├── teams/
 │   │   │   ├── inquiry/
 │   │   │   ├── admin/
@@ -62,7 +66,8 @@
 │   │   │   ├── problemSets/
 │   │   │   └── practice/
 │   │   └── validation/
-│   │       └── index.ts         # Zod schemas + inferred types
+│   │       ├── index.ts         # Zod schemas + inferred types
+│   │       └── datetime.ts      # small date utilities
 │   ├── types/
 │   │   └── index.ts             # All domain types (annotated @public/@private)
 │   ├── middleware.ts             # next-intl locale routing middleware
@@ -121,16 +126,16 @@ When connecting a real back-end:
 
 ## Config
 
-`src/config/site.config.ts` is the **single source of truth** for:
+`src/config/site.config.ts` is the base configuration for:
 
 | Key | Purpose |
 |-----|---------|
 | `eventYear` | Contest edition (e.g. 27) |
 | `showYearInName` | Controls `getSiteName()` output |
-| `eventDate` | ISO 8601 contest timestamp |
+| `eventDate` | ISO 8601 contest timestamp (nullable) |
 | `venue` | Venue string |
-| `lineOpenChatUrl` | LINE chat link |
-| `scoresCsvUrl` | URL of scores CSV |
+| `lineOpenChatUrl` | LINE chat link (nullable) |
+| `scoresCsvUrl` | URL of scores CSV (nullable) |
 | `scoresPublished` | Feature flag — show/hide scoreboard |
 | `registrationOpen` | Feature flag — open/close registration |
 

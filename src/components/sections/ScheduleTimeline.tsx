@@ -9,17 +9,17 @@ export interface ScheduleEvent {
 
 export interface ScheduleTimelineProps {
   events: ScheduleEvent[];
-  eventDate: string;
+  eventDate: string | null;
   venue: string;
 }
 
 export function ScheduleTimeline({ events, eventDate, venue }: ScheduleTimelineProps) {
-  const formattedDate = new Date(eventDate).toLocaleDateString(undefined, {
+  const formattedDate = eventDate !== null ? new Date(eventDate).toLocaleDateString(undefined, {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
+  }) : "TBA";
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">

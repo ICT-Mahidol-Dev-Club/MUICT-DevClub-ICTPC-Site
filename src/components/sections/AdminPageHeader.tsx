@@ -5,9 +5,12 @@ export interface AdminPageHeaderProps {
   heading: string;
   backHref?: string;
   actions?: React.ReactNode;
+  labels: {
+    back: string;
+  }
 }
 
-export function AdminPageHeader({ heading, backHref, actions }: AdminPageHeaderProps) {
+export function AdminPageHeader({ heading, backHref, actions, labels }: AdminPageHeaderProps) {
   return (
     <div className="mb-8 flex flex-col gap-4 border-b border-slate-200 pb-6 sm:flex-row sm:items-center sm:justify-between">
       <div className="space-y-1">
@@ -24,7 +27,7 @@ export function AdminPageHeader({ heading, backHref, actions }: AdminPageHeaderP
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            <span>Back</span>
+            <span>{labels.back}</span>
           </Link>
         )}
         <h1 className="font-mono text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">

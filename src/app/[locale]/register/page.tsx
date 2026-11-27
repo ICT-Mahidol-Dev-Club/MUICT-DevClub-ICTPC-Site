@@ -5,12 +5,12 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { registrationSchema, type RegistrationFormValues } from "@/lib/validation";
-import { registrationService } from "@/lib/services";
-import { siteConfig } from "@/config/site.config";
+import { configService, registrationService } from "@/lib/services";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { RegistrationForm } from "@/components/sections/RegistrationForm";
 import { ClosedBanner } from "@/components/sections/ClosedBanner";
 import { SuccessBanner } from "@/components/sections/SuccessBanner";
+import { useConfig } from "@/components/layout/ConfigProvider";
 
 export default function RegisterPage() {
   const t = useTranslations("register");
@@ -50,7 +50,8 @@ export default function RegisterPage() {
     }
   }
 
-  if (!siteConfig.registrationOpen) {
+  const config = useConfig();
+  if (!config.registrationOpen) {
     return (
       <div className="pb-16">
         <PageHeader badge="APPLY" heading={t("heading")} description={t("description")} />

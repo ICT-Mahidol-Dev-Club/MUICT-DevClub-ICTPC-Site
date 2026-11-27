@@ -10,6 +10,7 @@ import { ErrorMessage } from "@/components/ui/ErrorMessage";
 export default async function AdminRegistrationsPage() {
   const session = await requireAdminSession();
   const t = await getTranslations("admin.registrations");
+  const nt = await getTranslations("admin.nav");
 
   let registrations: Registration[] = [];
   let error = false;
@@ -22,16 +23,18 @@ export default async function AdminRegistrationsPage() {
 
   return (
     <AdminLayout session={session}>
-      <AdminPageHeader heading={t("heading")} backHref="/admin" />
+      <AdminPageHeader heading={t("heading")} backHref="/admin" labels={{ back: nt("back") }} />
 
       {error ? (
-        <ErrorMessage message="Failed to load registrations. Please try again." />
+        <ErrorMessage message={t("error")} />
       ) : (
         <RegistrationsTable
           registrations={registrations}
           labels={{
-            status: t("status"),
-            actions: t("actions"),
+            header: t.raw("header"),
+            badge: t.raw("badge"),
+            empty: t.raw("empty"),
+            view: t("view"),
           }}
         />
       )}
